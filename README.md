@@ -1,4 +1,11 @@
-# Website
+# comit.network
+
+This is the source code repository for the https://comit.network website.
+
+If you find any of the content unclear please do a PR, contributions are very welcome.
+
+
+## Setup
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
