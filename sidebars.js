@@ -5,7 +5,7 @@
 module.exports = {
   someSidebar: {
     'Getting Started': ['getting-started/create-comit-app'],
-    'Core Concepts': [],
+    'COMIT protocol': ['core-concepts/comit-protocol-stack', 'core-concepts/core-concepts'],
     'Tutorials': [],
     'Tools': [],
   },
