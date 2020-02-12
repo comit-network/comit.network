@@ -5,7 +5,8 @@
 module.exports = {
   someSidebar: {
     'Getting Started': ['getting-started/create-comit-app'],
-    'COMIT protocol': ['core-concepts/comit-protocol-stack', 'core-concepts/core-concepts'],
+    'COMIT Protocol': ['comit-protocol/comit-protocol-stack'],
+    'Core Concepts': ['core-concepts/atomic-swap-htlc', 'core-concepts/instant-swap', 'core-concepts/privacy-preserving-swap', 'core-concepts/negotiation'],
     'Tutorials': [],
     'Tools': [],
   },

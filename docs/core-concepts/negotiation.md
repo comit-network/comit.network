@@ -1,0 +1,30 @@
+---
+id: negotiation
+title: Negotiation vs. Execution
+sidebar_label: Negotiation vs. Execution
+---
+
+⚠️ Disclaimer: This part of the documentation is still under construction!
+
+Note: Explain execution and negotiation separately on this page.
+
+Prior to the [execution of a swap](atomic-swap-htlc.md) there is usually a negotiation phase where the two parties involved in the trade agree on what to trade (ledgers, assets) and the amounts.
+
+In trading there are usually two roles:
+
+1. *Maker*: Creates and publishes orders. 
+1. *Taker*: Takes the order created by the maker and initiates execution.
+
+<iframe 
+    src="https://docs.google.com/presentation/d/e/2PACX-1vQpdx3Nb9zt4dounRgXxCho6k8WvnxwrU-zVL-sn9Rvf8kS5cxvTESU7o8k5S3u6qdlWttSPO3VKTe-/embed?start=false&loop=false&delayms=1000"
+    frameborder="0"
+    width="801"
+    height="480"
+    allowfullscreen="true"
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true">
+</iframe>
+
+The COMIT protocol enables the execution of the swap through the [COMIT network daemon (cnd)](../comit-protocol/comit-protocol-stack.md#comit-network-daemon-cnd).
+
+Currently, in the COMIT protocol, the maker defaults to the cryptographic role of Bob and the taker to Alice for the execution of the swap.

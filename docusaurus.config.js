@@ -36,6 +36,10 @@ module.exports = {
               label: 'COMIT Protocol',
               to: 'docs/comit-protocol',
             },
+            {
+              label: 'Core Concepts',
+              to: 'docs/core-concepts',
+            },
           ],
         },
         {

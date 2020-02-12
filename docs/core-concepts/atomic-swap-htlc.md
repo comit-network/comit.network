@@ -1,21 +1,12 @@
 ---
-id: core-concepts
-title: Core Concepts
-sidebar_label: Core Concepts
+id: atomic-swap-htlc
+title: Atomic Swaps using HTLCs
+sidebar_label: Atomic Swaps using HTLCs
 ---
-
-COMIT is an open protocol facilitating cross-blockchain applications.
-This part of the documentation explains core concepts and how they relate to the COMIT protocol.
-The documentation contains embedded google slides for explaining details.
-Note that you can play/pause the slide-player and step back and forth. 
-
-More detailed information about the COMIT protocol can be found in [COMIT protocol stack](comit-protocol-stack.md).
-
-## Atomic Swaps using HTLCs
 
 [Atomic Swap](#atomic-swap)s using [HTLC](#htlc)s defines solution using time-locks for exchanging two digital assets without the need of a trusted third party.
 
-Prior to the actual swap execution there is usually a [Negotiation](#negotiation---maker-and-taker) phase where the two parties agree on the ledgers, assets and amounts to be swapped.
+Prior to the actual swap execution there is usually a [Negotiation](negotiation.md) phase where the two parties agree on the ledgers, assets and amounts to be swapped.
 
 Assuming, that Alice has ETH on Ethereum and Bob has BTC on Bitcoin, Alice wants Bob's BTC and Bob wants Alice's ETH, the execution of a swap would be like this:
 
@@ -45,7 +36,7 @@ He extracts the actual secret from Alice's redeem transaction and uses it to red
 </iframe>
 
 The COMIT protocol acts as enabler for atomic swaps in applications.
-The [COMIT network deamon (cnd)](comit-protocol-stack.md#comit-network-daemon-cnd) mainly does two things:
+The [COMIT network deamon (cnd)](../comit-protocol/comit-protocol-stack.md#comit-network-daemon-cnd) mainly does two things:
 
 1. Monitor the ledgers by processing blocks supplied by blockchain nodes.
 1. Define the transaction details and hand them over to an application on top to send the actual signed transaction into the respective blockchain network.
@@ -60,7 +51,7 @@ The [COMIT network deamon (cnd)](comit-protocol-stack.md#comit-network-daemon-cn
     webkitallowfullscreen="true">
 </iframe>
 
-### Atomic Swap
+## Atomic Swap
 
 Atomic Swaps define a peer to peer exchange of two digital assets, where both parties are in control of their private keys throughout the whole execution of the swap.
 
@@ -71,7 +62,7 @@ No party has access to both assets at the same time within the boundaries of the
 
 Note that the party in the cryptographic role of Alice has to redeem first, because she has the actual secret.
 
-### HTLC
+## HTLC
 
 HTLC stands for Hash Time Locked Contract. An HTLC is a script or smart contract that locks a digital asset over time.
 HTLCs require a ledger that provides a time lock.
@@ -99,7 +90,7 @@ In order to create HTLCs for the execution of an atomic swap, the two parties ha
 1. Expiry times to be used for the HTLCs.
 1. Hash of the secret (To be sent from the party in the cryptographic role of Alice to the party in the cryptographic role of Bob.)
 
-#### HTLCs on different Ledgers
+### HTLCs on different Ledgers
 
 On Bitcoin this can be achieved by using a [Bitcoin script](https://en.bitcoin.it/wiki/Script).
 Example Bitcoin HTLC is defined in in the [COMIT Bitcoin HTLC specifiction](https://github.com/comit-network/RFCs/blob/master/RFC-005-SWAP-Basic-Bitcoin.adoc): 
@@ -121,9 +112,9 @@ On Ethereum this can be achieved by deploying an [Ethereum Smart Contract](https
 Note that an Ethereum HTLC does not necessarily have to be written in Solidity.
 Given, that HTLCs are really simple smart contracts they can also be written in EVM assembly as defined in the [COMIT Ether HTLC specification](https://github.com/comit-network/RFCs/blob/master/RFC-007-SWAP-Basic-Ether.adoc) and [COMIT ERC20 HTLC specification](https://github.com/comit-network/RFCs/blob/master/RFC-009-SWAP-Basic-ERC20.adoc).
 
-[Scriptless Scripts](#scriptless-scripts) enable HTLCs hidden in signatures. This allows [Privacy Preserving Swaps](#privacy-preserving-swaps).
+[Scriptless Scripts](privacy-preserving-swap.md#scriptless-scripts) enable HTLCs hidden in signatures. This allows [Privacy Preserving Swaps](privacy-preserving-swap.md).
 
-#### Close Look on HTLC Expiries
+### Close Look on HTLC Expiries
 
 The expiries of the HTLCs have to be defined so that Alice's expiry time is further in the future than Bob's.
 This is because Alice is protected by the secret, and if she choses not to reveal the secret, Bob must have the change to refund early.
@@ -140,60 +131,3 @@ The presentation slides below show some scenarios to demonstrate the motivation 
     mozallowfullscreen="true"
     webkitallowfullscreen="true">
 </iframe>
-
-## Negotiation - Maker and Taker
-
-Prior to the [execution of a swap](#atomic-swaps-using-htlcs) there is usually a negotiation phase where the two parties involved in the trade agree on what to trade (ledgers, assets) and the amounts.
-
-In trading there are usually two roles:
-
-1. *Maker*: Creates and publishes orders. 
-1. *Taker*: Takes the order created by the maker and initiates execution.
-
-<iframe 
-    src="https://docs.google.com/presentation/d/e/2PACX-1vQpdx3Nb9zt4dounRgXxCho6k8WvnxwrU-zVL-sn9Rvf8kS5cxvTESU7o8k5S3u6qdlWttSPO3VKTe-/embed?start=false&loop=false&delayms=1000"
-    frameborder="0"
-    width="801"
-    height="480"
-    allowfullscreen="true"
-    mozallowfullscreen="true"
-    webkitallowfullscreen="true">
-</iframe>
-
-The COMIT protocol enables the execution of the swap through the [COMIT network daemon (cnd)](comit-protocol-stack.md#comit-network-daemon-cnd).
-
-Currently, in the COMIT protocol, the maker defaults to the cryptographic role of Bob and the taker to Alice for the execution of the swap.
-
-## Instant Swaps
-
-⚠️ Disclaimer: This part of the documentation is still under construction!
-
-By creating protocols for [Layer 2](#layer-2) integration, the time for swap execution can be significantly reduced.
-
-### Layer 2
-
-Layer 1 solutions are defined as blockchains with a consensus mechanism in place and a certain block-time. 
-
-Layer 2 solutions build on top of Layer 1 solutions and enable instant off-line transactions.
-Layer 2 solutions are bound to Layer 1 ledgers for settlement. 
-
-Examples for layer 2 networks:
-
-* [Lightning Network](https://lightning.network/) on top of Bitcoin.
-* [Raiden Network](https://raiden.network/) on top of Ethereum.
- 
-## Privacy Preserving Swaps
-
-⚠️ Disclaimer: This part of the documentation is still under construction!
-
-When swapping between ledgers, swaps can be tracked by tracking specific script code.
-This allows anyone to trace asset movement over the boundaries of ledgers.
-
-By hiding the HTLC in a signature we can overcome this privacy issues. 
-
-### Scriptless Scripts
-
-⚠️ Disclaimer: This part of the documentation is still under construction!
-
-Scriptless Scripts enables hiding a script behind a signature.
-Besides that Scriptless Scripts has other attributes as defined in this [Introduction to Scriptless Scripts](https://tlu.tarilabs.com/cryptography/scriptless-scripts/introduction-to-scriptless-scripts.html).
