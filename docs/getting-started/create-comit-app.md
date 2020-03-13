@@ -1,7 +1,7 @@
 ---
 id: create-comit-app
 title: Getting Started
-sidebar_label: Create-comit-app
+sidebar_label: Run a frist demo
 ---
 
 [`create-comit-app`](https://github.com/comit-network/create-comit-app/) is a project to help COMIT App developers setup an environment.
