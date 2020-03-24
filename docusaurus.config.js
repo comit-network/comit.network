@@ -8,7 +8,6 @@ module.exports = {
   favicon: 'img/docusaurus/favicon.ico',
   organizationName: 'comit-network', // Usually your GitHub org/user name.
   projectName: 'comit-js-sdk', // Usually your repo name.
-  plugins: ['@docusaurus/plugin-google-analytics', '@docusaurus/plugin-google-gtag'],
   themeConfig: {
     gtag: {
       trackingID: 'G-RQEDN1PVTD',
