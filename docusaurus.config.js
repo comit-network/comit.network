@@ -8,6 +8,7 @@ module.exports = {
   favicon: 'img/docusaurus/favicon.ico',
   organizationName: 'comit-network', // Usually your GitHub org/user name.
   projectName: 'comit-js-sdk', // Usually your repo name.
+  plugins: ['@docusaurus/plugin-google-analytics', '@docusaurus/plugin-google-gtag'],
   themeConfig: {
     gtag: {
       trackingID: 'G-RQEDN1PVTD',
@@ -26,8 +27,8 @@ module.exports = {
       },
       links: [
         {
-          to: 'docs/getting-started/create-comit-app', 
-          label: 'Docs', 
+          to: 'docs/getting-started/create-comit-app',
+          label: 'Docs',
           position: 'left',
         },
         {to: 'blog', label: 'Blog', position: 'left'},
@@ -45,8 +46,8 @@ module.exports = {
               label: `v${version}`,
               to: `docs/${version}/getting-started/create-comit-app`,
             })),
-          ), 
-        },        
+          ),
+        },
         {
           href: 'https://github.com/comit-network',
           label: 'GitHub',

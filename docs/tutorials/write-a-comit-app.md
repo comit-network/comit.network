@@ -7,44 +7,343 @@ sidebar_label: Write your first COMIT-app
 // TODO: Explain what this file is about and the goal of the tutorial (3-4 Sentences).
 
 This is a typescript tutorial for creating your first COMIT-app. 
-In this tutorial we build a simple command-line application that uses the COMIT protocol to exectute an atomic swap locally on your machine between Bitcoin and Ethereum.
+In this tutorial we build a simple command-line application that uses the COMIT protocol to execute an atomic swap locally on your machine between Bitcoin and Ethereum.
 
-## The story
+// TODO: Reduce the introduction
+## Introduction
 
-// TODO Describe a simple scenario that introduces the roles and what they want to do.
+The goal of the tutorial is to have a simple command-line application that handles the negotiation and execution of an atomic swap for both sides of a trade.
 
-Alice still has some Ether lying around from the early crypto days.
-Recently she took a look at Ethereum 2.0 she could not believe her eyes. (...)
-Scared of the Ethereum developments she is thinking about moving some of her Ether into Bitcoin.
+For the negotiation phase we introduce two roles, the maker and the taker. The maker creates orders and publishes them. The taker takes orders published by the maker.
+In this tutorial our maker has Bitcoin and wants Ether. Our taker has Ether and wants Bitcoin.
 
-Bob always wanted to run his own decentralised exchange.
-He is not a big fish but has quite some assets, including Bitcoin and Ether, lying around from the early days.
-Since he does not have too much time, he does not invest much into his setup just yet.
-For publishing his orders he just runs a simple web-server.
-He has the plan to create some Telegram integration to publish orders in groups - but that is future music.
-For the moment he publishes the link to his "offer server" on Twitter.
-Bob's order includes a link on how to connect to his cnd node for swap execution.
+This tutorial uses the comit-js-sdk's [TakerNegotiator]() and [MakerNegotiator]() classes for negotiating the trade. 
+This tutorial does not tackle the problem of "finding a trading partner".
+It is assumed that the taker already knows how to reach the "order-server" of the maker.
 
-Alice had some bad experience with centralised Exchanges in the past. 
-By coincidence she stumbles over Bob's account on twitter where he points to the web-server with the offers.
-She decides to give the trustless, decentral way a chance and take one of Bob's orders...
+
+When it comes to the execution of the swap there are also two roles, Alice and Bob, that represent the cryptographic roles of the swap protocol. 
+Alice is the role that comes up with the secret. She funds and redeems first. Bob is the role that receives the secret hash from Alice prior to swap execution.
+After the negotiation the taker will default to the role of Alice. The maker will default to Bob. 
+This means that Alice (the taker) has to fund on the Ethereum side and redeem Bob's (the maker) Bitcoin.
+Bob funds the Bitcoin side and redeems Alice's Ether.
+
+Let's jump right into the setup.
 
 ## Setup
 
-// TODO: Describe the basics of the COMIT Javascript SDK 
-// TODO: It should be clear that the negotiation is not P2P in the coding example below.
-// TODO: It should be clear how the SDK and cnd play together.
-// TODO: It should be clear that both parties need a cnd instance, bitcoind instance and partiy instance]
-// TODO: Properly introduce `start env` and how to use it
+In the [previous section about comit-scripts](../getting-started/comit-scripts.md) we took a look on how to use comit-scripts to setup your development environment.
+The same setup is used for this tutorial.
 
-### COMIT Javascript SDK
+For getting started please create a new project using the `create` command of create-comit-app:
 
-### Communication with cnd
+```
+yarn create comit-app my-first-comit-app
+```
+
+Navigate into the newly created `my-first-comit-app` folder and start the development environment:
+
+```
+cd my-first-comit-app
+yarn install && yarn start-env
+```
+
+An Ethereum `parity`, a Bitcoin `bitcoind`, one `cnd` node for the maker and one `cnd` node for the taker are now started.
+Keep the development environment running in this terminal!
+
+### Understanding the environment
+
+The environment created through comit-scripts (`start-env`) gives you pre-funded accounts that we will use in this tutorial.
+All variables related to the environment are stored in the `${HOME}/.create-comit-app/env` file.
+
+In your project folder you find an `index.js` file that is currently the entry point for running the application.
+Open a new terminal and run:
+```shell script
+yarn start
+```
+
+This will print the environment information of the dev-environment started through `start-env`:
+
+```
+Environment configuration:
+Bitcoin HD keys:
+1.  tprv8ZgxMBicQKsPfARyVrLY2LGqCxi7EgzMQP5eLtQ6izLiCD52vdHMxgFc9VhFzfvur9nndNFdJnwF46nPWcEbf64bYp9pK23abbxjfPEyBNi
+2.  tprv8ZgxMBicQKsPdAY3E7VwbiH9gc9GCRNAew7R6UMW1J4m1tfYXkxctDZJba88BvtFnaJQyDTZm9dxBrz2w3BmEBcTCMPnuWPG6hhntu3gEoG
+Bitcoin node P2P URI:  127.0.0.1:52879
+Ethereum private keys:
+1.  34e64385ef7c9dfab1bb8d0015b263e4b15b76afc3535af0a9ed0584ae49024d
+2.  06354eef150a1909cf1f414c5888f6d762ecbd9bca247de4ba534fd66481d36e
+Ethereum node HTTP URL:  http://127.0.0.1:52369
+ERC20 token contract address:  0x62d69f6867a0a084c6d313943dc22023bc263691
+cnd HTTP API URLs:
+1.  http://127.0.0.1:53129
+2.  http://127.0.0.1:53164
+```
+
+By default `start-env` will create two accounts for both Bitcoin and Ethereum and find them.
+Initial funding is **10 BTC** and **1000 ETH**.
+We will use these accounts for our maker and taker when creating the maker and taker COMIT-apps. 
+
+Additionally `start-env` creates an ERC20 contract for swapping from/to ERC20 tokens. This is not relevant for this tutorial.
+
+The connection information for the Bitcoin node, Ethereum node and the two cnd nodes is printed as well.
+
+### Typescript configuration
+
+The example generated by create-comit-app is pure Javascript.
+We have to configure Typescript in order to use it in our project.
+
+Open the `package.json` and add these two lines in the `devDependencies` section:
+
+```json
+"ts-node": "^8.6.2",
+"typescript": "^3.7.5",
+```
+
+### Prepare Maker and Taker app
+
+Since the goal of this tutorial is to have the maker and taker run separately, we need one file that will represent the COMIT-app of the maker and one for the taker.
+We will use typescript in this tutorial.
+
+Let's create two files in the project directory `my-first-comit-app`:
+
+1. `maker.ts` for the COMIT-app representing the maker
+2. `taker.ts` for the COMIT-app representing the taker
+
+Both apps will be runnable command line applications, so let's add a main function to `maker.ts`:
+
+```$typescript
+(async function main() {
+    console.log("COMIT Maker app");
+    process.exit();
+})();
+```
+
+and `taker.ts`:
+
+```$typescript
+(async function main() {
+    console.log("COMIT Taker app");
+    process.exit();
+})();
+```
+
+Additionally we have to add commands to run these two actors in the `package.json`:
+
+```json
+"scripts": {
+  ...
+  "maker": "ts-node ./src/maker.ts",
+  "taker": "ts-node ./src/taker.ts",
+  ...
+}
+```
+
+With this in place we can already run our maker app:
+
+```shell script
+yarn run maker
+```
+
+and taker app:
+```shell script
+yarn run taker
+```
+
+### Initialising the actors
+
+In this section we use the [Actor](../comit-sdk/interfaces/_actor_.actor.md) interface of the comit-sdk to initialise the maker and taker actors.
+We will use the Bitcoin and Ethereum accounts created through `start-env` for initialising the actors.
+
+Through the actor we have access to the wallets and the [ComitClient](../comit-sdk/classes/_comit_client_.comitclient.md) which is used as a wrapper for the communication with cnd.  
+
+#### Initialise the maker app
+
+Let's focus on the maker for the beginning.
+`start-env` has provided us with two Bitcoin and two Ethereum accounts indexed with `0` and `1`.
+Let's use the Bitcoin and Ethereum account indexed with `0` for the maker.
+
+From the `index.js` file we already know how to load the environment using the `dotenv` package:
+
+```typescript
+const configPath = path.join(os.homedir(), ".create-comit-app", "env");
+dotenv.config({path: configPath});
+```
+
+First we initialise the Bitcoin wallet using the `InMemoryBitcoinWallet` provided by the comit-sdk:
+```typescript
+    const bitcoinWallet = await InMemoryBitcoinWallet.newInstance(
+        "regtest",
+        process.env.BITCOIN_P2P_URI!,
+        process.env[`BITCOIN_HD_KEY_${0}`]!
+    );
+    // Waiting for the Bitcoin wallet to read the balance
+    await new Promise(r => setTimeout(r, 1000));
+```
+
+Then we initialise the `EthereumWallet` provided bt the comit-sdk:
+
+```typescript
+    const ethereumWallet = new EthereumWallet(
+            process.env.ETHEREUM_NODE_HTTP_URL!,
+            process.env[`ETHEREUM_KEY_${0}`]!
+        );
+```
+
+Now we can use the `createActor` helper function of the comit-sdk to intialise the actor.
+
+```typescript
+let maker = await createActor(
+        bitcoinWallet,
+        ethereumWallet,
+        process.env[`HTTP_URL_CND_${0}`]!
+    );
+```
+
+Let's print the balance of the maker to see how much BTC and ETH he has before the swap:
+
+```typescript
+console.log(
+        "[Maker] Bitcoin balance: %f, Ether balance: %f",
+        (await maker.bitcoinWallet.getBalance()).toFixed(2),
+        parseFloat(
+            formatEther(await maker.ethereumWallet.getBalance())
+        ).toFixed(2)
+    );
+```
+
+Note that we are using the `formatEther` function from `ethers/utils` to format the ether properly.
+
+Your `maker.ts` file should now look like this:
+
+```typescript
+import * as dotenv from "dotenv";
+import * as os from "os";
+import * as path from "path";
+import {createActor, EthereumWallet, InMemoryBitcoinWallet} from "comit-sdk";
+import { formatEther } from "ethers/utils";
+
+(async function main() {
+    console.log("COMIT Maker app");
+
+    const configPath = path.join(os.homedir(), ".create-comit-app", "env");
+    dotenv.config({path: configPath});
+
+    const bitcoinWallet = await InMemoryBitcoinWallet.newInstance(
+        "regtest",
+        process.env.BITCOIN_P2P_URI!,
+        process.env[`BITCOIN_HD_KEY_${0}`]!
+    );
+    // Waiting for the Bitcoin wallet to read the balance
+    await new Promise(r => setTimeout(r, 1000));
+
+    const ethereumWallet = new EthereumWallet(
+        process.env.ETHEREUM_NODE_HTTP_URL!,
+        process.env[`ETHEREUM_KEY_${0}`]!
+    );
+
+    let maker = await createActor(
+        bitcoinWallet,
+        ethereumWallet,
+        process.env[`HTTP_URL_CND_${0}`]!
+    );
+
+    console.log(
+        "[Maker] Bitcoin balance: %f, Ether balance: %f",
+        (await maker.bitcoinWallet.getBalance()).toFixed(2),
+        parseFloat(
+            formatEther(await maker.ethereumWallet.getBalance())
+        ).toFixed(2)
+    );
+
+    process.exit();
+})();
+```
+
+When running `yarn run maker` you should see:
+
+```
+yarn run v1.22.0
+$ ts-node ./src/maker.ts
+COMIT Maker app
+[Maker] Bitcoin balance: 10, Ether balance: 1000
+✨  Done in 7.19s.
+```
+
+#### Initialise the taker app
+
+For the taker we will have a similar setup as for the maker. (This could of course be pulled out into a library later.)
+
+Similar to the maker we will load the Bitcoin and Ethereum account from the environment, initialise the wallets and create the actor using the comit-sdk's `createActor` function.
+Note that we will use the Bitcoin and Ethereum account as well as the cnd instance with index `1` for the taker.
+
+In the end our `taker.ts` file should look like this:
+
+```typescript
+import * as dotenv from "dotenv";
+import * as os from "os";
+import * as path from "path";
+import {createActor, EthereumWallet, InMemoryBitcoinWallet} from "comit-sdk";
+import { formatEther } from "ethers/utils";
+
+(async function main() {
+    console.log("COMIT Taker app");
+
+    const configPath = path.join(os.homedir(), ".create-comit-app", "env");
+    dotenv.config({path: configPath});
+
+    const bitcoinWallet = await InMemoryBitcoinWallet.newInstance(
+        "regtest",
+        process.env.BITCOIN_P2P_URI!,
+        process.env[`BITCOIN_HD_KEY_${1}`]!
+    );
+    // Waiting for the Bitcoin wallet to read the balance
+    await new Promise(r => setTimeout(r, 1000));
+
+    const ethereumWallet = new EthereumWallet(
+        process.env.ETHEREUM_NODE_HTTP_URL!,
+        process.env[`ETHEREUM_KEY_${1}`]!
+    );
+
+    let taker = await createActor(
+        bitcoinWallet,
+        ethereumWallet,
+        process.env[`HTTP_URL_CND_${1}`]!
+    );
+
+    console.log(
+        "[Taker] Bitcoin balance: %f, Ether balance: %f",
+        (await taker.bitcoinWallet.getBalance()).toFixed(2),
+        parseFloat(
+            formatEther(await taker.ethereumWallet.getBalance())
+        ).toFixed(2)
+    );
+
+    process.exit();
+})();
+```
+
+When running `yarn run taker` we should see:
+
+```
+yarn run v1.22.0
+$ ts-node ./src/taker.ts
+COMIT Taker app
+[Taker] Bitcoin balance: 10, Ether balance: 1000
+✨  Done in 9.34s.
+```
 
 ## Implementation of negotiating a Swap
 
-// TODO: Step the developer through implementing the negotiation server and client part.
-// TODO: Use the Negotiation classes of the SDK.
+Now that both sides of the trade (maker and taker) are set up, let's start implementing the actual trade!
+
+First we focus on the negotiation between maker and taker. 
+The maker will create and publish an order that the taker can then find and take. 
+Once the taker has taken the order the execution is triggered.
+
+This tutorial uses the comit-js-sdk's [TakerNegotiator]() and [MakerNegotiator]() classes for negotiating the trade. 
+This tutorial does not tackle the problem of "finding a trading partner".
+It is assumed that the taker already knows how to reach the "order-server" of the maker.
 
 ### Maker creates an Order
 
@@ -57,3 +356,7 @@ She decides to give the trustless, decentral way a chance and take one of Bob's 
 
 // TODO: Step the developer through the implementation of the swap execution.
 // TODO: Use the the ComitClient class of the SDK.
+
+## Extending this tutorial
+
+Extensions include several solution spaces
