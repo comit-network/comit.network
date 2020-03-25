@@ -8,7 +8,7 @@ This section is part of the typescript tutorial for creating your first COMIT-ap
 
 This section of the tutorial focuses on the taker side.
 
-We will create and publish an order that a taker can then fetch from the maker's order HTTP API.
+We will fetch the order provided by a maker and check the rate.
 
 ## Taker requests an Order
 
@@ -24,6 +24,7 @@ The maker must share this information with the taker through some channgel (e.g.
 
 Knowing where to fetch order the taker can now initialise the `TakerNegotiator`.
 Similar to the maker he also has to provide his `ComitClient` (initialised with the actor) for swap execution.
+Additionally he has to provide the URL of the maker's order service.
 
 ```typescript
 const takerNegotiator = new TakerNegotiator(
@@ -58,6 +59,8 @@ With the criteria the taker can now request an order from the maker:
 ```typescript
     const order = await takerNegotiator.getOrder(criteria);
 ```
+
+Note that [`Order`](../../comit-sdk/classes/_negotiation_taker_order_.order.md) order returned by the `TakerNegotiator` is specific to the taker. It combines the maker's order, specified through the [Order interface](../../comit-sdk/interfaces/_negotiation_order_.order.md), the taker's criteria and provides a `take` function for the taker.
 
 Let's log the rate offered by the maker:
 
@@ -139,8 +142,9 @@ import { formatEther } from "ethers/utils";
 ```
 
 Note, that in order to properly retrieve an order at the taker side, the maker application has to run at this stage!
-Ensure that your maker app is still running and then start the taker app with `yarn taker` - it should print:
+If your maker app is not running you can start it with `yarn maker`.
 
+Ensure that your maker app is running and then start the taker app with `yarn taker` - it should print:
 
 ```
 yarn run v1.22.0

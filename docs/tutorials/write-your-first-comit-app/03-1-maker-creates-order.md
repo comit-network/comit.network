@@ -8,10 +8,10 @@ This section is part of the typescript tutorial for creating your first COMIT-ap
 
 This section of the tutorial focuses on the maker side. 
 
-In this section we use the comit-js-sdk's [MakerNegotiator](../comit-sdk/classes/_negotiation_maker_negotiator_.httpservice.md) to create an HTTP API for publishing orders. 
+In this section we use the comit-js-sdk negotiation classes to create an simple HTTP order service where the maker can publish orders. 
 This tutorial does not tackle the problem of "finding a trading partner".
 
-## Initialising the MakerNegotiator
+## Creating a simple HTTP order service
 
 We start with the maker again (in `maker.ts`).
 For the maker we use the `MakerNegotiator` class of the comit-sdk to create a simple order HTTP-server using nodejs-express.
@@ -22,7 +22,7 @@ For the maker we use the `MakerNegotiator` class of the comit-sdk to create a si
 
 Note, that after the negotiation the `MakerNegotiator` will trigger the execution of the swap, hence it has to be initialised with the necessary execution information:
 
-1. The [ComitClient](../comit-sdk/classes/_comit_client_.comitclient.md) used by the maker to communicate with his cnd node for executing the swap.
+1. The [`ComitClient`](../../comit-sdk/classes/_comit_client_.comitclient.md) used by the maker to communicate with his cnd node for executing the swap.
 2. The execution parameters of the maker provided for the taker (so they can reach an agreement on how to execute the swap):
     1. Connection information to the maker's cnd (`peerId` and `addressHint`).
     2. The `expiry` for the alpha (Ethereum) and `beta` (Bitcoin) ledger.

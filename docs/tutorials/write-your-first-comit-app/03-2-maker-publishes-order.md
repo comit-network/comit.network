@@ -12,7 +12,7 @@ We will create and publish an order that a taker can then fetch from the maker's
 
 ## Maker creates an Order
 
-The `MakerNegotiator` allows us to create and publish an [Order](../comit-sdk/interfaces/_negotiation_order_.order.md) as defined in the comit-sdk.
+The `MakerNegotiator` allows us to create and publish an [`Order`](../../comit-sdk/interfaces/_negotiation_order_.order.md) as defined in the comit-sdk.
 Let's create an order of 50 ether for 1 bitcoin, meaning that the maker is offering 50 ether and asking for 1 bitcoin:
 
 ```typescript
@@ -75,7 +75,8 @@ while (!swapHandle) {
 }
 ```
 
-The maker uses the `ComitClient` to look for incoming swaps.
+The maker uses the `ComitClient` to wait for incoming swaps.
+Once the taker takes the order he will trigger a swap request in his cnd that will be detected by the maker's cnd.
 
 > Notes by Daniel: This is a bit confusing. I feel the names should be harmonised (swap on the taker side, swap-handle on the maker)
 > Additionally: Is there any matching logic that checks if the swap matches the order on the maker side? (If so it is not obvious in the example...)

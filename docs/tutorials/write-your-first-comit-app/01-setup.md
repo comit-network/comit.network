@@ -17,7 +17,7 @@ The goal of the tutorial is to have a simple command-line application that handl
 For the negotiation phase we introduce **two roles**, the **maker** and the **taker**. The maker creates orders and publishes them. The taker takes orders published by the maker.
 In this tutorial our maker has Bitcoin and wants Ether. Our taker has Ether and wants Bitcoin.
 
-This tutorial uses the comit-js-sdk's [MakerNegotiator](../comit-sdk/classes/_negotiation_maker_negotiator_.httpservice.md) and [TakerNegotiator](../comit-sdk/classes/_negotiation_taker_negotiator_.negotiator.md) classes for negotiating the trade. 
+This tutorial uses the comit-js-sdk's [`MakerNegotiator`](../../comit-sdk/classes/_negotiation_maker_negotiator_.negotiator.md) and [TakerNegotiator](../../comit-sdk/classes/_negotiation_taker_negotiator_.negotiator.md) classes for negotiating the trade. 
 This tutorial does not tackle the problem of "finding a trading partner".
 It is assumed that the taker already knows how to reach the "order-server" of the maker.
 

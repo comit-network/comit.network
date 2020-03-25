@@ -8,10 +8,10 @@ This section is part of the typescript tutorial for creating your first COMIT-ap
 
 This section of the tutorial shows how to initialise the actors of the trade, the maker and the taker, with the pre-funded accounts of the dev-environment.
 
-In this section we use the [Actor](../comit-sdk/interfaces/_actor_.actor.md) interface of the comit-sdk to initialise the maker and taker actors.
+In this section we use the [`Actor`](../../comit-sdk/interfaces/_actor_.actor.md) interface of the comit-sdk to initialise the maker and taker actors.
 We will use the Bitcoin and Ethereum accounts created through `start-env` for initialising the actors.
 
-Through the actor we have access to the wallets and the [ComitClient](../comit-sdk/classes/_comit_client_.comitclient.md) which is used as a wrapper for the communication with cnd.  
+Through the actor we have access to the wallets and the [`ComitClient`](../../comit-sdk/classes/_comit_client_.comitclient.md) which is used as a wrapper for the communication with cnd.  
 
 ## Initialise the maker actor
 

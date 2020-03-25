@@ -17,8 +17,8 @@ module.exports = {
           'tutorials/write-your-first-comit-app/write-a-comit-app-maker-order-publish',
           'tutorials/write-your-first-comit-app/write-a-comit-app-taker-request-order',
           'tutorials/write-your-first-comit-app/write-a-comit-app-taker-take-order',
-          'tutorials/write-your-first-comit-app/write-a-comit-app-maker-execution',
-          'tutorials/write-your-first-comit-app/write-a-comit-app-taker-execution'
+          'tutorials/write-your-first-comit-app/write-a-comit-app-taker-execution',
+          'tutorials/write-your-first-comit-app/write-a-comit-app-maker-execution'
         ]
       }
     ],
