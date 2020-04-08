@@ -1,3 +1,5 @@
+const versions = require('./versions.json');
+
 module.exports = {
   title: 'COMIT Developer Hub',
   tagline: 'COMIT is an open protocol facilitating trustless cross-blockchain applications',
@@ -23,8 +25,28 @@ module.exports = {
         href: 'https://comit.network'
       },
       links: [
-        {to: 'docs/getting-started/create-comit-app', label: 'Docs', position: 'left'},
+        {
+          to: 'docs/getting-started/create-comit-app', 
+          label: 'Docs', 
+          position: 'left',
+        },
         {to: 'blog', label: 'Blog', position: 'left'},
+        {
+          to: 'versions',
+          label: `Versions`,
+          position: 'right',
+          items: [
+            {
+              label: `v${versions[0]}`,
+              to: `docs/getting-started/create-comit-app`,
+            },
+          ].concat(
+            versions.slice(1).map(version => ({
+              label: `v${version}`,
+              to: `docs/${version}/getting-started/create-comit-app`,
+            })),
+          ), 
+        },        
         {
           href: 'https://github.com/comit-network',
           label: 'GitHub',
