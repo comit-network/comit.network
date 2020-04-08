@@ -4,8 +4,7 @@ const fs = require('fs');
 // Note: A 'sidebar' is a Table of Contents for a specific SDK version.
 // It offers navigation for all generated files from that version.
 
-// TODO: parameterize this input filepath
-const { docs: TOC } = require('./sidebars.latest.js')
+const { docs: TOC } = require('./sidebars.temp.js')
 
 // TODO: parameterize this output filepath
 const OUTPUT = "sdkSidebar.json";

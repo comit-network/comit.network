@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
-# TODO: support versioning
-
 SDK_DIR="../comit-js-sdk"
 DEST_DIR="docs/comit-sdk/"
-# TODO: DEST_DIR can be different if it's versioned_docs/*
 
 function sdk_exists() {
   if [ -d $SDK_DIR ]; then
@@ -26,28 +23,22 @@ function docs_exists() {
   fi
 }
 
-# TODO: Needs to take one `version` argument in $1
 function generate_docs() {
   echo "☺ Generating SDK docs."
   cd $SDK_DIR
   npm run docs:md
-  # TODO: Needs to save the sidebar file to <some temporary directory> for generate_sidebar later
   cd -
 }
 
-# TODO: # Needs to take one `version` argument in $1
 function generate_sidebar() { 
   echo "☺ Generating updated sidebar."
   cp $SDK_DIR/website/sidebars.js $PWD/sidebars.latest.js
   
-  # TODO: May need to parameterize for versioned destination
-  # TODO: DEST_DIR can be different if it's versioned_sidebars/*
   node ./generateSidebar.js
 
   rm $PWD/sidebars.latest.js
 }
 
-# TODO: Needs to take one `version` argument in $1
 import_docs() {
   echo "☺ Importing SDK docs."
   rm $SDK_DIR/docs/globals.md
