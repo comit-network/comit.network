@@ -43,7 +43,7 @@ import_docs() {
   echo "☺ Importing SDK docs."
   rm $SDK_DIR/docs/globals.md
   rm -rfv $DEST_DIR && mkdir $DEST_DIR
-  cp -R $SDK_DIR/docs/. $DEST_DIR/$1
+  cp -R $SDK_DIR/docs/. $DEST_DIR
 }
 
 # Main script

@@ -6,8 +6,8 @@ module.exports = {
   url: 'https://comit.network',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
-  organizationName: 'coblox', // Usually your GitHub org/user name.
-  projectName: 'comit-network', // Usually your repo name.
+  organizationName: 'comit-network', // Usually your GitHub org/user name.
+  projectName: 'comit-js-sdk', // Usually your repo name.
   themeConfig: {
     gtag: {
       trackingID: 'G-RQEDN1PVTD',
