@@ -28,12 +28,12 @@ function Version() {
               <tr>
                 <th>{latestVersion}</th>
                 <td>
-                  <Link to={useBaseUrl('/docs/introduction')}>
+                  <Link to={useBaseUrl('/docs/getting-started/create-comit-app')}>
                     Documentation
                   </Link>
                 </td>
                 <td>
-                  <a href={`${repoUrl}/releases/tag/v${latestVersion}`}>
+                  <a href={`${repoUrl}/releases/tag/${latestVersion}`}>
                     Release Notes
                   </a>
                 </td>
@@ -49,7 +49,7 @@ function Version() {
               <tr>
                 <th>master</th>
                 <td>
-                  <Link to={useBaseUrl('/docs/next/introduction')}>
+                  <Link to={useBaseUrl('/docs/next/getting-started/create-comit-app')}>
                     Documentation
                   </Link>
                 </td>
@@ -73,12 +73,12 @@ function Version() {
                   <tr key={version}>
                     <th>{version}</th>
                     <td>
-                      <Link to={useBaseUrl(`/docs/${version}/introduction`)}>
+                      <Link to={useBaseUrl(`/docs/${version}/getting-started/create-comit-app`)}>
                         Documentation
                       </Link>
                     </td>
                     <td>
-                      <a href={`${repoUrl}/releases/tag/v${version}`}>
+                      <a href={`${repoUrl}/releases/tag/${version}`}>
                         Release Notes
                       </a>
                     </td>
