@@ -7,6 +7,44 @@
         {
           "type": "doc",
           "id": "version-0.15.2/getting-started/create-comit-app"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.15.2/getting-started/comit-infrastructure"
+        },
+        {
+          "type": "category",
+          "label": "Your first COMIT-app",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-0.15.2/tutorials/write-your-first-comit-app/write-a-comit-app-setup"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.15.2/tutorials/write-your-first-comit-app/write-a-comit-app-actor-initialisation"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.15.2/tutorials/write-your-first-comit-app/write-a-comit-app-maker-order-create"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.15.2/tutorials/write-your-first-comit-app/write-a-comit-app-maker-order-publish"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.15.2/tutorials/write-your-first-comit-app/write-a-comit-app-maker-execution"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.15.2/tutorials/write-your-first-comit-app/write-a-comit-app-taker-request-order"
+            },
+            {
+              "type": "doc",
+              "id": "version-0.15.2/tutorials/write-your-first-comit-app/write-a-comit-app-taker-take-order"
+            }
+          ]
         }
       ]
     },
@@ -134,10 +172,6 @@
             {
               "type": "doc",
               "id": "version-0.15.2/comit-sdk/modules/_transaction_"
-            },
-            {
-              "type": "doc",
-              "id": "version-0.15.2/comit-sdk/modules/_util_timeout_promise_"
             },
             {
               "type": "doc",
@@ -304,10 +338,6 @@
             {
               "type": "doc",
               "id": "version-0.15.2/comit-sdk/interfaces/_tokens_tokens_.token"
-            },
-            {
-              "type": "doc",
-              "id": "version-0.15.2/comit-sdk/interfaces/_util_timeout_promise_.tryparams"
             },
             {
               "type": "doc",

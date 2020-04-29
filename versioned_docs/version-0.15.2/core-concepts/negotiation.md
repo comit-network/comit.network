@@ -4,7 +4,9 @@ title: Negotiation vs. Execution
 sidebar_label: Negotiation vs. Execution
 ---
 
-⚠️ Disclaimer: This part of the documentation is still under construction!
+import UnderConstruction from '../shared/under-construction.md'
+
+<UnderConstruction />
 
 This documentation section provides an introduction to negotiation and execution of a trade.
 
