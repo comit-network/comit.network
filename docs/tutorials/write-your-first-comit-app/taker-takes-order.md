@@ -28,7 +28,7 @@ const swap = await order.take();
 When taking an order several things will be handled by the comit-sdk:
 
 * The maker is notified that the order has been taken through the maker's order HTTP service.
-* The taker's cnd node will trigger a swap request to the maker. The maker is still listening for incoming swaps as [described earlier](docs/tutorials/write-your-first-comit-app/maker-publishes-order.md#maker-publishes-the-order).
+* The taker's cnd node will trigger a swap request to the maker. The maker is still listening for incoming swaps as [described earlier](./maker-publishes-order.md#maker-publishes-the-order).
 * When sending a swap request to the maker, the taker cnd will initialise the swap on the taker's side. 
 
 The taker gets an instance of a [`Swap`](../../comit-sdk/classes/_swap_.swap.md) back which will be used for executing the swap.

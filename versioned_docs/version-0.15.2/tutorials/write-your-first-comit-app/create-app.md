@@ -19,7 +19,7 @@ The goal of the tutorial is to have a simple command-line application that handl
 For the negotiation phase we introduce **two roles**, the **maker** and the **taker**. The maker creates orders and publishes them. The taker takes orders published by the maker.
 In this tutorial our maker has Bitcoin and wants Ether. Our taker has Ether and wants Bitcoin.
 
-This tutorial uses the comit-js-sdk's [`MakerNegotiator`](../../comit-sdk/classes/_negotiation_maker_negotiator_.negotiator.md) and [TakerNegotiator](../../comit-sdk/classes/_negotiation_taker_negotiator_.negotiator.md) classes for negotiating the trade. 
+This tutorial uses the comit-js-sdk's [`MakerNegotiator`](../../comit-sdk/classes/_negotiation_maker_maker_negotiator_.makernegotiator.md) and [TakerNegotiator](../../comit-sdk/classes/_negotiation_taker_taker_negotiator_.takernegotiator.md) classes for negotiating the trade. 
 This tutorial does not tackle the problem of "finding a trading partner".
 It is assumed that the taker already knows how to reach the "order-server" of the maker.
 
@@ -33,7 +33,7 @@ Let's jump right into the setup.
 
 ## Set up the project with create-comit-app
 
-In the [previous section about comit-scripts](../getting-started/comit-scripts.md) we took a look at how to use comit-scripts to setup your development environment.
+In the [previous section about comit-scripts](../../getting-started/comit-infrastructure.md#comit-scripts) we took a look at how to use comit-scripts to setup your development environment.
 The same setup is used for this tutorial.
 
 This tutorial was written using [create-comit-app version 0.9.1](https://github.com/comit-network/create-comit-app/releases/tag/create-comit-app-0.9.1).
