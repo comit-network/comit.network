@@ -1,40 +1,39 @@
 ---
 id: write-a-comit-app-taker-request-order
-title: Maker - Request Order
-sidebar_label: Maker - Request Order
+title: Requesting an order
+sidebar_label: Taker - Request Order
 ---
 
-This section is part of the typescript tutorial for creating your first COMIT-app, that builds two simple command-line application using the COMIT protocol to execute a Bitcoin to Ethereum atomic swap locally on your machine.
+import TakerDisclaimer from './shared/taker_disclaimer.md'
+import MakerRunningDisclaimer from './shared/maker_running_disclaimer.md'
+import TutorialDescription from './shared/tutorial_description.md'
 
-This section of the tutorial focuses on the taker side.
+<TutorialDescription />
+<TakerDisclaimer />
+<MakerRunningDisclaimer />
 
-We will fetch the order provided by a maker and check the rate.
+In this section we fetch the order provided by a maker and check the rate.
 
 ## Taker requests an Order
 
-Similar to the maker, there is a negotiation class for the taker as well, called `TakerNegotiator`.
-
-In order to initialise the `TakerNegotiator` we have to provide the maker's order server URL:
-
-```typescript
-const makerNegotiatorUrl = "http://localhost:2318/";
-```
-
-The maker must share this information with the taker through some channgel (e.g. Telegram group).
+Similar to the maker, the comit-sdk provides provides a negotiation class for the taker as well, the [`TakerNegotiator`](../../comit-sdk/classes/_negotiation_taker_taker_negotiator_.takernegotiator.md).
 
 Knowing where to fetch order the taker can now initialise the `TakerNegotiator`.
-Similar to the maker he also has to provide his `ComitClient` (initialised with the actor) for swap execution.
+Similar to the maker he also has to provide his [`ComitClient`](../../comit-sdk/classes/_comit_client_.comitclient.md) (initialised with the actor) for swap execution.
 Additionally he has to provide the URL of the maker's order service.
+The maker must share this information with the taker through some channel (e.g. Telegram group).
 
 ```typescript
 const takerNegotiator = new TakerNegotiator(
     taker.comitClient,
-    makerNegotiatorUrl
+    "http://localhost:2318/"
 );
 ```
 
 The taker can now request an order from the maker by defining a filter criteria.
-The criteria defines what the taker would like to trade:
+The criteria defines what the taker would like to trade.
+
+The taker wants to receive one bitcoin, which he is willing to sel for ether at a minimum rate of `0.001`, hence he creates his criteria accordingly:
 
 ```typescript
 const criteria = {
@@ -57,10 +56,10 @@ In a more advanced implementation such kind of functionality would be provided b
 With the criteria the taker can now request an order from the maker:
 
 ```typescript
-    const order = await takerNegotiator.getOrder(criteria);
+const order = await takerNegotiator.getOrder(criteria);
 ```
 
-Note that [`Order`](../../comit-sdk/classes/_negotiation_taker_order_.order.md) order returned by the `TakerNegotiator` is specific to the taker. It combines the maker's order, specified through the [Order interface](../../comit-sdk/interfaces/_negotiation_order_.order.md), the taker's criteria and provides a `take` function for the taker.
+Note that [`TakerOrder`](../../comit-sdk/classes/_negotiation_taker_order_.order.md) order returned by the `TakerNegotiator` is specific to the taker. It combines the maker's order, specified through the [Order interface](../../comit-sdk/interfaces/_negotiation_order_.order.md), the taker's criteria and provides a `take` function for the taker.
 
 Let's log the rate offered by the maker:
 
@@ -136,13 +135,17 @@ import { formatEther } from "ethers/utils";
 
     console.log("Rate offered: ", order.getOfferedRate().toString());
 
+    // TODO: Execute the order by swapping the assets.
+
     process.exit();
 })();
 
 ```
 
-Note, that in order to properly retrieve an order at the taker side, the maker application has to run at this stage!
-If your maker app is not running you can start it with `yarn maker`.
+:::info
+In order to properly retrieve an order at the taker side, the maker application has to run at this stage!
+If your maker app is not running you can start it with `yarn maker` in a separate terminal.
+:::
 
 Ensure that your maker app is running and then start the taker app with `yarn taker` - it should print:
 
@@ -155,5 +158,5 @@ Rate offered:  0.02
 ✨  Done in 6.64s.
 ```
 
-Since the taker only requests the offer and prints the rate taker application terminates after that.
-Let's move on to taking the order and initiating swap execution!
+Since the taker only requests the offer and prints the rate, the swap execution is not yet triggered.
+Let's move on to the taker taking the order and triggering the swap execution!

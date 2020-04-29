@@ -4,7 +4,9 @@ title: COMIT projects
 sidebar_label: COMIT projects
 ---
 
-⚠️ Disclaimer: This part of the documentation is still under construction!
+import UnderConstruction from '../shared/under-construction.md'
+
+<UnderConstruction />
 
 This section of the documentation provides an overview of the different projects of the COMIT protocol.
 Sub-sections provide an introduction into project-specific details.

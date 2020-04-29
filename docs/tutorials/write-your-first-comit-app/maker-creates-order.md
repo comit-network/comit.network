@@ -1,26 +1,26 @@
 ---
 id: write-a-comit-app-maker-order-create
-title: Maker - Order Interface
-sidebar_label: Maker - Order Interface
+title: Creating a simple order service
+sidebar_label: Maker - Order Service
 ---
 
-This section is part of the typescript tutorial for creating your first COMIT-app, that builds two simple command-line application using the COMIT protocol to execute a Bitcoin to Ethereum atomic swap locally on your machine.
+import MakerDisclaimer from './shared/maker_disclaimer.md'
+import TutorialDescription from './shared/tutorial_description.md'
 
-This section of the tutorial focuses on the maker side. 
+<TutorialDescription />
+<MakerDisclaimer />
 
 In this section we use the comit-js-sdk negotiation classes to create an simple HTTP order service where the maker can publish orders. 
 This tutorial does not tackle the problem of "finding a trading partner".
 
+
+
 ## Creating a simple HTTP order service
 
 We start with the maker again (in `maker.ts`).
-For the maker we use the `MakerNegotiator` class of the comit-sdk to create a simple order HTTP-server using nodejs-express.
+For the maker we use the [`MakerNegotiator`](../../comit-sdk/classes/_negotiation_maker_maker_negotiator_.makernegotiator.md) class of the comit-sdk to create a simple order HTTP-server using nodejs-express.
 
-> Note by Daniel: It is quite confusing that one has to initialise the MakerNegotiator with the execution params. We should somehow change that. 
-> One possibility would be to add a function "setExecutionParams" that explicitly deals with the exec-params. 
-> Doing this in the constructor of the Negotiator does not feel right.
-
-Note, that after the negotiation the `MakerNegotiator` will trigger the execution of the swap, hence it has to be initialised with the necessary execution information:
+After the negotiation the `MakerNegotiator` will trigger the execution of the swap, hence it has to be initialised with the necessary execution information:
 
 1. The [`ComitClient`](../../comit-sdk/classes/_comit_client_.comitclient.md) used by the maker to communicate with his cnd node for executing the swap.
 2. The execution parameters of the maker provided for the taker (so they can reach an agreement on how to execute the swap):
@@ -30,7 +30,7 @@ Note, that after the negotiation the `MakerNegotiator` will trigger the executio
 
 The `ComitClient` was already initialised through the actor initialisation in the previous section. 
 
-Let's define the execution parameters that the maker is suggesting:
+Let's define the execution parameters that the maker is suggesting for his swaps:
 
 ```typescript
 const executionParameters = {
@@ -53,15 +53,18 @@ const executionParameters = {
 };
 ```
 
-For calculating the expiry timestamps we use the `moment` module. You will have to add it to your `dependencies` in your `package.json`:
-```json
-"moment": "^2.24.0",
+For calculating the expiry timestamps we use the `moment` module. You will have to add it to your `dependencies`:
+
+```shell script
+yarn add moment
 ```
 
-> Note by Daniel: `TryParams` is confusing here. It is hard to explain why `maxTimeoutSecs` is set to 1000 here. It is generally tough to explain this...
-> Especially because it is actually concerning the execution and not the negotiation. The concerns are mixed here. I feel this needs a redesign.
+In addition to the parameters mentioned above, the maker is also providing `TryParams` for the execution.
+The swap's status is handled inside of cnd.
+The comit-SDK is polling cnd for actions (e.g. fund, redeem, refund) that become available for a swap.
+Once an action becomes available the action can be executed using the wallets provided in the comit-SDK.
 
-In addition to the parameters mentioned above, the maker is also providing `TryParams`, that define how often his `ComitClient` will poll the swap status from cnd and a maximum timeout.
+The `TryParams` define how often the `ComitClient` will poll the swap status from cnd and a maximum timeout.
 ```typescript
 const tryParams = { maxTimeoutSecs: 1000, tryIntervalSecs: 0.1 };
 ```
@@ -76,10 +79,11 @@ const makerNegotiator = new MakerNegotiator(
 );
 ```
 
-Before we go on, let's define how the `MakerNegotiator` HTTP API shall be exposed to the taker:
+Through the `MakerNegotiator` the maker is capable of creating an [`Order`](../../comit-sdk/interfaces/_negotiation_order_.order.md).
+To make those orders available to the taker, the maker has to expose the `MakerNegotiator`'s [`HttpService`](../../comit-sdk/classes/_negotiation_maker_maker_negotiator_.httpservice.md):
 
 ```typescript
- // Start the HTTP service used to publish orders.
+// Start the HTTP service used to publish orders.
 // The maker's HTTP service will be served at http://localhost:2318/
 await makerNegotiator.listen(2318, "localhost");
 ```
@@ -157,6 +161,10 @@ import moment = require("moment");
     );
 
     await makerNegotiator.listen(2318, "localhost");
+
+    // TODO: Create and publish an order so it can be taken by the taker.
+
+    // TODO: Execute the order by swapping the assets.
 
     process.exit();
 })();

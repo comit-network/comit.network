@@ -4,7 +4,9 @@ title: Instant swaps on Layer 2
 sidebar_label: Instant Swaps
 ---
 
-⚠️ Disclaimer: This part of the documentation is still under construction!
+import UnderConstruction from '../shared/under-construction.md'
+
+<UnderConstruction />
 
 This documentation section provides an introduction into instant swaps.
 The goal of instant swaps is to reduce the swap execution time.

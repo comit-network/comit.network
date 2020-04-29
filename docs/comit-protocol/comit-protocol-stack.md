@@ -4,7 +4,9 @@ title: COMIT protocol stack
 sidebar_label: COMIT protocol stack
 ---
 
-⚠️ Disclaimer: This part of the documentation is still under construction!
+import UnderConstruction from '../shared/under-construction.md'
+
+<UnderConstruction />
 
 This documentation section provides an introduction to the COMIT protocol stack.
 Concepts specific to the COMIT protocol as well as the protocol design are explained here.

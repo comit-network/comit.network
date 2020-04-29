@@ -1,19 +1,20 @@
 ---
 id: write-a-comit-app-maker-order-publish
-title: Maker - Publish Order
-sidebar_label - Maker: Publish Order
+title: Publishing an order
+sidebar_label: Maker - Publish Order
 ---
 
-This section is part of the typescript tutorial for creating your first COMIT-app, that builds two simple command-line application using the COMIT protocol to execute a Bitcoin to Ethereum atomic swap locally on your machine.
+import MakerDisclaimer from './shared/maker_disclaimer.md'
+import TutorialDescription from './shared/tutorial_description.md'
 
-This section of the tutorial focuses on the maker side.
+<TutorialDescription />
+<MakerDisclaimer />
 
-We will create and publish an order that a taker can then fetch from the maker's order HTTP API.
+In this section we create and publish an order that a taker can then fetch from the maker's order HTTP API.
 
 ## Maker creates an Order
 
-The `MakerNegotiator` allows us to create and publish an [`Order`](../../comit-sdk/interfaces/_negotiation_order_.order.md) as defined in the comit-sdk.
-Let's create an order of 50 ether for 1 bitcoin, meaning that the maker is offering 50 ether and asking for 1 bitcoin:
+Let's create an [`Order`](../../comit-sdk/interfaces/_negotiation_order_.order.md) of 50 ether for 1 bitcoin, meaning that the maker is offering 50 ether and is asking for 1 bitcoin:
 
 ```typescript
 // Create an order to be published.
@@ -35,7 +36,7 @@ const order = {
 
 ## Maker publishes the Order
 
-We can now publish the order for the taker:
+The [`MakerNegotiator`](../../comit-sdk/classes/_negotiation_maker_maker_negotiator_.makernegotiator.md) allows us to publish an [`Order`](../../comit-sdk/interfaces/_negotiation_order_.order.md):
 
 ```typescript
 // Publish the order so the taker can take it.
@@ -51,11 +52,14 @@ console.log(`Waiting for someone to take my order at: ${link}`);
 
 Your COMIt-app could publish this link on a forum or social media so takers can connect to you.
 
-
 ## Waiting for a taker
 
 When a taker takes the order created by the maker, it will trigger the swap execution right away.
-The maker thus has to wait for a taker to taker the order to commence with the execution.
+The maker thus has to wait for a taker to take the order to commence with the execution.
+
+In this tutorial the maker is waiting for 10 minutes for a potential taker to taker his order.
+The maker uses the `ComitClient` to wait for incoming swaps.
+Once the taker takes the order he will trigger a swap request in his cnd that will be detected by the maker's cnd.
 
 ```typescript
 // Wait for a taker to accept the order and send a swap request through the comit network daemon (cnd).
@@ -74,13 +78,6 @@ while (!swapHandle) {
     });
 }
 ```
-
-The maker uses the `ComitClient` to wait for incoming swaps.
-Once the taker takes the order he will trigger a swap request in his cnd that will be detected by the maker's cnd.
-
-> Notes by Daniel: This is a bit confusing. I feel the names should be harmonised (swap on the taker side, swap-handle on the maker)
-> Additionally: Is there any matching logic that checks if the swap matches the order on the maker side? (If so it is not obvious in the example...)
-> Not sure how to make this better, but I think we should iterate on it again.
 
 ## Summary
 
@@ -192,6 +189,8 @@ import moment = require("moment");
         });
     }
 
+    // TODO: Execute the order by swapping the assets.
+
     process.exit();
 })();
 ```
@@ -207,7 +206,7 @@ Waiting for someone to take my order at: http://127.0.0.1:2318
 
 ```
 
-The maker app is now waiting on the taker to initiate the swap for execution.
-The order is published and a taker can come, take it and by doing so start the swap execution.
+The maker app is now capable for waiting for a taker to initiate the swap for execution.
+The order is published and a taker can retrieve it, take it and by doing so start the swap execution.
 
-Let's keep the maker app running in this terminal and focus on the Taker side to consume the order and start swap execution!
+However, the maker does not execute an incoming swap properly yet. Let's add that in the next section before we move on the taker side.
