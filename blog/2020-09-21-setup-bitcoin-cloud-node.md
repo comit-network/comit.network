@@ -45,7 +45,6 @@ Notes on costs:
 Total cost point is about 33 AUD per month for the e2-small instance + 500 GB HDD when running 24/7.
 To give this a try for a month you should calculate with about 40 AUD of costs, assuming that you only run the e2-standard machine for the first 12-24h and then run an e2 machine.
 We feel these costs are not really a big deal for the sake of trying something awesome, but you should be aware that there are costs. 
-If you want to go for a cheaper option you can sync on e.g. an external disk at home or on a Raspy.
 
 Instead of doing the setup yourself you can opt for using a pre-configured, pre-synced image provided on [Google Cloud Marketplace](https://console.cloud.google.com/marketplace/details/techlatest-public/bitcoin-fullnode).
 We opt for doing the setup ourselves to be in full control of what is going on.
@@ -62,9 +61,7 @@ We refer to Bitcoin Core as bitcoind, as in bitcoin daemon, throughout this tuto
 
 #### Configure the Google Cloud firewall
 
-ℹ️ This tutorial assumes that you want to expose the RPC interface to the outside world, if you don't want to do this you can skip this step.
-
-In this step we expose the ports 8333 (and 8332) in the Google Cloud firewall.
+In this step we expose the port 8333 in the Google Cloud firewall so that the instance is publicly accessible on the layer-1 port.
 
 You will have to configure a `New Firewall` within the Network -> Firewall settings of the Google Comupte Engine. 
 
@@ -74,12 +71,12 @@ You will have to configure a `New Firewall` within the Network -> Firewall setti
 4. Define whatever name
 5. Change `Targets` to `All instances in the network` (or see Google Cloud docu)
 6. Set `Source IP ranges` to `0.0.0.0/0` (or see Google Cloud docu)
-7. Specify port under `tsc` to `8332-8333`
+7. Specify port under `tsc` to `8333`
 8. Click `Create`
 
 The rule will automatically be applied to your instance (due to 5.).
 
-Note: Setting up an [`ingress`](https://cloud.google.com/vpc/docs/firewalls#direction_of_the_rule) (incoming from source to target) rule is what you need.
+Note: Setting up an [`ingress`](https://cloud.google.com/vpc/docs/firewalls#direction_of_the_rule) (incoming from source to target) rule is all you need.
 
 ### Getting bitcoind installed
 
@@ -96,27 +93,6 @@ Make sure `git` is installed:
 sudo apt-get install git
 ```
 
-#### Install Dependencies
-
-First run:
-```shell script
-sudo apt-get install build-essential libtool autotools-dev automake pkg-config bsdmainutils python3
-```
-
-Then run:
-```shell script
-sudo apt-get install libevent-dev libboost-system-dev libboost-filesystem-dev libboost-test-dev libboost-thread-dev
-```
-
-We need the wallet so we also have to configure Berkely DB.
-The latest Debian package manager does not link to the Berkley DB version that bitcoind requires, thus we opted for [building Berkley DB from scratch](https://github.com/bitcoin/bitcoin/blob/master/doc/build-unix.md#berkeley-db):
-
-```shell script
-./contrib/install_db4.sh `pwd`
-```
-
-#### Configure screen
-
 Building bitcoind can take quite some time so we recommend running it [using `screen`](https://www.interserver.net/tips/kb/using-screen-to-attach-and-detach-console-sessions/):
 
 ```shell script
@@ -127,7 +103,22 @@ Detach from screen with: `ctrl` + `a` + `d`
 
 Re-attach to screen with: `screen -r` 
 
-Recommended: Run a screen session with command `screen` then go on.
+Recommended: Run a screen session with command `screen` then go on. 
+
+#### Install Dependencies
+
+Install dependencies:
+
+```shell script
+sudo apt-get install build-essential libtool autotools-dev automake pkg-config bsdmainutils python3 libevent-dev libboost-system-dev libboost-filesystem-dev libboost-test-dev libboost-thread-dev
+```
+
+We need the wallet so we also have to configure Berkely DB.
+The latest Debian package manager does not link to the Berkley DB version that bitcoind requires, thus we opted for [building Berkley DB from scratch](https://github.com/bitcoin/bitcoin/blob/master/doc/build-unix.md#berkeley-db):
+
+```shell script
+./contrib/install_db4.sh `pwd`
+```
 
 #### Build and install bitcoind
 
@@ -145,7 +136,7 @@ Run `autogen` script:
 Run `./configure` script with options:
 
 ```shell script
-export BDB_PREFIX='/home/bitcoin/bitcoin/db4'
+export BDB_PREFIX=`pwd`/db4
 ./configure --disable-tests --disable-bench --with-gui=no --disable-gui-tests BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" BDB_CFLAGS="-I${BDB_PREFIX}/include"
 ```
 
@@ -189,11 +180,11 @@ echo UUID=`sudo blkid -s UUID -o value /dev/sdb` /var/lib/bitcoind ext4 discard,
 
 ### Starting bitcoind
 
-As per the [init instructions](https://github.com/bitcoin/bitcoin/blob/master/doc/init.md) for adding bitcoind as service started at instance startup:
+As per the [init instructions](https://github.com/bitcoin/bitcoin/blob/master/doc/init.md) for adding bitcoind as service started at instance startup.
 
 Navigate to `contrib/init` dir within the bitcoin repo, you'll find the `bitcoind.service` file there.
 
-Coy said file to register the default configuration of the bitcoin service with systemd:
+Copy said file to register the default configuration of the bitcoin service with systemd:
 
 ```
 sudo cp bitcoind.service /lib/systemd/system
@@ -217,37 +208,26 @@ The initial block sync will start automatically.
 
 If you are syncing with a slow machine, and your sync seems to be stuck free to add some additional nodes to the configuration, you can find some on [bitnodes.io](https://bitnodes.io). Some nodes have block download limits that can cause this behavior.
 
-Example how to add this to the `bitcoin.conf` (see next section for details):
+Example how to add this to the `bitcoin.conf` in `/etc/bitcoin/bitcoin.conf` (as per the `bitcoin.service` definition):
 
 ```
 addnode=34.220.102.44:8333
 addnode=...
 ```
 
-### Configure RPC server
+You can find more configuration options in the [official example config](https://github.com/bitcoin/bitcoin/blob/master/share/examples/bitcoin.conf).
 
-Configuration is to be done in the `bitcoin.conf` file, which is to be put into `/etc/bitcoin` folder as specified in the service. 
-This directory is to be owned by the bitcoin user.
-Make sure to put the configuration file into `/etc/bitcoin/bitcoin.conf` - if file does not exist create it (as user `bitcoin`).
+#### Configuring bitcoin-cli to pick uo the right config file
 
-You can check out the official example bitcoin conf [here](https://github.com/bitcoin/bitcoin/blob/master/share/examples/bitcoin.conf).
+In the current setup the bitcoin-cli is not able to determine the data-dir correctly.
+The service file we copied earlier specifies the bitcoin config to be expected in the `/etc/bitcoin` directory and the datadir as `/var/lib/bitcoind`.
+However, bitcoin-cli by defaults expects the config in the bitcoin user's `home/.bitcoin` directory and cannot pickup the correct data-dir.
 
-Make rpc server available and configure user and password for it:
+First we have to ensure that the configuration file `/etc/bitcoin/bitcoin.conf` exists and specifies the data-dir:
 
+```shell script
+datadir=/var/lib/bitcoind
 ```
-rpcuser=[your username]
-rpcpassword=[your password]
-server=1
-```
-
-You have to restart bitcoind to make these changes happen. 
-If you have not tested the bitcoind service startup yet it might be a good idea to restart the instance at this point to ensure bitcoind starts up properly.
-
-### Configuring bitcoin-cli to pick uo the right config file
-
-The service file we copied earlier specifies the bitcoin config to be expected in the `/etc/bitcoin` directory.
-
-But bitcoin-cli expects the config in the bitcoin user's `home/.bitcoin` directory. 
 
 In order to let bitcoin-cli pick up the correct config file we can create a symlink for convenience.
 Make sure you are in the bitcoin user's home directory:
@@ -256,12 +236,14 @@ Make sure you are in the bitcoin user's home directory:
 ln -s /etc/bitcoin/bitcoin.conf .bitcoin/bitcoin.conf
 ```
 
+Note: You can also opt for modifying the `bitcoin.service` file if you prefer that.
+
 ### Validate your setup
 
 Once the bitcoind server is configured you can use [bitnodes.io](https://bitnodes.io/#join-the-network) to check if your node is available.
 Enter your external IP and port 8333.
 
-You should see a green `xxx.xxx.xxx.xxx:8333 /Satishi:0.yy.y` where `yy.y` is the version of the node you are running.
+You should see a green `xxx.xxx.xxx.xxx:8333 /Satoshi:0.yy.y` where `yy.y` is the version of the node you are running.
 
 To see the current sync status:
 
