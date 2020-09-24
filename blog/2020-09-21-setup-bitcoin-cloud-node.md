@@ -47,6 +47,9 @@ To give this a try for a month you should calculate with about 40 AUD of costs, 
 We feel these costs are not really a big deal for the sake of trying something awesome, but you should be aware that there are costs. 
 If you want to go for a cheaper option you can sync on e.g. an external disk at home or on a Raspy.
 
+Instead of doing the setup yourself you can opt for using a pre-configured, pre-synced image provided on [Google Cloud Marketplace](https://console.cloud.google.com/marketplace/details/techlatest-public/bitcoin-fullnode).
+We opt for doing the setup ourselves to be in full control of what is going on.
+
 ### Initial Google Instance Setup
 
 We refer to Bitcoin Core as bitcoind, as in bitcoin daemon, throughout this tutorial.
