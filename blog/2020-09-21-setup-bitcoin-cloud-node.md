@@ -226,7 +226,7 @@ addnode=...
 
 ### Configure RPC server
 
-Configuration is to be done in the `bitcoin.conf` file, which is to be put into `/etc/bitcoin`. 
+Configuration is to be done in the `bitcoin.conf` file, which is to be put into `/etc/bitcoin` folder as specified in the service. 
 This directory is to be owned by the bitcoin user.
 Make sure to put the configuration file into `/etc/bitcoin/bitcoin.conf` - if file does not exist create it (as user `bitcoin`).
 
@@ -243,6 +243,19 @@ server=1
 You have to restart bitcoind to make these changes happen. 
 If you have not tested the bitcoind service startup yet it might be a good idea to restart the instance at this point to ensure bitcoind starts up properly.
 
+### Configuring bitcoin-cli to pick uo the right config file
+
+The service file we copied earlier specifies the bitcoin config to be expected in the `/etc/bitcoin` directory.
+
+But bitcoin-cli expects the config in the bitcoin user's `home/.bitcoin` directory. 
+
+In order to let bitcoin-cli pick up the correct config file we can create a symlink for convenience.
+Make sure you are in the bitcoin user's home directory:
+
+```shell script
+ln -s /etc/bitcoin/bitcoin.conf .bitcoin/bitcoin.conf
+```
+
 ### Validate your setup
 
 Once the bitcoind server is configured you can use [bitnodes.io](https://bitnodes.io/#join-the-network) to check if your node is available.
@@ -253,7 +266,7 @@ You should see a green `xxx.xxx.xxx.xxx:8333 /Satishi:0.yy.y` where `yy.y` is th
 To see the current sync status:
 
 ```
-bitcoin-cli -conf=/etc/bitcoin/bitcoin.conf -datadir=/var/lib/bitcoind getblockchaininfo
+bitcoin-cli getblockchaininfo
 ```
 
 Should output:
