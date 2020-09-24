@@ -79,7 +79,7 @@ You will have to configure a `New Firewall` within the Network -> Firewall setti
 
 The rule will automatically be applied to your instance (due to 5.).
 
-Note: In case you are wondering an `igress` (incoming ) 
+Note: Setting up an [`ingress`](https://cloud.google.com/vpc/docs/firewalls#direction_of_the_rule) (incoming from source to target) rule is what you need.
 
 ### Getting bitcoind installed
 
