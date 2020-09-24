@@ -13,8 +13,8 @@ tags: [bitcoin, full-node, setup]
 In 2020 it is still hard to find quality instructions on how to run a bitcoin full node in the cloud.
 In this tutorial we want to share how it can be done in a somewhat time- and money-efficient way. 
 
-The tutorial steps you through some of our considerations how to achieve the initial sync in a reasonably fast way without depending pre-synced environments.
-We are offering recommendations, not guarantees. There is always potential to optimise - feel free to submit a PR on the post 🤓
+The tutorial steps you through the setup and some of our considerations how to achieve the initial sync in a reasonably fast way without depending pre-synced environments.
+We are offering recommendations, not guarantees. There is always potential to optimise - feel free to submit an [improvement PR](https://github.com/comit-network/comit.network/tree/master/blog/2020-09-21-setup-bitcoin-cloud-node.md) for the post 🤓
 
 <!--truncate-->
 
