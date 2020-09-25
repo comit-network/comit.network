@@ -135,9 +135,9 @@ The `comit-rs` repository is a Cargo workspace and therefore home to several cra
 Two of them are binaries that are released using the workflows discussed in this post.
 In the future, we might also release crates to https://crates.io/ from the repository.
 
-Especially with the two binaries, I had to make a decision in the workflow design:
+Regarding the two binaries, I had to make a decision in the workflow design:
 
-The release process is very similar, do I make one configurable workflow or two very similar ones?
+The release process is very similar, do I make one configurable workflow or duplicate most of the code?
 
 In the end, I settled with two separate workflows that are almost identical.
 While one could complain about this duplicated code, I don't think it is very harmful in this case.
@@ -155,7 +155,7 @@ Testing workflows can be cumbersome because all we are writing is untyped yaml.
 I ended up creating a fork the repository in my personal account for the testing.
 This allowed me to iterate fairly quickly because I was able to remove all branch protections from the repository.
 As such, I could force push to `dev` and `master` and test my workflows using the real trigger events.
-This is something I could have never done in the main repository and therefore greatly sped up development.
+This is something I could have never done in the main repository and therefore it greatly sped up development.
 
 ## Conclusion
 
