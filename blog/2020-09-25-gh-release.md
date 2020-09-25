@@ -39,6 +39,8 @@ That is a pity because obviously, we would like to verify that the revision we a
  A nice benefit of using GitFlow is that we could actually have a dedicated release-CI workflow that performs more exhaustive checks and is triggered by any push to a `release/*` branch.
  We are not doing that yet but it is something to keep in mind.
 
+By using a dedicated bot user, we can work around this limitation and our CI workflow is properly triggered after the bot pushes the release branch.
+
 To use a dedicated bot user:
 
 1. create a personal access token for that user
