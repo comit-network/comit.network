@@ -125,7 +125,9 @@ The `release` event contains the `upload_url` so we can simply pass it into the 
 Whilst having modular workflows was a good experience, it did create some code duplication between the different workflows.
 With GitHub actions, the unit of code reuse is a GitHub action.
 However, releasing a GitHub action to the marketplace felt like an overkill for this problem.
-Fortunately, a step can [reference](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#example-using-action-in-the-same-repository-as-the-workflow) an action that is stored within the same repository. 
+Fortunately, a step can [reference](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#example-using-action-in-the-same-repository-as-the-workflow) an action that is stored within the same repository.
+
+This allowed me to extract [two](https://github.com/comit-network/comit-rs/tree/dev/.github/actions) otherwise duplicated sections of different workflows into dedicated actions and reuse them.
 
 ## Releasing several components from the same repository
 
