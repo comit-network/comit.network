@@ -3,7 +3,7 @@ title:  "Setting up a ☁️ Bitcoin Full Node"
 author: daniel
 author_url: https://github.com/da-kami
 author_image_url: https://avatars1.githubusercontent.com/u/5557790
-tags: [bitcoin, full-node, setup]
+tags: [bitcoin, full-node, setup, cloud, google-compute-engine]
 ---
 
 > [Just do it!](https://www.youtube.com/watch?v=rziG2gn-eQ0)
