@@ -217,7 +217,7 @@ addnode=...
 
 You can find more configuration options in the [official example config](https://github.com/bitcoin/bitcoin/blob/master/share/examples/bitcoin.conf).
 
-#### Configuring bitcoin-cli to pick uo the right config file
+#### Configuring bitcoin-cli to pick up the right config file
 
 In the current setup the bitcoin-cli is not able to determine the data-dir correctly.
 The service file we copied earlier specifies the bitcoin config to be expected in the `/etc/bitcoin` directory and the datadir as `/var/lib/bitcoind`.
