@@ -130,7 +130,7 @@ git clone https://github.com/bitcoin/bitcoin.git && cd bitcoin && git checkout v
 Run `autogen` script:
 
 ```shell script
-./autogen.sh`
+./autogen.sh
 ```
 
 Run `./configure` script with options:
