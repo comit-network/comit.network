@@ -160,6 +160,6 @@ This is something I could have never done in the main repository and therefore g
 ## Conclusion
 
 This turned out a bit longer than I originally expected!
-However, I hope that sharing my thoughts around the design process in more details helps in writing better and more effective GitHub actions.
+However, I hope that sharing my thoughts around the design process in more details helps you in writing better and more effective GitHub actions.
 
 Happy automating - Thomas. 
