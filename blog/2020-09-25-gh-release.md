@@ -9,7 +9,7 @@ tags: [github,automation,gitflow,releases]
 Applied in the right circumstances, using GitFlow as your branching model can make life significantly easier.
 The COMIT team decided to adopt GitFlow for [`comit-rs`](https://github.com/comit-network/comit-rs) quite some time ago because it allows development to continue while a release is in progress, hence removing friction from our development flow.
 
-This post gives a quick overview of how we are using GitHub actions to automate most of aspects around drafting releases.
+This post gives a quick overview of how we are using GitHub actions to automate most of the aspects around drafting releases.
 
 <!--truncate-->
 
@@ -80,7 +80,7 @@ It makes the individual files smaller, making them easier to understand and main
 ### Reusability
 
 Modular workflows are easier to reuse.
-For example, we recently [added](https://github.com/comit-network/ambrosia/pull/82) automated releases to Ambrosia - a frontend for cnd that we are currently developing.
+For example, we recently [added](https://github.com/comit-network/ambrosia/pull/82) automated releases to [Ambrosia](https://github.com/comit-network/ambrosia) - a frontend for cnd that we are currently developing.
 We are not using GitFlow for Ambrosia.
 Contrary to `comit-rs`, releases in Ambrosia are triggered by creating manually creating a GitHub release.
 As such, we just needed a workflow that builds and attaches binaries to a release.
@@ -88,7 +88,7 @@ This is exactly what the workflow (3) in `comit-rs` does and hence we were able 
 
 ### Easier testing
 
-Different trigger events allows for easier testing of the individual workflows.
+Different trigger events allow for easier testing of the individual workflows.
 Testing GitHub action workflows is usually quite the pain.
 However, the above split made it actually quite easy to trigger just the workflow I was building.
 
@@ -106,7 +106,7 @@ Unfortunately, this doesn't play well with [`@actions/create-release`](https://g
 Esp. the combination if (1) and (3) means we cannot use [conditional steps](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsif) to only create the release once because we would be missing the step output for the upload.
 To compose these actions together properly, we would need to create two jobs, one for creating the release and one for building and uploading the asset.
 But to upload the asset we need the `upload_url` from the `create-release` action output.
-Step outputs are not carried over between jobs so we would to do something like writing the URL to file and use [`@actions/upload-artifact`](https://github.com/actions/upload-artifact) to move it to the next job.
+Step outputs are not carried over between jobs so we would have to do something like writing the URL to file and use [`@actions/upload-artifact`](https://github.com/actions/upload-artifact) to move it to the next job.
 
 For me, there are certain moments in software development where - despite knowing a solution - a part of me refuses to build it because it is so absurdly complicated for what it should achieve that I keep searching for a different solution.
 Writing a URL to a file, uploading it as an artifact and downloading it again in a different job was one of these solutions.
@@ -152,7 +152,7 @@ Not having to worry about different configuration combinations greatly simplifie
 ## Testing workflows
 
 Testing workflows can be cumbersome because all we are writing is untyped yaml.
-I ended up creating a fork the repository in my personal account for the testing.
+I ended up forking the repository in my personal account for the testing.
 This allowed me to iterate fairly quickly because I was able to remove all branch protections from the repository.
 As such, I could force push to `dev` and `master` and test my workflows using the real trigger events.
 This is something I could have never done in the main repository and therefore it greatly sped up development.
