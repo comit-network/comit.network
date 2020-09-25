@@ -97,7 +97,7 @@ However, the above split made it actually quite easy to trigger just the workflo
 For our releases, we wanted to build our binaries for Linux, MacOS and Windows.
 Running [the same job on multiply platforms](https://github.com/comit-network/comit-rs/blob/acabab36058b4e3d3ae54bde10fd7ce5db66f1a5/.github/workflows/release-cnd.yml#L11-L14) is quite easy with GitHub action's [job matrix](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategy).
 By default, this executes each step in the job on each platform.
-Unfortunately, this doesn't play will with [`@actions/create-release`](https://github.com/actions/create-release) and [`@actions/upload-release-asset`](https://github.com/actions/upload-release-asset).
+Unfortunately, this doesn't play well with [`@actions/create-release`](https://github.com/actions/create-release) and [`@actions/upload-release-asset`](https://github.com/actions/upload-release-asset).
 
 1. The release can only be created once.
 2. The asset has to be built and uploaded for each platform.
