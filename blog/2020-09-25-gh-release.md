@@ -11,7 +11,7 @@ The COMIT team decided to adopt GitFlow for [`comit-rs`](https://github.com/comi
 
 This post gives a quick overview of how we are using GitHub actions to automate most of aspects around drafting releases.
 
----
+<!--truncate-->
 
 When drafting a release, there is two things we want to have control over:
 
