@@ -80,8 +80,8 @@ It makes the individual files smaller, making them easier to understand and main
 ### Reusability
 
 Modular workflows are easier to reuse.
-For example, we recently [added](https://github.com/comit-network/ambrosia/pull/82) automated releases to "Ambrosia".
-We are not using GitFlow for "Ambrosia".
+For example, we recently [added](https://github.com/comit-network/ambrosia/pull/82) automated releases to Ambrosia - a frontend for cnd that we are currently developing.
+We are not using GitFlow for Ambrosia.
 Contrary to `comit-rs`, releases in Ambrosia are triggered by creating manually creating a GitHub release.
 As such, we just needed a workflow that builds and attaches binaries to a release.
 This is exactly what the workflow (3) in `comit-rs` does and hence we were able to largely copy the design of this workflow.
