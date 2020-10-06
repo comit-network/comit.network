@@ -193,4 +193,5 @@ Here are some possibilities:
 - Move on to a different cryptocurrency pair altogether, and possibly apply some of the learnings garnered during this project.
 
 In any case, we will likely get to all of those at some point in the future.
-For the time being, thank you for reading!
+For the time being, we encourage you to send us feedback, either in the form of a [ticket](https://github.com/comit-network/xmr-btc-swap/issues/new) or as an email to [our public mailing list](https://lists.comit.network/mailman/listinfo/comit-dev).
+Thank you for reading!
