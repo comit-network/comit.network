@@ -17,7 +17,7 @@ The team has been interested in Monero for a long time, but until recently we th
 2. It lacks a scripting language altogether, meaning that the usual mechanism of hashlocks is unavailable.
 3. Monero's use of edwards25519 elliptic curve for its key pair generation, which limits our ability to use [adaptor signatures](https://github.com/LLFourn/one-time-VES/blob/master/main.pdf) with blockchains such as Bitcoin and Ethereum, which use a different curve.
 
-Thanks to the publication of [Joël Gugger's Bitcoin-Monero Cross-chain Atomic Swap paper](https://eprint.iacr.org/2020/1126.pdf) we discovered ways to overcome the afforementioned challenges.
+Thanks to the publication of [Joël Gugger's Bitcoin-Monero Cross-chain Atomic Swap paper](https://eprint.iacr.org/2020/1126.pdf) we discovered ways to overcome the above-stated challenges.
 
 ## Protocol
 
@@ -82,7 +82,7 @@ They share the corresponding public keys `A` and `B` with each other.
 - They will also generate two Monero secret keys each: `(s_a, v_a)` and `(s_b, v_b)` respectively, with `s`'s denoting [spend keys](https://web.getmonero.org/resources/moneropedia/spendkey.html) and `v`'s denoting [view keys](https://web.getmonero.org/resources/moneropedia/viewkey.html).
 Alice will eventually lock up her Monero in a shared output `(S_a + S_b, V_a + V_b)`, constructed using the corresponding public keys.
 
-In order to allow both parties to see payments to that shared ouput, the secret view keys `v_a` and `v_b` are exchanged directly.
+In order to allow both parties to see payments to that shared output, the secret view keys `v_a` and `v_b` are exchanged directly.
 
 The parties will also exchange the Monero public spend keys `S_a` and `S_b`.
 
