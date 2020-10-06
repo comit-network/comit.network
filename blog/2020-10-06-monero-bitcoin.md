@@ -6,6 +6,8 @@ author_image_url: https://avatars3.githubusercontent.com/u/9418575
 tags: [monero,bitcoin,atomic,swap,adaptor,scriptless]
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 Over half a year ago we proved that [Grin-Bitcoin atomic swaps were possible](https://github.com/comit-network/grin-btc-poc) and now we're back to show you how it can be done for the [Monero-Bitcoin pair](https://github.com/comit-network/xmr-btc-swap).
 In our effort to connect all the blockchains without adding yet another, we have turned our attentions to Monero.
 Similar to Grin, Monero is a public ledger in which the source, destination and amount of a transaction remain hidden to observers.
