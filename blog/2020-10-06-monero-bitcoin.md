@@ -55,6 +55,8 @@ We also assume that parties have a means of communicating with each other during
 ### Long story short
 In the best-case scenario the protocol looks like this:
 
+<img alt="BTC/XMR Atomic Swap Protocol" src={useBaseUrl('/blog/assets/images/2020-10/BTC_XMR atomic swap protocol.svg')} />
+
 1. Alice and Bob exchange a set of addresses, keys, zero-knowledge proofs and signatures.
 2. Bob publishes `Tx_fund`, locking up his bitcoin in a 2-of-2 multisig output owned by Alice and Bob.
 Given the information exchanged in step 1, Bob can refund his bitcoin if he waits until time `t_1` by using `Tx_cancel` and `Tx_refund`.
@@ -65,8 +67,6 @@ This means that neither of them can actually spend this output unless they learn
 5. Alice uses this information to spend the bitcoin to an address owned by her.
 When doing so she leaks her Monero secret key `s_a` to Bob through the magic of adaptor signatures.
 6. Bob sees Alice's `Tx_redeem` on Bitcoin, extracts Alice's secret key from it and combines it with his own to spend the monero to an address of his own.
-
-<img alt="BTC/XMR Atomic Swap Protocol" src={useBaseUrl('/blog/assets/images/2020-10/BTC_XMR atomic swap protocol.svg')} />
 
 ### Unabridged
 
