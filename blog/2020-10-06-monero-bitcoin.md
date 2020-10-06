@@ -47,7 +47,7 @@ The third point will be discussed after the protocol has been properly discussed
 We assume that Alice and Bob have exchanged a set of parameters before performing the protocol, namely:
 
 - the amounts being exchanged; and
-- the values of the timelocks used for two of the Bitcoin transactions, `t_1` and `t_2`, where `t_2 > t_1`.
+- the values of the absolute timelocks used for two of the Bitcoin transactions, `t_1` and `t_2`, where `t_2 > t_1`.
 
 We also assume that parties have a means of communicating with each other during the protocol.
 
