@@ -11,18 +11,20 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 Over half a year ago we proved that [Grin-Bitcoin atomic swaps were possible](https://github.com/comit-network/grin-btc-poc) and now we're back to show you how it can be done for the [Monero-Bitcoin pair](https://github.com/comit-network/xmr-btc-swap).
 In our effort to connect all the blockchains without adding yet another, we have turned our attentions to Monero.
 Similar to Grin, Monero is a public ledger in which the source, destination and amount of a transaction remain hidden to observers.
-The team has been interested in Monero for a long time, but until recently we thought that atomic swaps involving it were unfeasible for a few reasons:
+The team has been interested in Monero for a long time, but until recently we assumed that atomic swaps involving it were unfeasible because it does not support timelocks.
+It was only through a presentation by Joël Gugger (a.k.a. [h4sh3d](https://github.com/h4sh3d/)) at [36C3](https://www.youtube.com/watch?v=G-v6hDnzpds&ab_channel=MoneroCommunityWorkgroup) that we learnt that atomic swaps can be realised using timelocks on only one of the two chains.
 
-1. Timelocks are not supported, so one cannot construct spend conditions contingent on time.
-2. It lacks a scripting language altogether, meaning that the usual mechanism of hashlocks is unavailable.
-3. Monero's use of edwards25519 elliptic curve for its key pair generation, which limits our ability to use [adaptor signatures](https://github.com/LLFourn/one-time-VES/blob/master/main.pdf) with blockchains such as Bitcoin and Ethereum, which use a different curve.
+Nevertheless, Monero still presented a couple of challenges in terms of locking coins. In particular:
 
-Thanks to the publication of [Joël Gugger's Bitcoin-Monero Cross-chain Atomic Swap paper](https://eprint.iacr.org/2020/1126.pdf) we discovered ways to overcome the above-stated challenges.
+1. Monero lacks a scripting language altogether, meaning that the usual mechanism of hashlocks is unavailable.
+2. Monero uses edwards25519 elliptic curve for its keypair generation, which limits our ability to use [adaptor signatures](https://github.com/LLFourn/one-time-VES/blob/master/main.pdf) with blockchains such as Bitcoin and Ethereum, which use a different curve.
+
+Overcoming the first challenge would require a complete redesign of Monero, but the second can be dealt with some nifty cryptography, as is referenced in Joël's recently published [Bitcoin-Monero Cross-chain Atomic Swap paper](https://eprint.iacr.org/2020/1126.pdf).
 
 ## Protocol
 
 At first we considered implementing the protocol as proposed by Joël, but we saw opportunities to simplify it, so we designed an alternate version.
-One of the changes was to reduce the number of transactions on Bitcoin by one.
+One of the changes aimed to reduce the number of transactions on Bitcoin by one.
 Thankfully, Joël and his team were kind enough to point out that we had introduced a race condition between the redeem and refund paths, caused by the non-instant finality of transactions on Bitcoin (and most other blockchains).
 
 Reverting said change left us with a largely similar protocol with some key differences:
