@@ -98,7 +98,7 @@ Now that you have all the components running and you have some tests coins we ca
 
 1. Open comit-i in the browser: [http//localhost:8080](http//localhost:8080)
 2. Register protocol handler for COMIT links (tested on Chrome: Version 75.0.3770.142):
-<img alt="comit-i: register handler for COMIT links" src={useBaseUrl('/blog/assets/images/2019-07/comiti_install_handler.png')} />;
+<img alt="comit-i: register handler for COMIT links" src={useBaseUrl('blog/assets/images/2019-07/comiti_install_handler.png')} />;
 3. Check on Twitter for the latest offer from [@COMITBobtimus](https://twitter.com/COMITBobtimus) and click on a COMIT link. Your browser should automatically forward to the link landing page. 
 Depending on what currency you are swapping, you will need to provide additional addresses. 
 In the case of the screenshot, the swap is between Ether and Bitcoin, i.e. you will **give (sell)** Bitcoin and will **receive (buy)** Ether.
