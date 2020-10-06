@@ -53,12 +53,15 @@ We assume that Alice and Bob have exchanged a set of parameters before performin
 We also assume that parties have a means of communicating with each other during the protocol.
 
 ### Long story short
+
+<img alt="BTC/XMR Atomic Swap Protocol" src={useBaseUrl('blog/assets/images/2020-10/BTC_XMR_atomic_swap_protocol.svg')} />
+
 In the best-case scenario the protocol looks like this:
 
 <img alt="BTC/XMR Atomic Swap Protocol" src={useBaseUrl('/blog/assets/images/2020-10/BTC_XMR atomic swap protocol.svg')} />
 
 1. Alice and Bob exchange a set of addresses, keys, zero-knowledge proofs and signatures.
-2. Bob publishes `Tx_fund`, locking up his bitcoin in a 2-of-2 multisig output owned by Alice and Bob.
+2. Bob publishes `Tx_lock`, locking up his bitcoin in a 2-of-2 multisig output owned by Alice and Bob.
 Given the information exchanged in step 1, Bob can refund his bitcoin if he waits until time `t_1` by using `Tx_cancel` and `Tx_refund`.
 If Bob doesn't refund after time `t_1`, Alice can punish Bob for being inactive by first publishing `Tx_cancel` and, after `t_2`, spending the output using `Tx_punish`.
 3. Alice sees that Bob has locked up the bitcoin, so she publishes `Tx_lock` on the Monero blockchain, locking up her monero in an output which can only be spent with a secret key owned by Alice (`s_a`) *and* a secret key owned by Bob (`s_b`).
