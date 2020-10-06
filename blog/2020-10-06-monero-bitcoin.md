@@ -8,7 +8,7 @@ tags: [monero,bitcoin,atomic,swap,adaptor,scriptless]
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Over half a year ago we proved that [Grin-Bitcoin atomic swaps were possible](https://github.com/comit-network/grin-btc-poc) and now we're back to show you how it can be done for the [Monero-Bitcoin pair](https://github.com/comit-network/xmr-btc-swap).
+Over half a year ago we proved that [Grin-Bitcoin atomic swaps were possible](https://github.com/comit-network/grin-btc-poc) and now we're back to show you how it can be done for the [monero-bitcoin pair](https://github.com/comit-network/xmr-btc-swap).
 In our effort to connect all the blockchains without adding yet another, we have turned our attentions to Monero.
 Similar to Grin, Monero is a public ledger in which the source, destination and amount of a transaction remain hidden to observers.
 The team has been interested in Monero for a long time, but until recently we assumed that atomic swaps involving it were unfeasible because it does not support timelocks.
@@ -40,7 +40,7 @@ The third point will be discussed after the protocol has been properly discussed
 ### Notation and terminology
 
 - When referring to secret keys we use lowercase e.g. `x`; when referring to public keys we use uppercase e.g. `X`.
-- We refer to Alice as the party that holds Monero and wants Bitcoin in exchange; we refer to Bob as the party that holds Bitcoin and wants Monero in exchange.
+- We refer to Alice as the party that holds monero and wants bitcoin in exchange; we refer to Bob as the party that holds bitcoin and wants monero in exchange.
 
 ### Assumptions
 
@@ -52,21 +52,20 @@ We assume that Alice and Bob have exchanged a set of parameters before performin
 We also assume that parties have a means of communicating with each other during the protocol.
 
 ### Long story short
-
-<img alt="BTC/XMR Atomic Swap Protocol" src={useBaseUrl('/blog/assets/images/2020-10/BTC_XMR atomic swap protocol.svg')} />;
-
 In the best-case scenario the protocol looks like this:
 
 1. Alice and Bob exchange a set of addresses, keys, zero-knowledge proofs and signatures.
-2. Bob publishes `Tx_fund` and locks up his bitcoin in a 2-of-2 multisig output owned by Alice and Bob (`A+B`).
-Given the information exchanged in step 1, Bob can refund his bitcoin if he waits until time `t_1`.
-If Bob doesn't refund after time `t_1` using `Tx_cancel` and `Tx_refund`, Alice can punish Bob for being inactive by spending first `Tx_cancel` and after `t_2` spending the output using `Tx_punish`.
-3. Alice sees that Bob has locked up the bitcoin, so she publishes `Tx_lock` on the monero blockchain and hence locks up her monero in an output which can only be spent with a secret key owned by Alice (`s_a`) *and* a secret key owned by Bob (`s_b`).
+2. Bob publishes `Tx_fund`, locking up his bitcoin in a 2-of-2 multisig output owned by Alice and Bob.
+Given the information exchanged in step 1, Bob can refund his bitcoin if he waits until time `t_1` by using `Tx_cancel` and `Tx_refund`.
+If Bob doesn't refund after time `t_1`, Alice can punish Bob for being inactive by first publishing `Tx_cancel` and, after `t_2`, spending the output using `Tx_punish`.
+3. Alice sees that Bob has locked up the bitcoin, so she publishes `Tx_lock` on the Monero blockchain, locking up her monero in an output which can only be spent with a secret key owned by Alice (`s_a`) *and* a secret key owned by Bob (`s_b`).
 This means that neither of them can actually spend this output unless they learn the secret key of the other party.
-4. Bob sees that Alice has locked up the monero, so he now sends Alice a missing key bit of information which will allow Alice to redeem the Bitcoin (`Tx_redeem`).
-5. Alice uses this information to spend the Bitcoin to an address owned by her.
-When doing so she leaks her Monero secret key (`s_a`) to Bob through the magic of adaptor signatures.
-6. Bob sees Alice's redeem transaction on Bitcoin, extracts Alice's secret key from it and combines it with his own to spend the monero to an address of his own.
+4. Bob sees that Alice has locked up the monero, so he now sends Alice a missing key bit of information which will allow Alice to redeem the bitcoin using `Tx_redeem`.
+5. Alice uses this information to spend the bitcoin to an address owned by her.
+When doing so she leaks her Monero secret key `s_a` to Bob through the magic of adaptor signatures.
+6. Bob sees Alice's `Tx_redeem` on Bitcoin, extracts Alice's secret key from it and combines it with his own to spend the monero to an address of his own.
+
+<img alt="BTC/XMR Atomic Swap Protocol" src={useBaseUrl('/blog/assets/images/2020-10/BTC_XMR atomic swap protocol.svg')} />
 
 ### Unabridged
 
@@ -79,10 +78,10 @@ They share their address with the other party.
 #### Key exchange
 
 - Both parties generate Bitcoin secret keys: `a` and `b` respectively.
-These will be the keys which, when combined, will give ownership of the output where Bob will lock up his Bitcoin.
+These will be the keys which, when combined, will give ownership of the output where Bob will lock up his bitcoin.
 They share the corresponding public keys `A` and `B` with each other.
 - They will also generate two Monero secret keys each: `(s_a, v_a)` and `(s_b, v_b)` respectively, with `s`'s denoting [spend keys](https://web.getmonero.org/resources/moneropedia/spendkey.html) and `v`'s denoting [view keys](https://web.getmonero.org/resources/moneropedia/viewkey.html).
-Alice will eventually lock up her Monero in a shared output `(S_a + S_b, V_a + V_b)`, constructed using the corresponding public keys.
+Alice will eventually lock up her monero in a shared output `(S_a + S_b, V_a + V_b)`, constructed using the corresponding public keys.
 
 In order to allow both parties to see payments to that shared output, the secret view keys `v_a` and `v_b` are exchanged directly.
 
@@ -106,7 +105,7 @@ With this key insight we can continue with the protocol.
 
 #### Proving knowledge in zero-knowledge
 
-With the information exchanged thus far Bob could not yet construct an adaptor signature which when decrypted and used by Alice would leak to him `s_a`, because, as mentioned in the previous section, there is no mapping between `S_a^monero` and the bitcoin public key `S_a^bitcoin` which would result from using `s_a` as a Bitcoin secret key.
+With the information exchanged thus far Bob could not yet construct an adaptor signature which when decrypted and used by Alice would leak to him `s_a`, because, as mentioned in the previous section, there is no mapping between `S_a^monero` and the Bitcoin public key `S_a^bitcoin` which would result from using `s_a` as a Bitcoin secret key.
 
 But as we also learnt in the previous section, if Alice generates a Bitcoin public key `S_a^bitcoin` from `s_a` and constructs a zero-knowledge proof of the secret key for `S_a^bitcoin` and `S_a^monero` being the same and shares this information with Bob, then Bob can in fact construct an adaptor signature on `S_a^bitcoin` which when decrypted and used by Alice will leak to him `s_a`, which he can add to `s_b` to spend an output with public spend key `S_a + S_b`.
 
@@ -118,7 +117,7 @@ It may be obvious but each party must verify the proof provided by the other!
 
 #### Bob constructs Bitcoin lock transaction
 
-In order to allow Alice to sign Bitcoin transactions based on the shared output on `A` and `B`, Bob constructs the lock transaction with the help of his wallet (e.g. using bitcoind's wallet API [fundrawtransaction](https://bitcoincore.org/en/doc/0.19.0/rpc/rawtransactions/fundrawtransaction/)) and shares it with Alice, unsigned.
+In order to allow Alice to sign Bitcoin transactions based on the shared output on `A` and `B`, Bob constructs `Tx_lock` with the help of his wallet (e.g. using bitcoind's wallet API [fundrawtransaction](https://bitcoincore.org/en/doc/0.19.0/rpc/rawtransactions/fundrawtransaction/)) and shares it with Alice, unsigned.
 
 #### Signing worse-case scenario Bitcoin transactions
 In an ideal world, one wouldn't need to worry about refund and punish transactions, but in that case one wouldn't need atomic swaps in the first place.
@@ -127,24 +126,24 @@ In the real world, we need a mechanism to incentivise the swap to take place as 
 To that end, parties are now ready to produce and exchange signatures and adaptor signatures for a set of Bitcoin transactions.
 Specifically:
 
-- Alice and Bob both sign a cancel transaction which if published would see the shared output of the Bitcoin lock transaction be spent to another output with the same spend condition of a 2-of-2 multisig `(A, B)`.
+- Alice and Bob both sign `Tx_cancel` which if published would see the shared output of the Bitcoin `Tx_lock` be spent to another output with the same spend condition of a 2-of-2 multisig `(A, B)`.
 They construct this transaction in such a way that it may only be included in the blockchain at time `> t_1`.
 This transaction can be used by either party as a mechanism to make the redeem impossible and lock the protocol in a state where only the refund and punish paths can be activated.
-- Alice constructs and shares with Both an adaptor signature on a refund transaction spending from the output of the cancel transaction to `address_b`.
-She constructs it in such a way that if Bob ever decides to refund, he will need to decrypt it using his monero spend key `s_b`, leaking it to her when publishing the transaction to the refund blockchain.
-This transaction does not need to be timelocked, because it depends on the publication of the cancel transaction, which already depends on time being `> t_1`.
-- Bob signs a punish transaction spending from the cancel transaction output to `address_a`, but which can only be published at time `t_2`.
-He shares this with Alice, to allow her to punish him by taking the Bitcoin in exchange for nothing, in the case that Bob remains inactive for too long.
+- Alice constructs and shares with Both an adaptor signature on `Tx_refund` spending from the output of `Tx_cancel` to `address_b`.
+She constructs it in such a way that if Bob ever decides to refund, he will need to decrypt it using his Monero spend key `s_b`, leaking it to her when publishing the transaction to the refund blockchain.
+This transaction does not need to be timelocked, because it depends on the publication of `Tx_cancel`, which already depends on time being `> t_1`.
+- Bob signs a punish transaction spending from `Tx_cancel` output to `address_a`, but which can only be published at time `t_2`.
+He shares this with Alice, to allow her to punish him by taking the bitcoin in exchange for nothing, in the case that Bob remains inactive for too long.
 This transaction exists to prevent a situation where both Alice and Bob have locked up their coins, but Bob never shares the necessary adaptor signature for Alice to redeem the bitcoin, nor does he refund it himself.
 Without this transaction, Alice could be unfairly punished for Bob's inactivity, with the money on both chains being locked up indefinitely.
 With this transaction, Alice can deal with Bob's possible reckless behaviour and Bob is incentivised to act at least before time `t_2`.
 
 #### Going on-chain
 
-With Alice's cancel transaction signature and refund transaction encrypted signature, Bob can now safely lock up his bitcoin using the lock transaction he constructed before.
+With Alice's `Tx_cancel` signature and `Tx_refund` encrypted signature, Bob can now safely lock up his bitcoin using the lock transaction he constructed before.
 This is because he will be able to refund if Alice stops cooperating.
 
-To do so, he asks his Bitcoin wallet to sign the lock transaction and broadcasts it to the network.
+To do so, he asks his Bitcoin wallet to sign `Tx_lock` and broadcasts it to the network.
 Alice will eventually see that the transaction has been included in a block, and may wait some extra time to see her desired number of confirmation on that transaction.
 
 Alice can now lock up her monero, because she is safe knowing that she will be able to refund if Bob refunds, and that she will be able to just take the bitcoin if Bob never acts again.
@@ -156,10 +155,10 @@ If he verifies that the amount of monero is correct and the transaction has enou
 
 The current situation allows both parties to abort without any further cooperation, but Alice does not yet have a way to take Bob's bitcoin (unless she waits for `t_2` and Bob hasn't refunded).
 Had she had a way to do so before having committed anything on the Monero blockchain, she could have left Bob empty-handed.
-Only now can Bob safely share with Alice the adaptor signature with his Bitcoin secret key `b` encrypted on Alice's public key `S_a^bitcoin` of the redeem transaction spending from the shared output of the Bitcoin lock transaction to `address_a`.
+Only now can Bob safely share with Alice the adaptor signature with his Bitcoin secret key `b` encrypted on Alice's public key `S_a^bitcoin` of `Tx_redeem` spending from the shared output of the Bitcoin `Tx_lock` to `address_a`.
 
-Alice can decrypt this adaptor signature into a valid signature on `B`, which she can use in combination with her own signature on `A` to publish the Bitcoin redeem transaction.
-Bob just has to monitor the Bitcoin blockchain for the redeem transaction and learn Alice's Monero spend secret key `s_a`, leaked to him thanks to the power of adaptor signatures.
+Alice can decrypt this adaptor signature into a valid signature on `B`, which she can use in combination with her own signature on `A` to publish the Bitcoin `Tx_redeem`.
+Bob just has to monitor the Bitcoin blockchain for `Tx_redeem` and learn Alice's Monero spend secret key `s_a`, leaked to him thanks to the power of adaptor signatures.
 
 With control of `s_a` and `s_b`, Bob is the sole owner of the Monero output.
 He does not even need to redeem this to an address provided by his wallet.
@@ -180,7 +179,7 @@ For more details on this, check out [the source code of our experimental impleme
 
 Having explained how we think this can work, it is time to show you what we've done.
 Over the last couple of weeks, part of the team has been working on a [proof-of-concept pure-Rust implementation](https://github.com/comit-network/xmr-btc-swap) of this protocol.
-Using cryptographic libraries such as [curve25519-dalek](https://github.com/dalek-cryptography/curve25519-dalek) and [secp256kFUN!](https://github.com/LLFourn/secp256kfun/), together with the aforementioned [cross-curve DLEQ proof library](https://github.com/comit-network/cross-curve-dleq), we have built a library which can be used to atomically swap Monero and Bitcoin.
+Using cryptographic libraries such as [curve25519-dalek](https://github.com/dalek-cryptography/curve25519-dalek) and [secp256kFUN!](https://github.com/LLFourn/secp256kfun/), together with the aforementioned [cross-curve DLEQ proof library](https://github.com/comit-network/cross-curve-dleq), we have built a library which can be used to atomically swap monero and bitcoin.
 We must emphasise that a considerable part of the cryptography used has not been audited or thoroughly reviewed yet, so we recommend anyone curious to use this library to only use it with as much real money as they are willing to risk losing.
 
 ## What's next
@@ -189,7 +188,7 @@ With the publication of this post marking the end of this project, we asked ours
 Here are some possibilities:
 
 - Building an experimental peer-to-peer application so that people can use it to trade test coins or small amounts of real coins.
-- Extend our recent [implementation](https://github.com/comit-network/thor) of [generalised Bitcoin-compatible channels](https://eprint.iacr.org/2020/476.pdf) with support for atomic swaps between Monero and off-chain Bitcoin.
+- Extend our recent [implementation](https://github.com/comit-network/thor) of [generalised Bitcoin-compatible channels](https://eprint.iacr.org/2020/476.pdf) with support for atomic swaps between monero and off-chain bitcoin.
 - Move on to a different cryptocurrency pair altogether, and possibly apply some of the learnings garnered during this project.
 
 In any case, we will likely get to all of those at some point in the future.
