@@ -11,7 +11,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 Over half a year ago we proved that [Grin-Bitcoin atomic swaps were possible](https://github.com/comit-network/grin-btc-poc) and now we're back to show you how it can be done for the [monero-bitcoin pair](https://github.com/comit-network/xmr-btc-swap).
 In our effort to connect all the blockchains without adding yet another, we have turned our attentions to Monero.
 Similar to Grin, Monero is a public ledger in which the source, destination and amount of a transaction remain hidden to observers.
-The team has been interested in Monero for a long time, but until recently we assumed that atomic swaps involving it were unfeasible because it does not support timelocks.
+
+The team has been interested in Monero for a long time, but until recently we assumed that atomic swaps involving it were unfeasible due to its lack of support for timelocks. <!--truncate-->
 It was only through a presentation by Joël Gugger (a.k.a. [h4sh3d](https://github.com/h4sh3d/)) at [36C3](https://www.youtube.com/watch?v=G-v6hDnzpds&ab_channel=MoneroCommunityWorkgroup) that we learnt that atomic swaps can be realised using timelocks on only one of the two chains.
 
 Nevertheless, Monero still presented a couple of challenges in terms of locking coins. In particular:
