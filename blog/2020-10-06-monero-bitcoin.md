@@ -195,3 +195,10 @@ Here are some possibilities:
 In any case, we will likely get to all of those at some point in the future.
 For the time being, we encourage you to send us feedback, either in the form of a [ticket](https://github.com/comit-network/xmr-btc-swap/issues/new) or as an email to [our public mailing list](https://lists.comit.network/mailman/listinfo/comit-dev).
 Thank you for reading!
+
+## References
+
+- Joël Gugger. Bitcoin-Monero Cross-chain Atomic Swap. https://eprint.iacr.org/2020/1126.pdf
+- Ruben Somsen. Succint Atomic Swaps. https://gist.github.com/RubenSomsen/8853a66a64825716f51b409be528355f
+- Sarang Noether. Technical Note MRL-0010. https://web.getmonero.org/es/resources/research-lab/pubs/MRL-0010.pdf
+- Lloyd Fournier. One-Time Verifiably Encrypted Signatures. https://github.com/LLFourn/one-time-VES/blob/master/main.pdf
