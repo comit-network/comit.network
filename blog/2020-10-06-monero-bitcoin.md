@@ -49,7 +49,7 @@ We also assume that parties have a means of communicating with each other during
 
 ### Long story short
 
-![BTC/XMR Atomic Swap Protocol](./assets/images/2020-10/BTC_XMR atomic swap protocol.svg "BTC/XMR Atomic Swap Protocol")
+<img alt="BTC/XMR Atomic Swap Protocol" src={useBaseUrl('/blog/assets/images/2020-10/BTC_XMR atomic swap protocol.svg')} />;
 
 In the best-case scenario the protocol looks like this:
 
