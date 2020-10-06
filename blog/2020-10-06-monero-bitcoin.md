@@ -54,11 +54,9 @@ We also assume that parties have a means of communicating with each other during
 
 ### Long story short
 
-<img alt="BTC/XMR Atomic Swap Protocol" src={useBaseUrl('blog/assets/images/2020-10/BTC_XMR_atomic_swap_protocol.svg')} />
-
 In the best-case scenario the protocol looks like this:
 
-<img alt="BTC/XMR Atomic Swap Protocol" src={useBaseUrl('/blog/assets/images/2020-10/BTC_XMR atomic swap protocol.svg')} />
+<img alt="BTC/XMR Atomic Swap Protocol" src={useBaseUrl('blog/assets/images/2020-10/BTC_XMR_atomic_swap_protocol.svg')} />
 
 1. Alice and Bob exchange a set of addresses, keys, zero-knowledge proofs and signatures.
 2. Bob publishes `Tx_lock`, locking up his bitcoin in a 2-of-2 multisig output owned by Alice and Bob.
