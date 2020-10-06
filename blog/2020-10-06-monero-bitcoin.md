@@ -152,7 +152,7 @@ If he verifies that the amount of monero is correct and the transaction has enou
 
 #### One last signature
 
-The current situation allows both parties to abort without any further cooperation, but Alice does not yet have a way to take Bob's bitcoin.
+The current situation allows both parties to abort without any further cooperation, but Alice does not yet have a way to take Bob's bitcoin (unless she waits for `t_2` and Bob hasn't refunded).
 Had she had a way to do so before having committed anything on the Monero blockchain, she could have left Bob empty-handed.
 Only now can Bob safely share with Alice the adaptor signature with his Bitcoin secret key `b` encrypted on Alice's public key `S_a^bitcoin` of the redeem transaction spending from the shared output of the Bitcoin lock transaction to `address_a`.
 
