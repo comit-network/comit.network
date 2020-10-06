@@ -174,7 +174,7 @@ For more details on this, check out [the source code of our experimental impleme
 
 Having explained how we think this can work, it is time to show you what we've done.
 Over the last couple of weeks, part of the team has been working on a proof-of-concept pure-Rust implementation of this protocol.
-Using cryptographic libraries such as [curve25519-dalek](https://github.com/dalek-cryptography/curve25519-dalek) and [secp256kFUN!](https://github.com/LLFourn/secp256kfun/), together with the aforementioned [cross-curve DLEQ proof library]((https://github.com/comit-network/cross-curve-dleq)), we have built a library which can be used to atomically swap Monero and Bitcoin.
+Using cryptographic libraries such as [curve25519-dalek](https://github.com/dalek-cryptography/curve25519-dalek) and [secp256kFUN!](https://github.com/LLFourn/secp256kfun/), together with the aforementioned [cross-curve DLEQ proof library](https://github.com/comit-network/cross-curve-dleq), we have built a library which can be used to atomically swap Monero and Bitcoin.
 We must emphasise that a considerable part of the cryptography used has not been audited or thoroughly reviewed yet, so we recommend anyone curious to use this library to only use it with as much real money as they are willing to risk losing.
 
 ## What's next
