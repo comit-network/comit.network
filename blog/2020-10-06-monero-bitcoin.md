@@ -49,17 +49,19 @@ We also assume that parties have a means of communicating with each other during
 
 ### Long story short
 
+![BTC/XMR Atomic Swap Protocol](./assets/images/2020-10/BTC_XMR atomic swap protocol.svg "BTC/XMR Atomic Swap Protocol")
+
 In the best-case scenario the protocol looks like this:
 
 1. Alice and Bob exchange a set of addresses, keys, zero-knowledge proofs and signatures.
-2. Bob locks up his bitcoin in a 2-of-2 multisig output owned by Alice and Bob.
+2. Bob publishes `Tx_fund` and locks up his bitcoin in a 2-of-2 multisig output owned by Alice and Bob (`A+B`).
 Given the information exchanged in step 1, Bob can refund his bitcoin if he waits until time `t_1`.
-If Bob doesn't refund after time `t_1`, Alice can punish Bob for being inactive by spending the output from time `t_2`.
-3. Alice sees that Bob has locked up the bitcoin, so she locks up her monero in an output which can only be spent with a secret key owned by Alice *and* a secret key owned by Bob.
+If Bob doesn't refund after time `t_1` using `Tx_cancel` and `Tx_refund`, Alice can punish Bob for being inactive by spending first `Tx_cancel` and after `t_2` spending the output using `Tx_punish`.
+3. Alice sees that Bob has locked up the bitcoin, so she publishes `Tx_lock` on the monero blockchain and hence locks up her monero in an output which can only be spent with a secret key owned by Alice (`s_a`) *and* a secret key owned by Bob (`s_b`).
 This means that neither of them can actually spend this output unless they learn the secret key of the other party.
-4. Bob sees that Alice has locked up the monero, so he now sends Alice a missing key bit of information which will allow Alice to redeem the Bitcoin.
+4. Bob sees that Alice has locked up the monero, so he now sends Alice a missing key bit of information which will allow Alice to redeem the Bitcoin (`Tx_redeem`).
 5. Alice uses this information to spend the Bitcoin to an address owned by her.
-When doing so she leaks her Monero secret key to Bob through the magic of adaptor signatures.
+When doing so she leaks her Monero secret key (`s_a`) to Bob through the magic of adaptor signatures.
 6. Bob sees Alice's redeem transaction on Bitcoin, extracts Alice's secret key from it and combines it with his own to spend the monero to an address of his own.
 
 ### Unabridged
