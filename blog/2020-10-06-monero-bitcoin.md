@@ -170,12 +170,9 @@ He may simply import this key to an existing wallet or generate a new wallet alt
 
 Armed with the knowledge that one can prove in zero-knowledge that a key revealed on one chain (e.g. Bitcoin for this protocol) is the secret key corresponding to a known public key in another (e.g. Monero for this protocol), we set out to evaluate the specific protocol proposed in Sarang's technical note.
 
-Given our unfamiliarity with ring signatures, a construct central to the protocol, and the apparent lack of an implementation in Rust, our programming language of choice, our ex-colleague Lloyd Fournier advised us to instead [turn to the textbook for answers](https://www.win.tue.nl/~berry/CryptographicProtocols/LectureNotes.pdf)
+Since there was no proof of security offered for this protocol, we modified the original idea so that it could be argued secure just by the composition of sigma protocols.
 
-Lloyd proposed an equivalent proof based on the well-defined composition of sigma protocols.
-In short, for every bit of the secret key, one can prove that said bit is either equal to 0 for the Bitcoin public key **and** the Monero public key, *or* equal to 1 for the Bitcoin public key **and** the Monero public key.
-
-For more details on this, check out [the source code of our experimental implementation of this cross-curve DLEQ proof protocol](https://github.com/comit-network/cross-curve-dleq).
+Our ex-colleague [Lloyd Fournier](https://github.com/LLFourn) advised us on the theory and provided valuable feedback on the experimental implementation, which can be found [here](https://github.com/comit-network/cross-curve-dleq).
 
 ## Just show me the code
 
@@ -203,3 +200,4 @@ Thank you for reading!
 - Ruben Somsen. Succint Atomic Swaps. https://gist.github.com/RubenSomsen/8853a66a64825716f51b409be528355f
 - Sarang Noether. Technical Note MRL-0010. https://web.getmonero.org/es/resources/research-lab/pubs/MRL-0010.pdf
 - Lloyd Fournier. One-Time Verifiably Encrypted Signatures. https://github.com/LLFourn/one-time-VES/blob/master/main.pdf
+- Berry Schoenmakers. Cryptographic Protocols: Lecture Notes. https://www.win.tue.nl/~berry/CryptographicProtocols/LectureNotes.pdf
