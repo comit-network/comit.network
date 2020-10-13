@@ -45,6 +45,7 @@ However, we have limited Ambrosia to the BTC/DAI pair as we know that Bitcoin/US
 ## Decentralised Orderbook
 
 We have a [nectar](https://github.com/comit-network/comit-rs) instance that runs and acts as a maker.
+This is for test purposes only, and we expect the community to run their own makers once the software is out of alpha.
 At this stage, ambrosia can only swap with nectar.
 
 Each application have their own copy of the decentralised orderbook, they build it by asking the latest offers to their peers. 
