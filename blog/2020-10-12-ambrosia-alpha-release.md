@@ -35,7 +35,7 @@ Not only do you not need to trust a third party with your funds when trading, ev
 Ambrosia never holds your crypto, instead it interfaces directly with your hardware wallet (nano ledger s only) to make transactions.
 
 We believe that custody and security are important criteria to our users, hence we also assume that users are running their own [Bitcoin Core](https://github.com/bitcoin/bitcoin) node.
-We also expect users to have access to an Ethereum node, thanks to the standard web3 interface, it is also possible to use services such as Infura.
+We also expect users to have access to an Ethereum node, thanks to the standard web3 interface, it is possible to use services such as Infura.
 
 ## Trading pair
 
