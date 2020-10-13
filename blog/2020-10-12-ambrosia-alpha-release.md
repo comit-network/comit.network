@@ -31,6 +31,8 @@ Here are some choices we want your input on:
 
 ## Custody
 
+> Not your keys, not your crypto
+
 Ambrosia never holds your crypto, instead it interfaces directly with your hardware wallet (nano ledger s only) to make transactions. 
 This is a huge step up towards trustless trading compared to traditional centralized solutions where you have to deposit your funds into an exchange first. 
 
