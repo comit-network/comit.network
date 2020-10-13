@@ -31,8 +31,8 @@ Here are some choices we want your input on:
 
 ## Custody
 
-Not only do you not need to trust a third party with your funds when trading, even our software is completely non-custodial.
-Ambrosia never holds your crypto, instead it interfaces directly with your hardware wallet (nano ledger s only) to make transactions.
+Ambrosia never holds your crypto, instead it interfaces directly with your hardware wallet (nano ledger s only) to make transactions. 
+This is a huge step up towards trustless trading compared to traditional centralized solutions where you have to deposit your funds into an exchange first. 
 
 We believe that custody and security are important criteria to our users, hence we also assume that users are running their own [Bitcoin Core](https://github.com/bitcoin/bitcoin) node.
 We also expect users to have access to an Ethereum node, thanks to the standard web3 interface, it is possible to use services such as Infura.
