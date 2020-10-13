@@ -59,7 +59,7 @@ Also, we have noticed that the experience can differ on mainnet and testnet.
 
 If you want to try out, we strongly recommend you have a chat with us so we can assist:
 
--   Email: [team@coblox.tech](mailto:team@coblox.tech)
+-   Email: [hello@comit.network](mailto:hello@comit.network)
 -   Matrix chat: [#comit:matrix.org](https://matrix.to/#/!HYBOPcopXgKbEnEELc:matrix.org?via=matrix.org&via=privacytools.io) (e2e encryption enabled)
 -   Twitter: [@comit_network](https://twitter.com/comit_network)
 
