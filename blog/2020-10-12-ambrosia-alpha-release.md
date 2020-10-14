@@ -71,7 +71,8 @@ If you want to try it yourself, you need few components:
 -   Ambrosia: [Download](https://github.com/comit-network/ambrosia/releases) or [build yourself](https://github.com/comit-network/ambrosia#ambrosia),
 -   cnd: [Download](https://github.com/comit-network/comit-rs/releases) or [build yourself](https://github.com/comit-network/comit-rs/#build-binaries),
 -   A [bitcoind](https://github.com/bitcoin/bitocin) node,
--   An Ethereum node ([geth](https://geth.ethereum.org/), [parity](https://www.parity.io/), [infura](https://infura.io/), etc).
+-   An Ethereum node ([geth](https://geth.ethereum.org/), [parity](https://www.parity.io/), [infura](https://infura.io/), etc),
+-   A nano ledger s.
 
 Once ready, you can dump the default config:
 
