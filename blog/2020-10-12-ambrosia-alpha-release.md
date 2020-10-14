@@ -41,8 +41,8 @@ We also expect users to have access to an Ethereum node, thanks to the standard 
 
 ## Trading pair
 
-The COMIT Network Daemon (cnd) supports various trading pairs: BTC/ETH, BTC/ERC20, Lightning BTC/ETH, etc.
-However, we have limited Ambrosia to the BTC/DAI pair as we know that Bitcoin/USD is the most popular pair.
+Ambrosia supports the BTC/DAI pair as we know that Bitcoin/USD is the most popular pair.
+Our input on what cryptos would be useful to you is most welcome.
 
 ## Decentralised Orderbook
 
