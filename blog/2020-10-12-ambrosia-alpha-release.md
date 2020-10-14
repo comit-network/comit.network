@@ -24,7 +24,7 @@ We now realized that before we can expect others to build successful apps with o
 
 This is why we spent the last few months working on [ambrosia](https://github.com/comit-network/ambrosia/), an UI for trading in the COMIT network.
 Ambrosia allows you to trade BTC/DAI in a decentralised manner. No third party to trust, no central orderbook, no KYC.
-It uses [cnd](https://github.com/comit-network/ambrosia/comit-rs) as backend.
+It uses [cnd](https://github.com/comit-network/comit-rs) as backend.
 
 The software has some rough edges, but we wanted to get it out there to have your feedback.
 Here are some choices we want your input on:
