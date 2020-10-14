@@ -14,7 +14,7 @@ Last year, we spent time and effort creating tools, such as [`create-comit-app` 
 We organised local meetups in Sydney and even a hackathon in Singapore.
 We had a number of developers excited about the technology and possibilities that COMIT bring in but very few committed to build an app.
 
-We now realized that before we can expect others build successful apps with our tools, we should demonstrate what can be done with COMIT ourselves.
+We now realized that before we can expect others to build successful apps with our tools, we should demonstrate what can be done with COMIT ourselves.
 
 <!--truncate-->
 
