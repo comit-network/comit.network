@@ -433,7 +433,21 @@
                     var date = '<p class="leading-none text-white">' + dateStart + '</p><p class="leading-none text-white">-</p><p class="leading-none text-white">' + dateEnd + '</p>';
                 }
 
-                var location = (responseObj.items[key].location != undefined ? `<img class="mx-auto w-13 md:w-5 md:mt-1" src="img/map-point.svg" alt="` + responseObj.items[key].location + `"><p class="mt-1">` + responseObj.items[key].location + `</p>` : '');
+                var location = '';
+
+                if (responseObj.items[key].location != undefined) {
+                    var locationStr = responseObj.items[key].location;
+                    if (locationStr.startsWith("http")) {
+                        if (locationStr.includes("jit.si")) {
+                            location = (`<img class="mx-auto w-13 md:w-5 md:mt-1" src="img/video-icon.svg" alt="video link"><p class="mt-1"><a href="` + locationStr + `">` + locationStr.substr(0, 50) + (locationStr.length > 50 ? '...' : '') + `</a></p>`);
+                        } else {
+                            location = (`<img class="mx-auto w-13 md:w-5 md:mt-1" src="img/map-point.svg" alt="video link"><p class="mt-1"><a href="` + locationStr + `">` + locationStr.substr(0, 50) + (locationStr.length > 50 ? '...' : '') + `</a></p>`);
+                        }
+                    } else {
+                        location = (`<img class="mx-auto w-13 md:w-5 md:mt-1" src="img/map-point.svg" alt="` + locationStr + `"><p class="mt-1">` + locationStr + `</p>`);
+                    }
+                }
+
                 var desc = (responseObj.items[key].description != undefined ? `<img class="mx-auto w-13 md:w-5 md:mt-1" src="img/map-info.svg" alt="map info"><p class="mt-1">` + responseObj.items[key].description.replace(/<[^>]+>/g, ' ').substr(0, 50) + (responseObj.items[key].description.length > 50 ? '...' : '') + `</p>` : '');
                 var video = (responseObj.items[key].hangoutLink != undefined ? `<img class="mx-auto w-13 md:w-5 md:mt-1" src="img/video-icon.svg" alt="video link"><p class="mt-1"><a href="` + responseObj.items[key].hangoutLink + `">` + responseObj.items[key].hangoutLink.substr(0, 50) + (responseObj.items[key].hangoutLink.length > 50 ? '...' : '') + `</a></p>` : '');
 
