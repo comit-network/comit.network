@@ -30,7 +30,8 @@ Philipp
 Of reach out to us: 
 - Direct Email: [hello@comit.network](mailto:hello@comit.network)
 - Dev Mailing list: [comit-dev@lists.comit.network](https://lists.comit.network/mailman/listinfo/comit-dev)
-- COMIT Liquid Matrix chat [#comit-liquid:matrix.org](https://matrix.to/#/!VXJqVoUrHanVlQFVEU:matrix.org?via=matrix.org)- General Matrix chat: [#comit:matrix.org](https://matrix.to/#/!HYBOPcopXgKbEnEELc:matrix.org?via=matrix.org&via=privacytools.io)
+- COMIT Liquid Matrix chat [#comit-liquid:matrix.org](https://matrix.to/#/!VXJqVoUrHanVlQFVEU:matrix.org?via=matrix.org)
+- General Matrix chat: [#comit:matrix.org](https://matrix.to/#/!HYBOPcopXgKbEnEELc:matrix.org?via=matrix.org&via=privacytools.io)
 - COMIT Dev Matrix chat: [#comit-dev:matrix.org](https://matrix.to/#/!eDtJfYgJutkmKTvbOH:matrix.org?via=matrix.org)
 - Twitter: [@comit_network](https://twitter.com/comit_network)
 
