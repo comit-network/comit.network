@@ -19,23 +19,23 @@ We spent the last weeks demonstrating this MVP to several users, we had interest
 
 At this point of time, we felt that BTC&lt;&gt;DAI dex trading may not be what users are currently after and hence decided to drop the project.
 
-While the development efforts which lead to this MVP did not lead to a successful product, time was not wasted.
+While our efforts did not lead to a successful product, time was not wasted.
 We made major learnings that will allow us to move faster, for example, our blockchain monitoring solution was not up to scratch for a mainnet environment.
 You can find more details of our learnings in the [closing notes](https://lists.comit.network/pipermail/comit-dev/2020-October/000017.html).
 
 # wBTC&lt;&gt;BTC
 
 Several users have expressed interest in a wrapped Bitcoin to Bitcoin atomic swap trading platform.
-The drive behind it is two folds: avoid the option problem and create an open market for ERC20 wrapped BTC.
+The drive behind it is twofold: avoid the option problem and create an open market for ERC20 wrapped BTC.
 Depositing and withdrawing wrapped Bitcoin can have some restrictions depending on the provider: fees, KYC, high confirmation requirements.
 
 Because of the demand, we forked Ambrosia to provide a wBTC&lt;&gt;BTC version.
-We chose wBTC because it is simply the most popular wrapped Bitcoin token.
+We chose wBTC because it is simply the most popular wrapped Bitcoin token (by trading volume).
 
 The fork is available at [bitcoin-unwrap/comit-rs](https://github.com/bitcoin-unwrap/comit-rs) & [bitcoin-unwrap/ambrosia](https://github.com/bitcoin-unwrap/ambrosia)
 
 You can become a maker by running `nectar` or try out as a taker using `ambrosia`.
-As usual, you are welcome to reach us if you need assistance to setup it up.
+As usual, this is experimental software and you are welcome to reach us if you need assistance to setup it up.
 
 # Moving forward
 
