@@ -12,13 +12,13 @@ At COMIT, we believe in an open financial system - truly inclusive, censorship r
 
 We knew from day one that opensource software was the only way to achieve our vision, and we love opensource so it never was an issue.
 
-However, we realised that while we licensed our project with open [[1]](https://github.com/comit-network/comit-rs/blob/dev/LICENSE.md) and very open licenses [[2]](https://github.com/comit-network/ambrosia/blob/master/LICENSE), there were other obstacles on the way to declare us truly open.
+However, we realised that while we licensed our project with open [[1]](https://github.com/comit-network/comit-rs/blob/dev/LICENSE.md) and very open licenses [[2]](https://github.com/comit-network/ambrosia/blob/master/LICENSE), there were other obstacles on the way to declare us truly open:
 
 - Our contributor agreement was restrictive, it is now gone [[3]](https://github.com/comit-network/comit-rs/pull/3344);
 - Our design discussions moved from open GitHub [[4]](https://github.com/comit-network/spikes/) to closed basecamp, we are now back in the open with the comit-dev mail list [[5]](https://lists.comit.network/mailman/listinfo/comit-dev);
 - We had private chats, we are now discussing in public on our dev [[6]](https://matrix.to/#/!eDtJfYgJutkmKTvbOH:matrix.org?via=matrix.org) and project chats [7] on matrix;
 - We posted at the end of projects [[8]](https://comit.network/blog/2020/10/12/ambrosia-alpha-release), we will now start at the beginning [[9]](https://lists.comit.network/pipermail/comit-dev/2020-November/000021.html).
-- Moving forward on our XMR-BTC Atomic Swap PoC [[10]](https://github.com/comit-network/xmr-btc-swap/), we will adopt a fork+pull development model, inspired by 0MQ C4 [[11]](https://rfc.zeromq.org/spec/42/) and the Cryp team [[12]](https://cryp.ee/).
+- Moving forward with our XMR-BTC Atomic Swap PoC [[10]](https://github.com/comit-network/xmr-btc-swap/), we will adopt a fork+pull development model, inspired by 0MQ C4 [[11]](https://rfc.zeromq.org/spec/42/) and the Cryp team [[12]](https://cryp.ee/).
  
 While we were figuring out the best way to bring COMIT to the masses [[13]](https://comit.network/blog/2020/10/12/ambrosia-alpha-release#a-change-of-direction), we never actively looked for opensource contributions.
 Moving forward, we realise that a lot of the software we built can be useful in itself, and we hope that by opening ourselves more, we can encourage other developers to come, use our libraries and software, and contribute back.
