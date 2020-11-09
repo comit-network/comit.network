@@ -26,7 +26,7 @@ Moving forward, we realise that a lot of the software we built can be useful in 
 With love,
 The COMIT Team.
 
--- 
+---
 
 ### References
  
