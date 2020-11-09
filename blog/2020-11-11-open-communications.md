@@ -12,7 +12,7 @@ At COMIT, we believe in an open financial system - truly inclusive, censorship r
 
 We knew from day one that opensource software was the only way to achieve our vision, and we love opensource so it never was an issue.
 
-However, we realised that while we licensed our project with open [[1]](https://github.com/comit-network/comit-rs/blob/dev/LICENSE.md) and very open licenses [[2]](https://github.com/comit-network/ambrosia/blob/master/LICENSE), there were other obstacles on the way to declare us truly open:
+However, we realised that while we licensed our project with open licenses [[1]](https://github.com/comit-network/comit-rs/blob/dev/LICENSE.md) [[2]](https://github.com/comit-network/ambrosia/blob/master/LICENSE), there were other obstacles on the way to declare us truly open:
 
 - Our contributor agreement was restrictive, it is now gone [[3]](https://github.com/comit-network/comit-rs/pull/3344);
 - Our design discussions moved from open GitHub [[4]](https://github.com/comit-network/spikes/) to closed basecamp, we are now back in the open with the comit-dev mail list [[5]](https://lists.comit.network/mailman/listinfo/comit-dev);
