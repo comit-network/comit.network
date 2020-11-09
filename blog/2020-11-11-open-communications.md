@@ -3,7 +3,7 @@ title: "Open"
 author: franck
 author_url: https://github.com/d4nte
 author_image_url: https://avatars1.githubusercontent.com/u/300805
-tags: [bitcoin,dai,atomic swap,ambrosia]
+tags: [vision,opensource,comit]
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
