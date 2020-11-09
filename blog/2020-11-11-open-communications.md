@@ -17,13 +17,14 @@ However, we realised that while we licensed our project with open [[1]](https://
 - Our contributor agreement was restrictive, it is now gone [[3]](https://github.com/comit-network/comit-rs/pull/3344);
 - Our design discussions moved from open GitHub [[4]](https://github.com/comit-network/spikes/) to closed basecamp, we are now back in the open with the comit-dev mail list [[5]](https://lists.comit.network/mailman/listinfo/comit-dev);
 - We had private chats, we are now discussing in public on our dev [[6]](https://matrix.to/#/!eDtJfYgJutkmKTvbOH:matrix.org?via=matrix.org) and project chats [7] on matrix;
-- We posted at the end of projects [[8]](https://comit.network/blog/2020/10/12/ambrosia-alpha-release), we will now start at the beginning [9].
+- We posted at the end of projects [[8]](https://comit.network/blog/2020/10/12/ambrosia-alpha-release), we will now start at the beginning [[9]](https://lists.comit.network/pipermail/comit-dev/2020-November/000021.html).
+- Moving forward on our XMR-BTC Atomic Swap PoC [[10]](https://github.com/comit-network/xmr-btc-swap/), we will adopt a fork+pull development model, inspired by 0MQ C4 [[11]](https://rfc.zeromq.org/spec/42/) and the Cryp team [[12]](https://cryp.ee/).
  
-While we were figuring out the best way to bring COMIT to the masses [[10]](https://comit.network/blog/2020/10/12/ambrosia-alpha-release#a-change-of-direction), we never actively looked for opensource contributions.
+While we were figuring out the best way to bring COMIT to the masses [[13]](https://comit.network/blog/2020/10/12/ambrosia-alpha-release#a-change-of-direction), we never actively looked for opensource contributions.
 Moving forward, we realise that a lot of the software we built can be useful in itself, and we hope that by opening ourselves more, we can encourage other developers to come, use our libraries and software, and contribute back.
 
 With love,
-The COMIT Team. 
+The COMIT Team.
 
 -- 
 
@@ -35,7 +36,10 @@ The COMIT Team.
 - [4] We used to document designs in GitHub: https://github.com/comit-network/spikes/
 - [5] The comit-dev mailing list, it took us that much time to realise that mailing lists are the most powerful collaborative tools :) https://lists.comit.network/mailman/listinfo/comit-dev
 - [6] #comit-dev matrix chat: https://matrix.to/#/!eDtJfYgJutkmKTvbOH:matrix.org?via=matrix.org
-- [7] #comit-liquid chat: https://matrix.to/#/!VXJqVoUrHanVlQFVEU:matrix.org?via=matrix.org
+- [7] #comit-liquid chat: https://matrix.to/#/!VXJqVoUrHanVlQFVEU:matrix.org?via=matrix.org; #comit-monero chat: https://matrix.to/#/!QqYPpVbtwYxRItuYiA:matrix.org?via=matrix.org
 - [8] Ambrosia announcement: https://comit.network/blog/2020/10/12/ambrosia-alpha-release
-- [9] TODO Liquid project opening mail list/blog post
-- [10] Our change of direction from developers to end user: https://comit.network/blog/2020/10/12/ambrosia-alpha-release#a-change-of-direction
+- [9] https://lists.comit.network/pipermail/comit-dev/2020-November/000021.html
+- [10] https://github.com/comit-network/xmr-btc-swap/
+- [11] https://rfc.zeromq.org/spec/42/
+- [12] https://cryp.ee/
+- [13] Our change of direction from developers to end user: https://comit.network/blog/2020/10/12/ambrosia-alpha-release#a-change-of-direction
