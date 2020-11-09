@@ -35,7 +35,7 @@ The COMIT Team.
 - [4] We used to document designs in GitHub: https://github.com/comit-network/spikes/
 - [5] The comit-dev mailing list, it took us that much time to realise that mailing lists are the most powerful collaborative tools :) https://lists.comit.network/mailman/listinfo/comit-dev
 - [6] #comit-dev matrix chat: https://matrix.to/#/!eDtJfYgJutkmKTvbOH:matrix.org?via=matrix.org
-- [7] #comit-liquid TODO
+- [7] #comit-liquid chat: https://matrix.to/#/!VXJqVoUrHanVlQFVEU:matrix.org?via=matrix.org
 - [8] Ambrosia announcement: https://comit.network/blog/2020/10/12/ambrosia-alpha-release
 - [9] TODO Liquid project opening mail list/blog post
 - [10] Our change of direction from developers to end user: https://comit.network/blog/2020/10/12/ambrosia-alpha-release#a-change-of-direction
