@@ -37,6 +37,6 @@ Of reach out to us:
 
 ## References
 
-[1] https://blockstream.com/liquid/
-[2] https://cryptogarage.co.jp/en/20190121-2
-[3] https://lend.hodlhodl.com/
+- [1] https://blockstream.com/liquid/
+- [2] https://cryptogarage.co.jp/en/20190121-2
+- [3] https://lend.hodlhodl.com/
