@@ -18,6 +18,8 @@ We are kicking-off a new project to look into Liquid's transaction format which 
 
 If deemed useful, this might be the start of a longer series of R&D projects focusing on Blockstream's sidechain Liquid. 
 
+<!--truncate-->
+
 We are not the only one who found interest in Liquid: Cryptogarage is known for its research on bitcoin and has recently launched SETTLENET - a DEX on Liquid [2] and HodlHodl has started a product for lending on Liquid [3]. 
 
 We are super excited about this, so stay tuned. 
