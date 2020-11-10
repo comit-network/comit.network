@@ -12,7 +12,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 COMIT's mission is to have an open financial system - truly inclusive, censorship resistant and non-discriminatory. Such a financial system has to allow for exchange of funds between different market participants such as investors, lenders and borrowers in a trustless manner. Liquid [1] seems to be a promising platform for such marketplaces as it has built-in support for different assets in a single transaction while keeping amounts, addresses and assets confidential. These features used in combination allow us to create trustless and private atomic swaps, trustless loans and other financial products.
 
-## Confidential Atomic Swaps on Liquid
+# Confidential Atomic Swaps on Liquid
 
 We are kicking-off a new project to look into Liquid's transaction format which would allow us to do true atomic swaps between two assets. This would allow us to have true trustless BTC/USD (using L-BTC and L-USDT) while all amounts, assets and addresses are confidential. This is huge as it is one step closer to a truly trustless and censorship resistant financial system. 
 
