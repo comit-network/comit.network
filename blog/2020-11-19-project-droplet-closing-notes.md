@@ -71,10 +71,10 @@ A confidential UTXO can look like this:
 To build a confidential transaction the receiver needs to create a *blinded address* which is a regular address with an additional public key attached to it. This public key is called the *blinding key*. 
 The creator of the transaction uses this blinding key to hide the assets and amounts of transaction outputs.
 
-To hide amounts and asset types Liquid uses Pedersen commitments, a commitment scheme which lets you keep a piece of data secret but commit to it so that you cannot change it later. 
+To hide amounts and asset types Elements uses Pedersen commitments, a commitment scheme which lets you keep a piece of data secret but commit to it so that you cannot change it later. 
 This may sound similar to hash functions; Pedersen commitments go one step further though and allow for an additional property: commitments can be added up, the sum of the commitment of data data is the same as the commitment of the sums data, e.g. : `C(bf_1, d_1) + C(bf_2, d_2) == C(bf_1 + bf_2, d_1 + d_2)` where `bf_1` and `bf_2` are blinding factors and `d_1` and `d_2` are data .
 
-For hiding amounts in Liquid, our Pedersen commitments are constructed using elliptic curve (EC) points.
+For hiding amounts in Elements, our Pedersen commitments are constructed using elliptic curve (EC) points.
 EC public keys obey the additively homomorphic property as described above. 
 With this tool we can replace the integer-based amount (8 bytes) with a 33-byte Pedersen commitment.
 
@@ -86,7 +86,7 @@ We refer the interested reader to [[8]](https://elementsproject.org/features/con
 
 Another core feature of Elements is the ability to issue assets. 
 Every asset is identified by an `Asset ID` and has one (or a federation of multiple) issuer. 
-A list of all currently available assets on Liquid can be found here [[7]](https://blockstream.info/liquid/assets). 
+A list of all currently available assets on Elements can be found here [[7]](https://blockstream.info/liquid/assets). 
 In our opinion the most interesting assets on Liquid are L-BTC - a token pegged 1-to-1 to the Bitcoin mainchain - and L-USDT - a USD stable coin issued by Tether.
 
 When transferring any asset the sender has to specify the `asset` ID she wishes to transfer.
@@ -159,7 +159,13 @@ The code for this protocol can be found in our PoC in [[3]](https://github.com/c
 
 
 # What's next
-TBA.
+
+We are very happy with the outcome of the project and feel confident with Elements's confidential transaction format. With this knowledge we can now go ahead and build an experimental trading application.  
+
+We see the the browser as the most accessible platform, so we are interested in exploring how to compile our project to wasm. One challenge we see besides compiling to wasm is around wallet management, in particular UTXO management. For that, we could make use of GDK [[9]](https://github.com/Blockstream/gdk). Alternatively we could integrate directly with existing solutions such as Blockstream's Green Wallet which is available for Android, iOS and Desktop. 
+
+Either way, we are motivated to continue working with Elements
+
 
 Cheers,
 Lucas, Philipp and Thomas
@@ -176,5 +182,6 @@ Lucas, Philipp and Thomas
 * [6] https://elementsproject.org/features/confidential-transactions
 * [7] https://blockstream.info/liquid/assets
 * [8] https://elementsproject.org/features/confidential-transactions/investigation
+* [9] https://github.com/Blockstream/gdk
 
 
