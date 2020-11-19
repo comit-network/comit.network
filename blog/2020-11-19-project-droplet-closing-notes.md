@@ -168,13 +168,13 @@ Lucas, Philipp and Thomas
 
 ### References
 
-[1] https://blockstream.com/liquid/
-[2] https://elementsproject.org/features/confidential-transactions
-[3] https://github.com/comit-network/droplet
-[4] https://elementsproject.org
-[5] https://liquid.taxi/
-[6] https://elementsproject.org/features/confidential-transactions
-[7] https://blockstream.info/liquid/assets
-[8] https://elementsproject.org/features/confidential-transactions/investigation
+* [1] https://blockstream.com/liquid/
+* [2] https://elementsproject.org/features/confidential-transactions
+* [3] https://github.com/comit-network/droplet
+* [4] https://elementsproject.org
+* [5] https://liquid.taxi/
+* [6] https://elementsproject.org/features/confidential-transactions
+* [7] https://blockstream.info/liquid/assets
+* [8] https://elementsproject.org/features/confidential-transactions/investigation
 
 
