@@ -19,7 +19,7 @@ These characteristics make XMR-BTC cross-blockchain applications a great candida
 
 <!-- truncate -->
 
-We have already built a PoC that allows XMR<>BTC atomic swaps [[2]](https://github.com/comit-network/xmr-btc-swap/), we are now aiming to take this PoC to the next level.
+We have already built a PoC that allows XMR-BTC atomic swaps [[2]](https://github.com/comit-network/xmr-btc-swap/), we are now aiming to take this PoC to the next level.
 This new project has two facets:
 
 1. Ensure that the software is usable on mainnet without fund loss.
