@@ -89,13 +89,14 @@ Every asset is identified by an `Asset ID` and has one (or a federation of multi
 A list of all currently available assets on Elements can be found here [[7]](https://blockstream.info/liquid/assets). 
 In our opinion the most interesting assets on Liquid are L-BTC - a token pegged 1-to-1 to the Bitcoin mainchain - and L-USDT - a USD stable coin issued by Tether.
 
-When transferring any asset the sender has to specify the `asset` ID she wishes to transfer.
+When transferring any asset the sender has to specify the `asset` ID she wishes to transfer. 
+For a non-confidential UTXO showing the `asset` see a few lines below.
 
 Note: Transaction fees on Liquid are always paid in L-BTC. 
 However, one can use a third party such as Liquid Taxi [[5]](https://liquid.taxi/) who will pay for your transaction fees in L-BTC. 
 In return you pay the service provider in a different asset.
 
-A non-confidential UTXO can look like this:
+A non-confidential UTXO stating `value` and `asset` in plain looks like this:
 
 ```json
 {
@@ -168,7 +169,7 @@ One challenge we see besides compiling to wasm is around wallet management, in p
 For that, we could make use of GDK [[9]](https://github.com/Blockstream/gdk).
 Alternatively we could integrate directly with existing solutions such as Blockstream's Green Wallet which is available for Android, iOS and Desktop. 
 
-Either way, we are motivated to continue working with Elements.
+Either way, we are motivated to continue working with Elements and Liquid.
 
 
 Cheers,
