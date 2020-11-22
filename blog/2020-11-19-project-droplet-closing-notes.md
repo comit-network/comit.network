@@ -132,7 +132,8 @@ This is what the protocol looks like:
 
 Alice sends her `input` to Bob, identifying which UTXO Alice will be spending from. 
 If this input is confidential, she also has to provide the input's blinding key `input_blinding_sk`. 
-Importantly, this is _not_ the private key for the address she is spending from! With this key, Bob is only able to unblind the input and see its value and asset type. 
+Importantly, this is _not_ the private key for the address she is spending from!
+With this key, Bob is only able to unblind the input and see its value and asset type. 
 He will need to do so in order to create the transaction outputs.
 
 She also sends two additional addresses `address_redeem` and `address_change` to tell Bob where she wants to receive her part of the swap. 
@@ -185,4 +186,3 @@ Lucas, Philipp and Thomas
 * [7] https://blockstream.info/liquid/assets
 * [8] https://elementsproject.org/features/confidential-transactions/investigation
 * [9] https://github.com/Blockstream/gdk
-
