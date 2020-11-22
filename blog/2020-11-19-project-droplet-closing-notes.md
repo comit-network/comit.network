@@ -162,15 +162,17 @@ The code for this protocol can be found in our PoC in [[3]](https://github.com/c
 
 We are very happy with the outcome of the project and feel confident with Elements's confidential transaction format. With this knowledge we can now go ahead and build an experimental trading application.  
 
-We see the the browser as the most accessible platform, so we are interested in exploring how to compile our project to wasm. One challenge we see besides compiling to wasm is around wallet management, in particular UTXO management. For that, we could make use of GDK [[9]](https://github.com/Blockstream/gdk). Alternatively we could integrate directly with existing solutions such as Blockstream's Green Wallet which is available for Android, iOS and Desktop. 
+We see the browser as the most accessible platform, so we are interested in exploring how to compile our project to wasm.
+One challenge we see besides compiling to wasm is around wallet management, in particular UTXO management.
+For that, we could make use of GDK [[9]](https://github.com/Blockstream/gdk).
+Alternatively we could integrate directly with existing solutions such as Blockstream's Green Wallet which is available for Android, iOS and Desktop. 
 
-Either way, we are motivated to continue working with Elements
+Either way, we are motivated to continue working with Elements.
 
 
 Cheers,
 Lucas, Philipp and Thomas
 
-<!--truncate-->
 
 ### References
 
@@ -183,5 +185,4 @@ Lucas, Philipp and Thomas
 * [7] https://blockstream.info/liquid/assets
 * [8] https://elementsproject.org/features/confidential-transactions/investigation
 * [9] https://github.com/Blockstream/gdk
-
 
