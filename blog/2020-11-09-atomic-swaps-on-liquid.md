@@ -3,7 +3,7 @@ title: "Confidential Atomic Swaps on Liquid"
 author: philipp
 author_url: https://github.com/bonomat
 author_image_url: https://avatars2.githubusercontent.com/u/224613
-tags: [dev-update]
+tags: [dev-update,liquid,elementsproject]
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
