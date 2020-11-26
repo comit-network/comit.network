@@ -1,4 +1,3 @@
-
 ---
 title: "Project Waves: Swapping Sats on Liquid"
 author: philipp
