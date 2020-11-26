@@ -26,7 +26,6 @@ All of these share a basic building block: trading.
 In the following weeks we will focus on that building block and implement an atomic swap solution to allow traders to trustlessly buy or sell L-BTC for L-USDT on Liquid.
 In the first version we will focus on a single maker approach, i.e. there is one Liquidity Provider (LP) you have to connect to, who will offer you a rate. 
 You can then trade against them. 
-Think of SideShiftAi, just completely trustless. 
 
 In a follow-up version we plan to evolve this tool to a peer-to-peer trading solution which allows you to connect to multiple LPs at the same time and even create your own orders. 
 
