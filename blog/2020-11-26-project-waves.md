@@ -17,7 +17,7 @@ And we believe that Bitcoin is the most promising platform for such an open fina
 
 Ultimately we would love to see such an open financial system be built on top of Bitcoin, however, as of today, Bitcoin lacks privacy and only supports a single asset (BTC).
 
-As mentioned in [Project Droplet](https://medium.com/comit-network/project-droplet-atomic-swaps-on-liquid-4c5ac045ad3c), we believe that Liquid can be a temporary platform allowing us to build a financial ecosystem around Bitcoin. 
+As mentioned in [Project Droplet](https://medium.com/comit-network/project-droplet-atomic-swaps-on-liquid-4c5ac045ad3c), we believe that Liquid is such a platform allowing us to build a financial ecosystem around Bitcoin. 
 We see the possibility to build products such as lending and borrowing, prediction markets (option/futures) and even saving products. 
 All of these share a basic building block: trading.
 
