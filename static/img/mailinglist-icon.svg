@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>mailto-icon</dc:title>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style>.cls-1{fill:#fff;}.cls-2{fill:#052a9f;}</style>
+ </defs>
+ <title>mailto-icon</title>
+ <g data-name="Слой 2">
+  <g id="content">
+   <path class="cls-1" d="M21,42A21,21,0,1,0,0,21,21,21,0,0,0,21,42"/>
+   <path class="cls-2" d="M20,24.25,7.25,13.05c0-1.8,1.36-1.88,1.36-1.88H33.39s1.36.08,1.36,1.88L22.06,24.25a3.21,3.21,0,0,1-.34.14h0a1.93,1.93,0,0,1-.69.12,1.88,1.88,0,0,1-.68-.12h0a2.36,2.36,0,0,1-.34-.14Zm1,2.5a3,3,0,0,1-1.9-.84C17.67,24.64,7.25,15.24,7.25,15.24v14a1.54,1.54,0,0,0,1.6,1.56h24.3a1.54,1.54,0,0,0,1.6-1.56v-14s-10.36,9.4-11.82,10.67a3,3,0,0,1-1.9.84Z"/>
+  </g>
+ </g>
+ <rect x="12.923" y="20.533" width="16.226" height="10.267" ry="1.041" fill="#fff" fill-opacity=".99048" stroke-opacity="0"/>
+ <g fill="#052a9f" stroke-opacity="0">
+  <rect x="17.805" y="22.185" width="9.6923" height="1.9385" ry=".96923"/>
+  <circle cx="16.01" cy="23.19" r="1.0769"/>
+  <rect x="17.769" y="24.913" width="9.6923" height="1.9385" ry=".96923"/>
+  <circle cx="15.974" cy="25.918" r="1.0769"/>
+  <rect x="17.769" y="27.641" width="9.6923" height="1.9385" ry=".96923"/>
+  <circle cx="15.974" cy="28.646" r="1.0769"/>
+ </g>
+</svg>
