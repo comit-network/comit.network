@@ -10,7 +10,7 @@ module.exports = {
   projectName: 'comit-js-sdk', // Usually your repo name.
   themeConfig: {
     gtag: {
-      trackingID: 'G-RQEDN1PVTD',
+      trackingID: 'G-DHX9F27W4S',
     },
     algolia: {
       apiKey: '8227df9d2316772d3462018f3968c609',
