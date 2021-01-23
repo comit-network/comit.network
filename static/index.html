@@ -450,15 +450,6 @@
 
     request.open('get', 'https://www.googleapis.com/calendar/v3/calendars/' + calendar_id + '/events?key=' + google_api, true)
     request.send();
-
-    function Subscribe() {
-        var name = document.forms["mc-embedded-subscribe-form"]["FNAME"].value;
-        var email = document.forms["mc-embedded-subscribe-form"]["EMAIL"].value;
-        if (name == "" || email == "") {
-            document.getElementById('ferror').style.display = "block";
-            return false;
-        }
-    }
 </script>
 </body>
 </html>
