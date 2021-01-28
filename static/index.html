@@ -331,65 +331,11 @@
     </div>
 </div>
 <!-- /.block-six -->
-<!-- .block-seven -->
-<div class="px-24 pt-40 md:pt-18 w-full bg-seven flex">
-    <div class="flex flex-col mx-auto justify-start items-center ">
-        <h2 class="mb-19 md:mb-7 text-center">CONTRIBUTORS OF THE <br class="block md:hidden">REFERENCE IMPLEMENTATION
-        </h2>
-        <div class="flex">
-            <a class="github-button" href="https://github.com/comit-network/comit-rs"
-               data-color-scheme="no-preference: light; light: light; dark: light;"
-               data-size="large"
-               data-show-count="true"
-               aria-label="Star comit-network/comit-rs on GitHub">Star</a>
-        </div>
-        <div class="grid grid-cols-4 md:grid-cols-8 gap-9 md:mb-72  mt-72 md:mt-36 relative" id="contributors">
 
-            <div class="loader">
-                <svg version="1.1" id="L3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                     x="0px" y="0px"
-                     viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
-<circle fill="none" stroke="#00388B" stroke-width="4" cx="50" cy="50" r="44"/>
-                    <circle fill="#fff" stroke="#E99F5B" stroke-width="3" cx="8" cy="54" r="6">
-    <animateTransform
-            attributeName="transform"
-            dur="2s"
-            type="rotate"
-            from="0 50 48"
-            to="360 50 52"
-            repeatCount="indefinite"/>
-  </circle>
-</svg>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /.block-seven -->
 <!-- Footer -->
 <footer class="bg-footer relative">
     <div class="grid grid-cols-12 gap-2 border-b border-blue-light pb-9">
         <div class="w-full col-span-12 md:col-span-4 flex justify-center md:justify-end items-center">
-<!--            TODO: Potentially replace this with mailing list subscription at some point. -->
-<!--            <form action="https://tech.us20.list-manage.com/subscribe/post?u=5c892b17a4484caaff2f5540b&amp;id=c20e04c6d1"-->
-<!--                  method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank"-->
-<!--                  class="flex flex-col w-280 md:w-92 relative" onsubmit="return Subscribe()">-->
-<!--                <p class="font-semibold text-center md:text-left text-white mt-20 md:mt-10">Don't miss any news</p>-->
-<!--                <div class="font-semibold error-msg" id="ferror">All fields are required.</div>-->
-<!--                <input class="mt-16 md:mt-6 pl-4 md:pl-0 pb-1 md:pb-2" type="text" value="" name="FNAME" id="mce-FNAME"-->
-<!--                       placeholder="Your Name">-->
-<!--                <input class="mt-16 md:mt-6 pl-4 md:pl-0 pb-1 md:pb-2" type="email" value="" name="EMAIL" id="mce-EMAIL"-->
-<!--                       placeholder="Your Email">-->
-<!--                <input type="hidden" value="" name="LNAME" id="mce-LNAME">-->
-<!--                <input type="hidden" value="" name="BIRTHDAY[month]" id="mce-BIRTHDAY-month">-->
-<!--                <input type="hidden" value="" name="BIRTHDAY[day]" id="mce-BIRTHDAY-day">-->
-<!--                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"-->
-<!--                                                                                          name="b_5c892b17a4484caaff2f5540b_c20e04c6d1"-->
-<!--                                                                                          tabindex="-1" value=""></div>-->
-<!--                <label class="absolute bottom-0 w-16 md:w-7 mb-5 md:mb-2 right-0">-->
-<!--                    <input class="hidden" type="submit" value="">-->
-<!--                    <img src="img/submit.svg">-->
-<!--                </label>-->
-<!--            </form>-->
         </div>
         <div class="col-span-12 md:col-span-4 flex flex-col justify-center">
             <p class="font-semibold text-center text-white mb-10 md:mb-0 mt-25">Keep in touch</p>
@@ -422,7 +368,6 @@
         <a class="inline-block" href="https://github.com/comit-network"><p class="text-white">GitHub</p></a>
     </div>
 </footer>
-
 
 <script>
     //Javascript to toggle the menu
@@ -505,73 +450,6 @@
 
     request.open('get', 'https://www.googleapis.com/calendar/v3/calendars/' + calendar_id + '/events?key=' + google_api, true)
     request.send();
-
-    //Contrib section
-    function gitHub() {
-        if (request.status == '200') {
-
-            var responseObj = JSON.parse(this.responseText);
-            responseObj.reverse();
-            document.getElementById('contributors').innerHTML = "";
-            console.log(responseObj);
-
-            Object.keys(responseObj).forEach(function (key) {
-                if (key < 8) {
-                    document.getElementById('contributors').innerHTML += `
-          <div class="wraper-card md:relative">
-            <img class="img-card w-84 md:w-33 rounded-full" src="` + responseObj[key].author.avatar_url + `" alt="CONTRIBUTORS" onclick="showCard(this)">
-            <div class="triangle mt-7 md:mt-3 mx-auto"> </div>
-            <div class="hover-card absolute left-0 right-0 bottom-auto ">
-              <div class="shadow-seven bg-white flex flex-row m-auto w-full md:w-128 p-15 md:p-4">
-                <a href="` + responseObj[key].author.html_url + `">
-                  <img class="w-47 md:w-20" src="` + responseObj[key].author.avatar_url + `" alt="CONTRIBUTORS" />
-                </a>
-                <div class="pl-8 md:pl-4">
-                  <a href="` + responseObj[key].author.html_url + `">
-                    <h4 class="font-bold">` + responseObj[key].author.login + `</h4>
-                  </a>
-                  <h4 class="text-granite-gray">` + responseObj[key].total + ` commits in this repository</h4>
-                </div>
-              </div>
-            </div>
-          </div>`;
-                }
-            });
-
-        } else {
-            document.getElementById('contributors').innerHTML = "Error, please refresh the page.";
-        }
-    }
-
-    var request = new XMLHttpRequest();
-    request.onload = gitHub;
-    request.open('get', 'https://api.github.com/repos/comit-network/comit-rs/stats/contributors', true);
-    request.send();
-
-    function showCard(el) {
-        var el;
-        if (el.parentElement.classList.contains('active-card') === true) {
-            el.parentElement.classList.remove('active-card');
-        } else {
-            var prev = document.querySelector('#contributors .active-card');
-            if (prev !== null) {
-                prev.classList.remove('active-card');
-            }
-            el.parentElement.className += ' active-card';
-        }
-    }
-
-    function Subscribe() {
-        var name = document.forms["mc-embedded-subscribe-form"]["FNAME"].value;
-        var email = document.forms["mc-embedded-subscribe-form"]["EMAIL"].value;
-        if (name == "" || email == "") {
-            document.getElementById('ferror').style.display = "block";
-            return false;
-        }
-    }
 </script>
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-
 </body>
-
 </html>
