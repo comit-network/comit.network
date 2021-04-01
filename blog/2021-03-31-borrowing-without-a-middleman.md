@@ -10,8 +10,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <img alt="Waves" src={useBaseUrl('blog/assets/images/2021-03/loans.png')} />
 
-## Introduction
-
 DeFi is taking the world by storm.
 At the time of writing, there are more than 3.9M ETH worth of wrapped ERC20 tokens locked up as collateral in [MakerDAO's](https://makerdao.com/en/) smart contracts.
 A newer product such as [MIMO](https://mimo.capital) has seen over 15M€ being invested in it over the past few days.
@@ -20,6 +18,8 @@ Because of DeFi's prominence on Ethereum, it would seem like Bitcoin is destined
 Wrapping your bitcoin in an ERC20 token on Ethereum to access DeFi products is a possibility, but it doesn't appeal to everyone.
 
 True DeFi for Bitcoin is starting to become a necessity.
+
+<!--truncate-->
 
 ## Trustless Collateralized Loans
 
