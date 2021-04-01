@@ -96,12 +96,12 @@ Instead of explaining this branch step by step, we'll try to convey the general 
 Spending the `collateral contract` using this branch requires the _borrower_ to include almost all the transaction data in the corresponding witness stack, alongside a valid `signature`.
 The only transaction element that is omitted is the `principal repayment output`, which is instead hard-coded in the `collateral contract`.
 The `principal repayment output` is the transaction output which pays the `principal amount` plus `interest` to the lender.
-By rearranging the stack and concatenating all the transaction elements (including the `principal repayment output`) using `OP_CAT`[^opcat], a correctly `serialized transaction` is constructed.
-Using `OP_CHECKSIGFROMSTACK`[^opcsfs], we verify that the `signature` from the witness stack is valid for the `serialized transaction` with respect to the borrower's public key.
+By rearranging the stack and concatenating all the transaction elements (including the `principal repayment output`) using `OP_CAT`[^1], a correctly `serialized transaction` is constructed.
+Using `OP_CHECKSIGFROMSTACK`[^2], we verify that the `signature` from the witness stack is valid for the `serialized transaction` with respect to the borrower's public key.
 
 It may seem that this is enough to prove that the borrower has constructed a transaction which includes the `loan repayment output`, but we are not there yet.
 The missing step is to show that the reconstructed `serialized transaction` is actually equivalent to the published transaction.
-Using `OP_CHECKSIG`[^opcs] with the _same_ `signature` and the borrower's public key, we can verify that the `signature` is both valid for the published transaction and the reconstructed `serialized transaction`.
+Using `OP_CHECKSIG`[^3] with the _same_ `signature` and the borrower's public key, we can verify that the `signature` is both valid for the published transaction and the reconstructed `serialized transaction`.
 Since signature's are specific to a single message, this demonstrates that both transactions are one and the same.
 
 What made implementing this particularly interesting and challenging was using confidential transaction outputs.
@@ -120,9 +120,9 @@ Cheers,
 Lucas, Philipp and the rest of the COMIT Team.
 
 PS Does the work we do sound enticing? We are hiring! Drop us an email at [job at coblox.tech](mailto:job@coblox.tech) and tell us why you think you are a great fit.
-PPS You want to learn more and stay up to date? Join our matrix channel:  [comit-liquid](https://matrix.to/#/#comit-liquid:matrix.org?via=matrix.org&via=matrix.lrn.fm).
 
-[^opcat]: `OP_CAT` takes the two elements at the top of the stack and concatenates them.
-[^opcsfs]: `OP_CHECKSIGFROMSTACK` takes three inputs: a signature, a message, and a public key.
-The opcode performs a single SHA-256 hash of the message and then checks that the signature is valid for the hashed message and the provided public key.
-[^opcs]: `OP_CHECKSIG` takes two inputs: a public key; and a signature concatenated with the signature hash type. A double SHA-256 hash of the transaction data is computed and then verified against the signature and the public key.
+PPS Do you want to learn more and stay up to date? Join our matrix channel:  [comit-liquid](https://matrix.to/#/#comit-liquid:matrix.org?via=matrix.org&via=matrix.lrn.fm).
+
+[^1]: `OP_CAT` takes the two elements at the top of the stack and concatenates them.
+[^2]: `OP_CHECKSIGFROMSTACK` takes three inputs: a signature, a message, and a public key. The opcode performs a single SHA-256 hash of the message and then checks that the signature is valid for the hashed message and the provided public key.
+[^3]: `OP_CHECKSIG` takes two inputs: a public key; and a signature concatenated with the signature hash type. A double SHA-256 hash of the transaction data is computed and then verified against the signature and the public key.
