@@ -8,120 +8,121 @@ tags: [borrowing,lending,liquid,defi]
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-%% TODO: add nice figure
 <img alt="Waves" src={useBaseUrl('blog/assets/images/2021-03/loans.png')} />
 
-# Introduction
+## Introduction
 
-Defi booms on various blockchains...
-borrowing and lending on ethereum is huge.. TODO adding numbers, DAI, MIMO
-https://defipulse.com/maker
-mimo.capital: € 15,119,843
+DeFi is taking the world by storm.
+At the time of writing, there are more than 3.9M ETH worth of wrapped ERC20 tokens locked up as collateral in [MakerDAO's](https://makerdao.com/en/) smart contracts.
+A newer product such as [MIMO](https://mimo.capital) has seen over 15M€ being invested in it over the past few days.
 
-various assets are used from eth, erc20 tokens to wrapped bitcoin or stable coins.
-the idea is the same, put up a collateral and receive a loan.
+Because of DeFi's prominence on Ethereum, it would seem like Bitcoin is destined to miss out.
+Wrapping your bitcoin in an ERC20 token on Ethereum to access DeFi products is a possibility, but it doesn't appeal to everyone.
 
-But who wants to wrap their precious Bitcoin in an Erc20 token on Ethereum.
-
-Defi for Bitcoin is needed.
-
-## Transaction covenants 
-Lucas
-
-What is it. 
-enforcing scripts
-
-on top of consensus enforced rules, you can add more restrictions to how an output can be spent.
-You can even do this recursively. Link to blockstream post.
-
-
-Cannot do it on Bitcoin today. 
-
-But use Liquid today, which is as close as it gets to real Bitcoin.
+True DeFi for Bitcoin is starting to become a necessity.
 
 ## Trustless Collateralized Loans
 
+Inspired by traditional finance, collateralized loans have become very popular in the DeFi world.
+They are relatively simple: a borrower needs to stake a certain amount of one asset to receive a loan in a different asset.
+The amount the borrower has to put up is determined by the loan's Loan-to-Value (LTV) ratio.
+For conventional loans, assets such as real estate, cars or shares can be used as collateral; DeFi loans are backed by cryptocurrencies instead.
 
-Collateralized borrowing is very popular in the Defi world as well as in traditional finance. Various assets are used as collateral ranging from real estate, cars or shares in traditional finance to different crypto assets in the blockchain space. 
+The point of these DeFi loans is to give the borrower access to the fiat value of their crypto assets without having to sell them; the lender gets some interest in return.
+[Blockfi](https://blockfi.com) and [Hodl Hodl](https://lend.hodlhodl.com/) are well-known service providers in the DeFi borrowing space.
+While Blockfi is a fully custodial service, Hodl Hodl aims for peer-to-peer lending, but the platform remains part of the multi-signature smart contract to resolve any disputes.
 
-Collateralized loans are relatively simple: a borrower needs to stake a certain amount to receive a loan in a different asset. The amount the borrower has to come up with is determined by the loan's LTV ratio (Loan To Value). 
+It turns out that true trustless peer-to-peer loans are indeed possible using transaction covenants on Liquid.
 
-This means, you can access the fiat value of your crypto assets without having to sell them. 
-Well known service provider are [Blockfi](https://blockfi.com) and [Hodlhodl]([)https://lend.hodlhodl.com/). While Blockfi is a fully custodial service Hodlhodl goes towards peer to peer lending but still involves the platform as an actor the multi-sig who gets involved in the case of a dispute. 
+### Transaction covenants
 
-We found out that true trustless peer to peer loans are indeed possible using transaction covenants (see above).
+When you broadcast a Bitcoin transaction, the network ensures that certain consensus rules are enforced e.g. that your transaction doesn't create (or destroy) money.
 
-The idea is as following: 
-A lender puts up loan offers somewhere on the Internet which includes the amount they are willing to lend, the required collateral amount and interest rate which the borrower has to pay.
+The network also verifies that you have met the spending conditions of all the transaction inputs.
+For standard payments this just means looking for a valid signature on the stack.
+If instead you're redeeming a HTLC, the preimage of a particular hash would be required.
 
-In our case, the lender offers L-USDT-based loans and asks for L-BTC as a collateral. 
+These spending conditions are determined by a script that accompanies the UTXO to be spent.
+The ability to express spending conditions for a UTXO which _restrict the overall form of the transaction they're included in_ is what is known as a covenant.
 
-### Explain the covenants script
+Covenant scripts are not possible on Bitcoin (yet), but they can be used on Liquid, which is as close as it gets to real Bitcoin.
 
-Once agreed on the the terms (collateral amount, principal amount, interest rate and loan term), the two parties collaboratively create a transaction with 2 inputs: 
+### Liquid loans
 
-- The borrower contributes his collateral, e.g. BTC; 
-- The lender contributes the loan principal, e.g. USDT;
+Our current version of loans on Liquid looks like this:
 
-and two outputs: 
+A lender publishes loan offers somewhere on the internet.
+One such offer would include: the `principal amount` they are willing to lend; the required `collateral amount` a borrower would need to contribute; the `interest` which the borrower would need to pay in the event of reclaiming the collateral; how long the principal can be borrowed for, or `loan term`.
+As an example, the lender could offer L-USDt-based loans, asking for L-BTC as collateral.
 
-- The BTC will go to a collateral contract;
-- The USDT will to an addressed controlled by the borrower;
+After a borrower accepts the loan offer, the two parties collaboratively create the `loan transaction`.
+This transaction consists of 2 inputs
 
-<img alt="Collateralized Loans" src={useBaseUrl('blog/assets/images/2021-03/collateralized_loans.png')} />
+- the borrower's collateral, in L-BTC;
+- the lender's principal, in L-USDt;
 
-The collateral contract enforces the loan terms, i.e. it enforces that the borrower can receive back his collateral only if he pays back the principal amount including interest rates to the lender. 
+and 2 outputs
 
-The collateral contract also enforces that the lender can obtain ownership over the collateral if the principal was not paid back by the end of the term. 
+- the `collateral contract` where the collateral L-BTC will be locked up;
+- an address controlled by the borrower, where the principal ends up.
 
+<img alt="Collateralized Loans" src={useBaseUrl('blog/assets/images/2021-03/collateralized_loans.svg')} />
+
+After publishing the `loan transaction`, the borrower has L-USDt to spend and the collateral remains in the `collateral_contract`.
+This contract enforces the conditions of the loan.
+It ensures that the borrower can reclaim the collateral if and only if he pays back the `principal amount` plus `interest` to the lender.
+Additionally, it guarantees that the lender can gain ownership of the collateral if the the borrower hasn't paid back the loan by the end of the `loan term`.
+
+These constraints are expressed using Liquid's scripting language, which is an extension of Bitcoin Script.
 
 ### Implementation
 
-The actual implementation of the covenants script can be found [here: TODO]().
+Our implementation of the `collateral contract`, together with the loan protocol, can be found in this soon-to-be-merged [PR](https://github.com/comit-network/waves/pull/153).
 
-While at first seemingly super complex, the script is actually quite simple. 
-It consists out of two main parts: 
+While the script may seem very complex, the logic is actually quite simple.
+It is split in two branches:
 
 ```
 if loan_terms_fulfilled()
-	pay collateral back to borrower
+    pay collateral back to borrower
 else if loan_term_expired()
-	pay collateral to lender
+    pay collateral to lender
 ```
 
-To check if the loan terms are fulfilled we make use of `OP_CAT`, `OP_CHECKSIGFROMSTACK` and `OP_CHECKSIG`: 
+The second branch simply allows the _lender_ to spend the `collateral contract` if enough time has passed since the `loan transaction` was mined.
 
-- `OP_CHECKSIG` takes a `public key` and a `signature` as inputs along with a signature `hash type`. A double SHA-256 hash of the transaction data is computed and then verified against the `signature`. 
-- `OP_CHECKSIGFROMSTACK` takes three inputs: a `signature`, the `message` and a `public key`. 
-The op code performs a single Sha256 hash of the `message` and then verifies the `signature` of the hashed `message` data with the `signature` and the provided `public key`.
-- `OP_CAT` takes two inputs and concatenates them.
+The first branch is substantially more verbose, primarily because it represents a transaction covenant.
+Instead of explaining this branch step by step, we'll try to convey the general idea.
+Spending the `collateral contract` using this branch requires the _borrower_ to include almost all the transaction data in the corresponding witness stack, alongside a valid `signature`.
+The only transaction element that is omitted is the `principal repayment output`, which is instead hard-coded in the `collateral contract`.
+The `principal repayment output` is the transaction output which pays the `principal amount` plus `interest` to the lender.
+By rearranging the stack and concatenating all the transaction elements (including the `principal repayment output`) using `OP_CAT`[^opcat], a correctly `serialized transaction` is constructed.
+Using `OP_CHECKSIGFROMSTACK`[^opcsfs], we verify that the `signature` from the witness stack is valid for the `serialized transaction` with respect to the borrower's public key.
 
-The trick to achieve the covenants script is using the fact that a successful `OP_CHECKSIG` operation means that the public key and the signature together commit to the transaction data. 
-If now the same public key and signature are also used successfully in the `OP_CHECKSIGFROMSTACK` operation, then the messaged passed into `OP_CHECKSIGFROMSTACK` must be the same as the transaction data. 
+It may seem that this is enough to prove that the borrower has constructed a transaction which includes the `loan repayment output`, but we are not there yet.
+The missing step is to show that the reconstructed `serialized transaction` is actually equivalent to the published transaction.
+Using `OP_CHECKSIG`[^opcs] with the _same_ `signature` and the borrower's public key, we can verify that the `signature` is both valid for the published transaction and the reconstructed `serialized transaction`.
+Since signature's are specific to a single message, this demonstrates that both transactions are one and the same.
 
-With this in mind we require the user to provide the whole transaction data on the `witness stack` of the transaction. 
-Using a set of `OP_CAT` operations we construct the transaction data, perform a single Sha256 operation pass the resulting hash together with the signature and the public key to the `OP_CHECKSIGFROMSTACK` operation. 
-The loan term can be reduced to one simple fact: the lender wants to receive back the money he gave out to the borrower. 
-This part of the transaction data is not part of the `witness stack` as it would mean a spender could arbitrarily change it. 
-This part of the transaction data is included in the `script` itself and put into the right position of the remaining transaction data. 
-
-The fun part of this implementation was doing all of this using confidential amounts and values for the assets. 
-This way, an uninvolved party cannot tell what was happening on-chain. 
-
+What made implementing this particularly interesting and challenging was using confidential transaction outputs.
+Using them, an uninvolved party cannot even tell that a loan has been issued.
 
 ## Outlook
 
-The interested reader might have noticed that the implemented trustless loan lacks one important part of a borrower/lending contract: the liquidation part. 
-As of now, the borrower does not risk being liquidated if the value of his assets drops and the LTV ratio reaches the critical threshold. 
+The interested reader may have noticed that the implementation described above lacks one important part of a borrower-lender contract: the ability to liquidate the loan.
+As implemented, the borrower does not risk being liquidated if the value of the collateral drops and the LTV ratio reaches the critical threshold.
 
-In our future work we want to cover exactly this and combine our _simple_ covenants script with an DLC so that a price feed from an oracle ensures that the LTV ratio is kept up. 
+In our future work, we would like to explore exactly this and combine our _simple_ covenant script with a DLC to allow the lender to liquidate the loan if the price (coming from an oracle) warrants it.
 
-As the immediate next step we plan to integrate the protocol into our browser extension (Waves)[https://github.com/comit-network/waves] so that it can actually be used. 
-
-We are super excited about this, because it means we can have finally truely trustless borrowing and lending for our precious Bitcoin.
+As the immediate next step we plan to integrate the protocol into our browser extension [Waves](https://github.com/comit-network/waves) so that it can actually be used. We are super excited about this, because we're inching closer to having truly trustless borrowing and lending for our precious Bitcoin.
 
 Cheers,
-Lucas, Philipp and the rest of the COMIT Team
+Lucas, Philipp and the rest of the COMIT Team.
 
---> You like what you read? We are hiring!!! Drop us an email and tell us why you think you are a great fit: (job at coblox.tech)[job@coblox.tech].
---> You want to learn more and stay up to date? Join our matrix channel (comit-liquid)[https://matrix.to/#/#comit-liquid:matrix.org?via=matrix.org&via=matrix.lrn.fm].
+PS Does the work we do sound enticing? We are hiring! Drop us an email at [job at coblox.tech](mailto:job@coblox.tech) and tell us why you think you are a great fit.
+PPS You want to learn more and stay up to date? Join our matrix channel:  [comit-liquid](https://matrix.to/#/#comit-liquid:matrix.org?via=matrix.org&via=matrix.lrn.fm).
+
+[^opcat]: `OP_CAT` takes the two elements at the top of the stack and concatenates them.
+[^opcsfs]: `OP_CHECKSIGFROMSTACK` takes three inputs: a signature, a message, and a public key.
+The opcode performs a single SHA-256 hash of the message and then checks that the signature is valid for the hashed message and the provided public key.
+[^opcs]: `OP_CHECKSIG` takes two inputs: a public key; and a signature concatenated with the signature hash type. A double SHA-256 hash of the transaction data is computed and then verified against the signature and the public key.
