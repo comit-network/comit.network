@@ -16,6 +16,8 @@ Did you lose your first Bitcoin at Mt. Gox? Are you annoyed about the lack of pr
 
 At CoBloX, we are working on the financial system of tomorrow. We believe it has to be open and accessible to everyone, whilst also retaining privacy and putting the user first by giving them control over their money. We believe that only cryptocurrencies can achieve this which is why we see them as a fundamental building block for this system. In particular, we focus on cross-chain protocols like atomic swaps.
 
+<!--truncate-->
+
 ## Your experience
 
 The work we do requires interest in mathematics, cryptography, game theory, and software engineering. In particular we are looking for:
@@ -48,7 +50,7 @@ If an idea doesn't bear any fruits, we move on to the next one and try again.
 Our Offer
 
 - Above market-average salary
-- Full-time position 
+- Full-time position
 - Flexible working hours
 - A young yet dedicated team
 - Flat hierarchies
@@ -58,5 +60,4 @@ Our Offer
 
 ## How to apply
 
-Drop us an email and tell us why you are the perfect fit to [job (at) coblox.tech](mailto:job@coblox.tech). Don't forget to add your CV including GitHub link or anything else that shows your experience. 
-
+Drop us an email and tell us why you are the perfect fit to [job (at) coblox.tech](mailto:job@coblox.tech). Don't forget to add your CV including GitHub link or anything else that shows your experience.
