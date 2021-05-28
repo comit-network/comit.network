@@ -51,7 +51,14 @@ The key word is _may_.
 We include a set of 11 possible outputs for each input, but only one of them is the actual source.
 This feature ensures that an uninvolved onlooker cannot definitively draw relationships between transactions.
 
-<!-- TODO: Thomas to talk about how to select key offsets? -->
+We refer to the remaining 10 outputs as _decoy_ outputs.
+To be effective decoys, the actual output must fit seemlessly into the set of decoys.
+In other words, it must not be possible to identify the real output through statistical analysis.
+
+Monero peforms some sanity checks in regards to how the key offsets are chosen.
+For example, the median of all key offsets must be within [the last 40%](https://github.com/monero-project/monero/blob/ffe7165ebfbb805b3bba57de8cb3f14d0b3411a0/src/cryptonote_core/tx_sanity_check.cpp#L95-L99) of all outputs.
+
+Ultimately though, it is the responsibility of a wallet implementation to chose key offsets in a way that resemble a typical spending pattern as close as possible.
 
 ##### Key image
 
