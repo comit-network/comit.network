@@ -267,8 +267,20 @@ c_i+1 = H_n("CLSAG_round" || ring || commitment_ring || pseudo_output_commitment
 
 where the ellipsis represents the missing components `L` and `R` discussed above, which vary between iterations.
 
-<!-- TODO: Thomas to describe how the message hash is computed in separate subsection. Also, there is one place where I've said transaction_hash when referring to the message hash that is signed. I'm not sure if that's wrong/confusing
--->
+###### What are we signing?
+
+With every signature algorithm the final question is: what are we actually signing?
+The answer in Monero's case is actually quite surprising because we are committing to a lot of things with the signature.
+
+Initially, we naively assumed we would be signing the transaction hash which is computed by hashing the consensus-encoding of the transaction prefix.
+We eventually found out that this is not the case.
+Instead, the message that is being signed is the Keccak hash of:
+
+1. the Keccak hash of the consensus-encoded transaction prefix (which is the transaction hash)
+2. the Keccak hash of the consensus-encoded `rct_signatures`
+3. the Keccak hash of all bulletproofs
+
+[These](https://github.com/comit-network/monero-rs/blob/b41ae9c32cb435a0f0c8e03f450dd248507c43b5/src/blockdata/transaction.rs#L546-L630) lines of code show what that looks like in practice.
 
 ## Outlook
 
