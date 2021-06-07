@@ -12,7 +12,7 @@ Here's another post on one of our favourite privacy coins.
 This time we will take a look at the technical details of Monero transactions.
 Most of you will know that Monero transactions are confidential in terms of amounts and ownership of outputs, but here we'll explain what makes this work.
 
-Our motivation to take a deep dive into the inner works of Monero transactions stems from a desire to be able to construct and sign them manually.
+Our motivation to take a deep dive into the inner works of Monero transactions stems from a desire to have direct control of how they are constructed and signed.
 There are two ways in which we would benefit from this:
 
 1. Our [swap tool](https://github.com/comit-network/xmr-btc-swap/) based on ["Bitcoin-Monero Cross-chain Atomic Swap"](https://eprint.iacr.org/2020/1126.pdf) currently relies on `monero-wallet-rpc` to build the spend transactions, which prevents us from running the swap in the browser.
