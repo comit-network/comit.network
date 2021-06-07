@@ -204,7 +204,7 @@ Given that the real inputs of the transaction are hidden within their respective
 If we could use the real inputs' Pedersen commitments (without revealing the real inputs themselves), we could actually leverage the mathematical properties of Pedersen commitments to prove that our transaction is not inflationary.
 For example, for a transaction with 1 input and 1 output with commitments `y_0 * G + 100 * H` and `y_1 * G + 90 * H` respectively, and an explicit fee of `10`, a verifier could create a commitment for the fee without a blinder `0 * G + 10 * H` and sum all these `y_0 * G + 100 * H - (y_1 * G + 90 * H) - (0 * G + 10 * H)` resulting in `(y_0 - y_1) * G + 0 * H`, where all the amounts cancel out.
 
-Since this is not the case, we can instead construct a pseudo output commitment per input and actually choose the blinding factors in such a way that they cancel out when combined with the output commitments.
+Since this is not the case, we instead construct a pseudo output commitment per input and actually choose the blinding factors in such a way that they cancel out when combined with the output commitments.
 Returning to our example, we would choose `y_1 = y_0`, such that `(y_0 - y_0) * G + 0 * H = 0 * G + 0 * H`.
 Including these pseudo output commitments in the transaction is the first step in convincing verifiers that our input and output amounts cancel out.
 Obviously we still need to prove that the amounts chosen for our pseudo output commitments actually match the amounts of their respective real inputs, without revealing their identity.
