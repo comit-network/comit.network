@@ -23,6 +23,23 @@ There are two ways in which we would benefit from this:
 In this section we will focus on Monero transactions of type `5` (`CLSAG`), which is the new transaction type since fork version 13.
 Monero changes at a relatively high speed compared to other cryptocurrencies such as Bitcoin, so some of this information may become outdated after the next few planned hard forks.
 
+### Overview
+
+Before we delve into the details, let's consider what a Monero transaction does at a high level.
+A transaction has to prove:
+
+- ownership of its inputs without revealing their exact identity;
+- that the inputs of the transaction have not been spent before i.e. prevent _double-spending_;
+- that inputs and outputs balance out;
+- that it does not create or destroy coins i.e. prevent inflation or deflation.
+
+Respectively, it does so by including:
+
+- a ring signature per input;
+- a unique key image for every real input of the transaction;
+- Pedersen commitments for every input and output;
+- Bulletproofs for the outputs.
+
 ### Transaction prefix
 
 The transaction prefix is the main part of the transaction, as it includes all the possible inputs and all the outputs.
