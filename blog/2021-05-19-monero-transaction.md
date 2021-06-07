@@ -71,10 +71,10 @@ We include a set of 11 possible outputs for each input, but only one of them is 
 This makes it almost impossible for an uninvolved onlooker draw relationships between transactions.
 
 We refer to the remaining 10 outputs as _decoy_ outputs.
-To be effective decoys, the actual output must fit seemlessly into the set of decoys.
+To be effective decoys, the actual output must fit seamlessly into the set of decoys.
 In other words, it must not be possible to identify the real output through statistical analysis.
 
-Monero peforms some sanity checks in regards to how the key offsets are chosen.
+Monero performs some sanity checks in regards to how the key offsets are chosen.
 For example, the median of all key offsets must be within [the last 40%](https://github.com/monero-project/monero/blob/ffe7165ebfbb805b3bba57de8cb3f14d0b3411a0/src/cryptonote_core/tx_sanity_check.cpp#L95-L99) of all outputs.
 
 Ultimately though, it is the responsibility of a wallet implementation to chose key offsets in a way that resemble a typical spending pattern as close as possible.
@@ -293,9 +293,9 @@ Initially, we naively assumed we would be signing the transaction hash which is 
 We eventually found out that this is not the case.
 Instead, the message that is being signed is the Keccak hash of:
 
-1. the Keccak hash of the consensus-encoded transaction prefix (which is the transaction hash)
-2. the Keccak hash of the consensus-encoded `rct_signatures`
-3. the Keccak hash of all bulletproofs
+1. the Keccak hash of the consensus-encoded transaction prefix (which is the transaction hash);
+2. the Keccak hash of the consensus-encoded `rct_signatures`; and
+3. the Keccak hash of all bulletproofs.
 
 [These](https://github.com/comit-network/monero-rs/blob/b41ae9c32cb435a0f0c8e03f450dd248507c43b5/src/blockdata/transaction.rs#L546-L630) lines of code show how that looks like in practice.
 
