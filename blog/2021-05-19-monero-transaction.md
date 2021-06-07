@@ -236,7 +236,7 @@ This new component is actually responsible for attesting the fact that the pseud
 Normally CLSAG enforces that, to be able to _close_ the ring and generate the response `r_π`, we need to know the real input's secret key `sk_π`: `r_π = ⍺ - c_π * sk_π`, where `⍺` is a random value generated at the start of the algorithm.
 CLSAG _seeds_ the algorithm by first generating `c_π+1` based on `⍺`.
 More specifically, `L_π+1 = ⍺ * G`, which is successfully closed by `r_π`:
-first rearranging to get `⍺ = r_π + c_π * sk_π`; and then substituting in `L_π+1` giving `L_π+1 = r_π * G + c_π * sk_π * G = r_π * G + c_π * pk_π * G`, exactly what we'd expect from the definition.
+first rearranging to get `⍺ = r_π + c_π * sk_π`; and then substituting in `L_π+1` giving `L_π+1 = r_π * G + c_π * sk_π * G = r_π * G + c_π * pk_π`, exactly what we'd expect from the definition.
 
 In Monero's CLSAG we instead calculate `r_π = ⍺ - c_π * mu_P * sk_π - c_π * mu_C * z`, where `z` is the difference between the real commitment's blinding factor and the pseudo output's commitment blinding factor.
 If we rearrange as above we get `⍺ = r_π + c_π * mu_P * sk_π + c_π * mu_C * z`, which when substituted in `L_π+1` gives `L_π+1 = r_π * G + c_π * mu_P * sk_π * G + c_π * mu_C * z * G` which is equal to `L_π+1 = r_π * G + c_π * mu_P * pk_π + c_π * mu_C * (C_π - C_pseudo)` if and only if `z * G = C_π - C_pseudo`.
