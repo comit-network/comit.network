@@ -30,8 +30,8 @@ A transaction has to prove:
 
 - ownership of its inputs without revealing their exact identity;
 - that the inputs of the transaction have not been spent before i.e. prevent _double-spending_;
-- that inputs and outputs balance out;
-- that it does not create or destroy coins i.e. prevent inflation or deflation.
+- that inputs and outputs balance out; and
+- that output amounts are non-negative.
 
 Respectively, it does so by including:
 
