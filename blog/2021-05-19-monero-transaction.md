@@ -297,7 +297,7 @@ Instead, the message that is being signed is the Keccak hash of:
 2. the Keccak hash of the consensus-encoded `rct_signatures`
 3. the Keccak hash of all bulletproofs
 
-[These](https://github.com/comit-network/monero-rs/blob/b41ae9c32cb435a0f0c8e03f450dd248507c43b5/src/blockdata/transaction.rs#L546-L630) lines of code show what that looks like in practice.
+[These](https://github.com/comit-network/monero-rs/blob/b41ae9c32cb435a0f0c8e03f450dd248507c43b5/src/blockdata/transaction.rs#L546-L630) lines of code show how that looks like in practice.
 
 ## Outlook
 
