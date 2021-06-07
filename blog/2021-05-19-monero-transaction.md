@@ -174,7 +174,7 @@ Given the complexity of the topic and the [wealth](https://tlu.tarilabs.com/pref
 
 We cannot speak to the purpose of this, because it is not documented, but there are several instances in which Monero's bulletproof generation algorithm diverges from the original specification by multiplying certain terms by `8` or the modular inverse of `8`.
 
-For example, the Pedersen commitments for the outputs are actually computed  internally as `y * INV_EIGHT * G + b * INV_EIGHT * H`. They are used within the bulletproof generation algorithm as such, and are later on adjusted via multiplication by `8` to be used normally in the signing algorithm and the transaction body.
+For example, the Pedersen commitments for the outputs are actually computed internally as `y * INV_EIGHT * G + b * INV_EIGHT * H`. They are used within the bulletproof generation algorithm as such, and are later on adjusted via multiplication by `8` to be used normally in the signing algorithm and the transaction body.
 
 There are too many instances of this to document here, so we instead invite the interested reader to check out our [Rust implementation of Monero's bulletproof](https://github.com/comit-network/monero-rs/blob/b41ae9c32cb435a0f0c8e03f450dd248507c43b5/src/bulletproof/mod.rs).
 It is a fork of [`dalek-cryptography/bulletproofs`](https://github.com/dalek-cryptography/bulletproofs) and currently resides in our fork of `monero-rs`, which we will attempt to merge back into the original repository in the future.
