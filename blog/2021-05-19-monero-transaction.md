@@ -49,7 +49,7 @@ Amount confidentiality used to be opt-in, but it is mandatory as of fork version
 Where the coins may come from for a particular transaction input.
 The key word is _may_.
 We include a set of 11 possible outputs for each input, but only one of them is the actual source.
-This feature ensures that an uninvolved onlooker cannot definitively draw relationships between transactions.
+This makes it almost impossible for an uninvolved onlooker draw relationships between transactions.
 
 We refer to the remaining 10 outputs as _decoy_ outputs.
 To be effective decoys, the actual output must fit seemlessly into the set of decoys.
