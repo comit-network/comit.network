@@ -182,12 +182,10 @@ Rangeproofs are used to ensure that transactions do not create (or destroy) coin
 Without rangeproofs, since Monero transaction outputs are confidential, a malicious party could for example overspend an input by creating one output paying a large sum to themself and another output with a _negative_ amount[^6] in order to balance out the transaction.
 This would obviously be nonsensical and break Monero, but mathematically it would check out.
 
-###### Monero's construction
-
 Monero's implementation of Bulletproofs is very similar to the original paper.
 Given the complexity of the topic and the [wealth](https://tlu.tarilabs.com/preface/learning/bulletproofs.html) [of](https://github.com/dalek-cryptography/bulletproofs) [resources](https://github.com/monero-project/monero/blob/v0.17.2.0/src/ringct/bulletproofs.cc#L489-L777) on it, here we will focus on the things that make Monero's implementation special.
 
-####### Multiplying things by 8
+###### Multiplying things by 8
 
 We cannot speak to the purpose of this, because it is not documented, but there are several instances in which Monero's bulletproof generation algorithm diverges from the original specification by multiplying certain terms by `8` or the modular inverse of `8`.
 
@@ -196,7 +194,7 @@ For example, the Pedersen commitments for the outputs are actually computed inte
 There are too many instances of this to document here, so we instead invite the interested reader to check out our [Rust implementation of Monero's bulletproof](https://github.com/comit-network/monero-rs/blob/b41ae9c32cb435a0f0c8e03f450dd248507c43b5/src/bulletproof/mod.rs).
 It is a fork of [`dalek-cryptography/bulletproofs`](https://github.com/dalek-cryptography/bulletproofs) and currently resides in our fork of `monero-rs`, which we will attempt to merge back into the original repository in the future.
 
-####### Bulletproof generators
+###### Bulletproof generators
 
 The algorithm requires the generation of `2 * m * n` elliptic curve generators, where `m` is the number of amounts to hide in a single proof and `n` the maximum number of bits for the amount.
 Monero sets `m = 16` and `n = 64`, for a total of `2 * 1024 = 2048` generators.
