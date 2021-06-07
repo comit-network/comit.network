@@ -12,6 +12,8 @@ Here's another post on one of our favourite privacy coins.
 This time we will take a look at the technical details of Monero transactions.
 Most of you will know that Monero transactions are confidential in terms of amounts and ownership of outputs, but here we'll explain what makes this work.
 
+<!--truncate-->
+
 Our motivation to take a deep dive into the inner works of Monero transactions stems from a desire to have direct control of how they are constructed and signed.
 There are two ways in which we would benefit from this:
 
