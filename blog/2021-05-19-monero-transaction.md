@@ -94,7 +94,7 @@ Transactions that do not comply will be rejected by the network.
 Most transactions naturally have two outputs, the second one being the change output.
 Enforcing at least two outputs for all transactions makes it more likely for transactions to be indistinguishable.
 
-Fortunately, upholding this rule is as easy as adding a 0 amount[^0-amount] output to single-output transactions.
+Fortunately, upholding this rule is as easy as adding a 0 amount[^1] output to single-output transactions.
 
 ##### Amount
 
@@ -106,10 +106,10 @@ The public key of the output.
 Only someone with knowledge of the corresponding secret key will be able to spend it.
 
 Given what we learnt about key images above, address (public key) reuse does not seem like a good idea.
-Instead, Monero introduces the concept of one-time addresses[^address].
-These are derived from the recipient's public spend key and public view key[^spend-view], the output index on the transaction and a random, one-time secret key.
+Instead, Monero introduces the concept of one-time addresses[^2].
+These are derived from the recipient's public spend key and public view key[^3], the output index on the transaction and a random, one-time secret key.
 
-More specifically, the one-time address is computed as `X' = H_n(r * 8 * X_v || n) * G + X_s`, where `H_n` is the hash function `Keccak256`[^modulo]; `r` is the one-time secret key; `X_v` is the recipient's public view key; `n` is the output index; `G` is the generator of Monero's elliptic curve; and `X_s` is the recipient's public spend key.
+More specifically, the one-time address is computed as `X' = H_n(r * 8 * X_v || n) * G + X_s`, where `H_n` is the hash function `Keccak256`[^4]; `r` is the one-time secret key; `X_v` is the recipient's public view key; `n` is the output index; `G` is the generator of Monero's elliptic curve; and `X_s` is the recipient's public spend key.
 
 Therefore, the one-time address `X'` goes on the `target` field.
 In order to spend it, the recipient cannot just simply use their spend key `X_s`.
@@ -149,7 +149,7 @@ It is homonimous to another one which is part of the prunable signature data.
 ##### Output Pedersen commitments aka `out_pk`
 
 Array of Pedersen commitments, one per transaction output.
-These commitments are of the form `y * G + b * H`, where `y` is a secret blinding factor; `G` is the generator of Monero's elliptic curve; `b` is the output amount; and `H` is an alternate generator of Monero's elliptic curve[^H].
+These commitments are of the form `y * G + b * H`, where `y` is a secret blinding factor; `G` is the generator of Monero's elliptic curve; `b` is the output amount; and `H` is an alternate generator of Monero's elliptic curve[^5].
 
 Pedersen commitments simultaneously commit to and hide values.
 These are accompanied by rangeproofs which demonstrate that the hidden amounts are not negative.
@@ -179,7 +179,7 @@ This part of the transaction can be safely removed and forgotten from the blockc
 
 This is a type of rangeproof based on the [Bulletproofs paper](https://eprint.iacr.org/2017/1066.pdf).
 Rangeproofs are used to ensure that transactions do not create (or destroy) coins, by demonstrating that all outputs are within a valid range.
-Without rangeproofs, since Monero transaction outputs are confidential, a malicious party could for example overspend an input by creating one output paying a large sum to themself and another output with a _negative_ amount[^negative-amount] in order to balance out the transaction.
+Without rangeproofs, since Monero transaction outputs are confidential, a malicious party could for example overspend an input by creating one output paying a large sum to themself and another output with a _negative_ amount[^6] in order to balance out the transaction.
 This would obviously be nonsensical and break Monero, but mathematically it would check out.
 
 ###### Monero's construction
@@ -308,9 +308,9 @@ The purpose of such a wallet would be to use it in the protocols mentioned in th
 Needless to say, we would be very happy to amend this post based on feedback from others who may know more about Monero than we do!
 As always, thank you for reading.
 
-[^0-amount]: By 0 amount we are not referring to an output with a 0 in its `amount` field (which is mandatory), but rather one with a `y * G + 0 * H` Pedersen commitment.
-[^address]: Here address just means public key.
-[^spend-view]: Monero wallets consist of two key-pairs, each fulfilling a different function. The spend key pair is unsurprisingly used to spend coins; the view key pair is utilised to check if money has arrived at related one-time addresses and can also be used to unblind output amounts.
-[^modulo]: Followed by the reduction of the integer modulo the order of the prime-order subgroup of the edwards25519 elliptic curve.
-[^H]: This alternate generator is a public parameter of Monero's. It was generated in a particular way, ensuring that `y` is unknown for `H = y * G`.
-[^negative-amount]: A negative amount in modulo arithmetic is equivalent to a very, very large amount.
+[^1]: By 0 amount we are not referring to an output with a 0 in its `amount` field (which is mandatory), but rather one with a `y * G + 0 * H` Pedersen commitment.
+[^2]: Here address just means public key.
+[^3]: Monero wallets consist of two key-pairs, each fulfilling a different function. The spend key pair is unsurprisingly used to spend coins; the view key pair is utilised to check if money has arrived at related one-time addresses and can also be used to unblind output amounts.
+[^4]: Followed by the reduction of the integer modulo the order of the prime-order subgroup of the edwards25519 elliptic curve.
+[^5]: This alternate generator is a public parameter of Monero's. It was generated in a particular way, ensuring that `y` is unknown for `H = y * G`.
+[^6]: A negative amount in modulo arithmetic is equivalent to a very, very large amount.
