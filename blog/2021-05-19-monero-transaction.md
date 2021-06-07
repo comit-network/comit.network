@@ -8,6 +8,8 @@ tags: [monero]
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
+<img alt="Blackboard" src={useBaseUrl('blog/assets/images/2021-06/monero-lesson.png')} />
+
 Here's another post on one of our favourite privacy coins.
 This time we will take a look at the technical details of Monero transactions.
 Most of you will know that Monero transactions are confidential in terms of amounts and ownership of outputs, but here we'll explain what makes this work.
