@@ -233,7 +233,7 @@ Looking at `L`, regular CLSAG computes it as `L_i+1 = r_i * G + c_i * pk_i ` whe
 We can see that a third component has been introduced in Monero, which is kept orthogonal to the second one because `mu_P ≠ mu_C`.
 This new component is actually responsible for attesting the fact that the pseudo output commitment hides the same amount as the real input's commitment.
 
-Normally CLSAG enforces that to be able to _close_ the ring and generate the response `r_π` we need to know the real input's secret key `sk_π`: `r_π = ⍺ - c_π * sk_π`, where `⍺` is a random value generated at the start of the algorithm.
+Normally CLSAG enforces that, to be able to _close_ the ring and generate the response `r_π`, we need to know the real input's secret key `sk_π`: `r_π = ⍺ - c_π * sk_π`, where `⍺` is a random value generated at the start of the algorithm.
 CLSAG _seeds_ the algorithm by first generating `c_π+1` based on `⍺`.
 More specifically, `L_π+1 = ⍺ * G`, which is successfully closed by `r_π`:
 first rearranging to get `⍺ = r_π + c_π * sk_π`; and then substituting in `L_π+1` giving `L_π+1 = r_π * G + c_π * sk_π * G = r_π * G + c_π * pk_π * G`, exactly what we'd expect from the definition.
