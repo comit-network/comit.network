@@ -285,7 +285,7 @@ Instead, the message that is being signed is the Keccak hash of:
 ## Outlook
 
 We have put this together hoping that this information is useful to others, particularly to those attempting to write their own Monero wallets.
-We ourselves are in the process of completing a minimal Monero wallet, which you can find [here](https://github.com/comit-network/xmr-btc-swap/tree/master/monero-wallet).
+We ourselves are in the process of completing a minimal Monero wallet, which you can find [here](https://github.com/comit-network/xmr-btc-swap/blob/0c501ba2cc94ed7d6982604ede26d349d115f0e3/master/monero-wallet).
 The purpose of such a wallet would be to use it in the protocols mentioned in the introduction.
 
 Needless to say, we would be very happy to amend this post based on feedback from others who may know more about Monero than we do!
