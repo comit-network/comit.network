@@ -14,7 +14,7 @@ Why you want it, why it doesn't work on present day Monero and what that means f
 
 <!--truncate-->
 
-Intro: what this blogpost is about
+Intro: what this blogpost is about, what the expectations for the reader are
 
 ## What is transaction *pre-signing*?
 
@@ -113,3 +113,9 @@ Anything that relies on joint-outputs and pre-signing spending transactions does
 We haven't done an extensive analysis on what this affects but our guess is that this applies to at least anything Layer2. 
 Most "interesting" blockchain protocols today work on the basis of a joint-owned output whose spending transactions have game-theoretic elements to it like learning a secret value etc. 
 As long as we want to remain trustless, we have to create valid spending transactions before the actual output gets mined, otherwise we are dependent on collaborating with the other party to unlock our funds.
+
+## What is next
+
+we are in contact with the monero community
+next hard-fork introduces changes to how key offsets work because the anonymity set is being enlarged
+good opportunity to include a fix for this as well
