@@ -8,7 +8,8 @@ tags: [monero]
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-<img alt="Blackboard" src={useBaseUrl('blog/assets/images/2021-06/monero-lesson.png')} />
+<!-- TODO: Find a good image -->
+<!-- <img alt="Blackboard" src={useBaseUrl('blog/assets/images/2021-06/monero-lesson.png')} /> -->
 
 Why you want it, why it doesn't work on present day Monero and what that means for applications on top.
 
