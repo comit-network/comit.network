@@ -111,6 +111,8 @@ Imagine two transactions, `A` and `B`:
 Remember that the whole point of pre-signing `B` is that we have a transaction with valid signatures **prior** to the point of signing and broadcasting `A`.
 Because the key-offsets are included in the signature hash, we can't produce it up until the output we want to spend is included in the blockchain.
 
+In summary: We cannot pre-sign transaction `B` which spends from transaction `A` before transaction `A` has been included in the blockchain.
+
 ## How to achieve pre-signing on Monero?
 
 To sign a transaction using CLSAG, we don't actually need the key-offsets but the public keys these key-offsets point to!
