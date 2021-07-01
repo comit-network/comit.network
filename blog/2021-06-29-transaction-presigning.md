@@ -146,6 +146,7 @@ We are already in contact with the Monero community and have raised our issue wi
 As part of that, we learned that the next hard-fork will introduce changes in how key-offsets work anyway because the anonymity set is being enlarged.
 
 We hope that this opportunity will be used to fix this issue as well to allow pre-signing of transactions on Monero.
+By the looks of it, [that might actually be the case](https://github.com/monero-project/research-lab/issues/84)!
 
 [^1]: Version 0.17 at the time of writing.
 [^2]: Committing here means that the signature will only be valid for exactly these ring members. More generally speaking, *committing* ensures we cannot use the signature for anything else other than these specific inputs.
