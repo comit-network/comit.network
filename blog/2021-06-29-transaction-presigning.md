@@ -133,7 +133,7 @@ Changing how the signature hash is computed will make transactions from new clie
 ## What does this mean for applications on top?
 
 It is our assumption that anything that relies on joint-outputs and pre-signing spending transactions doesn't actually work on present day Monero. 
-We haven't done an extensive analysis on what this affects but our guess is that this applies to at least anything Layer2 but likely also other blockchain protocols developed for Monero.
+We haven't done an extensive analysis on what this affects but our guess is that this applies to at least anything Layer2 but likely also to other blockchain protocols developed for Monero.
 Most "interesting" blockchain protocols today work on the basis of a joint-owned output whose spending transactions have game-theoretic elements to it like learning a secret value. 
 As long as we want to remain trustless, we have to create valid spending transactions before the actual output gets mined, otherwise we are dependent on cooperating with the other party to unlock our funds.
 
