@@ -39,7 +39,7 @@ On Monero, this would be an output whose spend and view keys have been created b
 To spend the coins locked in such an output, both parties need to collaborate to produce a valid signature.
 
 The purpose of such a joint-output is manifold and depends on the protocol that is being implemented.
-For example, joint-outputs are at the core of technologies like the Lightning network on Bitcoin.
+For example, joint-outputs are at the core of technologies like the Lightning Network on Bitcoin.
 
 We can achieve trustless protocols like the Lightning network if we don't depend on the other party's willingness to cooperate.
 
@@ -114,7 +114,7 @@ Because the key-offsets are included in the signature hash, we can't produce it 
 ## How to achieve pre-signing on Monero?
 
 To sign a transaction using CLSAG, we don't actually need the key-offsets but the public keys these key-offsets point to!
-The public key of an output never changes, regardless of whether or not is has been included in the blockchain.
+The public key of an output never changes, regardless of whether or not it has been included in the blockchain.
 
 To fix our pre-signing issue, we need to change how the signature hash of a transaction is being computed.
 We cannot just remove the key-offsets from the transaction.
