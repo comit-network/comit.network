@@ -11,7 +11,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 <!-- TODO: Find a good image -->
 <!-- <img alt="Blackboard" src={useBaseUrl('blog/assets/images/2021-06/monero-lesson.png')} /> -->
 
-Why you want it, why it doesn't work on present day Monero and what that means for applications on top.
+Why you want it, why it doesn't work on present day[^1] Monero and what that means for applications on top.
 
 <!--truncate-->
 
@@ -120,7 +120,7 @@ The public key of an output never changes, regardless of whether or not it has b
 
 To fix our pre-signing issue, we need to change how the signature hash of a transaction is being computed.
 We cannot just remove the key-offsets from the transaction.
-It is important that the signature *commits*[^1] to the ring members that were used to create it.
+It is important that the signature *commits*[^2] to the ring members that were used to create it.
 At the moment though, we are *over-committing*.
 
 Instead of hashing the list of key-offsets, we can just hash the actual ring members (i.e. the public keys) instead. 
@@ -147,4 +147,5 @@ As part of that, we learned that the next hard-fork will introduce changes in ho
 
 We hope that this opportunity will be used to fix this issue as well to allow pre-signing of transactions on Monero.
 
-[^1]: Committing here means that the signature will only be valid for exactly these ring members. More generally speaking, *committing* ensures we cannot use the signature for anything else other than these specific inputs.
+[^1]: Version 0.17 at the time of writing.
+[^2]: Committing here means that the signature will only be valid for exactly these ring members. More generally speaking, *committing* ensures we cannot use the signature for anything else other than these specific inputs.
