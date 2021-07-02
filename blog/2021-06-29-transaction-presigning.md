@@ -93,7 +93,7 @@ For the ring itself, we need the public key of each output but public keys are r
 Times 11, that would be 352 bytes *per input* just to represent the ring for the signature.
 
 To be more space efficient, we instead enumerate all outputs in the blockchain and create a list of offsets where the first element in the list is an absolute output index and all subsequent elements are relative to their previous index.
-Storing the *key-offsets* within the transaction is much more space efficient because a) the values are much smaller and b) we can store them as variable length integers.
+Storing the key-offsets within the transaction is much more space efficient because a) the values are much smaller and b) we can store them as variable length integers.
 
 The problem is that this list of key-offsets is also incorporated into the transaction's signature hash.
 
