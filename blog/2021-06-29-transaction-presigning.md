@@ -75,7 +75,7 @@ A protocol where Party A locks up BTC, followed by party B locking up XMR is wha
 Here, the user is limited to buying XMR for BTC (or selling BTC for XMR, depending on how you look at it).
 
 If we want to allow users to sell XMR for BTC, then we need a protocol where party A locks up XMR first. 
-We [developed such a protocol](https://arxiv.org/abs/2101.12332) but in order for it to be secure from a game-theoretic PoV, we need to pre-sign spending transaction from a Monero joint output.
+We [developed such a protocol](https://arxiv.org/abs/2101.12332) but in order for it to be secure from a game-theoretic PoV, we need to pre-sign a transaction spending from a Monero joint output.
 
 In a nutshell, if we want to provide a non-custodial trading solution where users can buy AND sell XMR for BTC, we need transaction pre-signing.
 
@@ -105,7 +105,7 @@ Imagine two transactions, `A` and `B`:
 - `B` spends an output from `A` and we would like to pre-sign this spending transaction.
 - To sign `B`, we need to compute the signature hash and run the CLSAG algorithm using this hash.
 - To compute the signature hash, we need to come up with the key-offsets of our ring.
-- To compute the key-offsets for the ring, we need to know, what the output index of `A` is.
+- To compute the key-offsets for the ring, we need to know what the output index of `A` is.
 - To know the output index of `A`, the transaction needs to be picked up by a miner and included in the blockchain.
 
 Remember that the whole point of pre-signing `B` is that we have a transaction with valid signatures **prior** to the point of signing and broadcasting `A`.
@@ -116,14 +116,14 @@ In summary: We cannot pre-sign transaction `B` which spends from transaction `A`
 ## How to achieve pre-signing on Monero?
 
 To sign a transaction using CLSAG, we don't actually need the key-offsets but the public keys these key-offsets point to!
-The public key of an output never changes, regardless of whether or not it has been included in the blockchain.
+The public key of an output never changes, whether it has been included in the blockchain or not.
 
-To fix our pre-signing issue, we need to change how the signature hash of a transaction is being computed.
+To fix the pre-signing issue, we need to change how the signature hash of a transaction is being computed.
 We cannot just remove the key-offsets from the transaction.
 It is important that the signature *commits*[^2] to the ring members that were used to create it.
 At the moment though, we are *over-committing*.
 
-Instead of hashing the list of key-offsets, we can just hash the actual ring members (i.e. the public keys) instead. 
+Instead of hashing the list of key-offsets, we can just hash the actual ring members (i.e. the public keys). 
 Those remain unchanged, regardless of which outputs are already included in the blockchain.
 The key-offsets would still remain part of the transaction to retain the space-efficient look-up algorithm of the ring members.
 
@@ -134,7 +134,7 @@ Changing how the signature hash is computed will make transactions from new clie
 
 It is our assumption that anything that relies on joint-outputs and pre-signing spending transactions doesn't actually work on present day Monero. 
 We haven't done an extensive analysis on what this affects but our guess is that this applies to at least anything Layer2 but likely also to other blockchain protocols developed for Monero.
-Most "interesting" blockchain protocols today work on the basis of a joint-owned output whose spending transactions have game-theoretic elements to it like learning a secret value. 
+Most "interesting" blockchain protocols today work on the basis of a joint-owned output with spending transactions which leak secrets when broadcast. 
 As long as we want to remain trustless, we have to create valid spending transactions before the actual output gets mined, otherwise we are dependent on cooperating with the other party to unlock our funds.
 
 ## What is next
