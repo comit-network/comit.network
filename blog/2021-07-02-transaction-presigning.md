@@ -6,10 +6,6 @@ author_image_url: https://avatars1.githubusercontent.com/u/5486389
 tags: [monero]
 ---
 
-import useBaseUrl from '@docusaurus/useBaseUrl';
-
-<img alt="Blackboard" src={useBaseUrl('blog/assets/images/2021-07/monero-logo.png')} />
-
 Why you want it, why it doesn't work on present day[^1] Monero and what that means for applications on top.
 
 <!--truncate-->
@@ -39,7 +35,7 @@ To spend the coins locked in such an output, both parties need to collaborate to
 The purpose of such a joint-output is manifold and depends on the protocol that is being implemented.
 For example, joint-outputs are at the core of technologies like the Lightning Network on Bitcoin.
 
-We can achieve trustless protocols like the Lightning network if we don't depend on the other party's willingness to cooperate.
+We can achieve trustless protocols like the Lightni network if we don't depend on the other party's willingness to cooperate.
 
 The solution is simple.
 Both parties sign transactions that spend from a joint-output **prior** to signing the transaction that creates the joint-output.
