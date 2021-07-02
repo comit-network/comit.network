@@ -67,20 +67,20 @@ From a high-level perspective, an atomic swap consists of four key actions:
 To build a non-custodial XMR-BTC exchange service, you really want to be party B.
 Service meaning, you are running some form of automated backend that allows users to initiate and complete a swap without direct engagement from your side.
 
-If you were offering such a service as party A, people could come and initiate a swap (which means you have to lock up money) but then just walk away. 
+If you were offering such a service as party A, people could come and initiate a swap (which means you have to lock up money) but then just walk away.
 Even if you can take your funds back due to a timeout or some other mechanism, your service is subject to a very easy DoS where the fees end up eating up your balance.
 
 A protocol where Party A locks up BTC, followed by party B locking up XMR is what is currently implemented [in our software](https://github.com/comit-network/xmr-btc-swap).
 Here, the user is limited to buying XMR for BTC (or selling BTC for XMR, depending on how you look at it).
 
-If we want to allow users to sell XMR for BTC, then we need a protocol where party A locks up XMR first. 
+If we want to allow users to sell XMR for BTC, then we need a protocol where party A locks up XMR first.
 We [developed such a protocol](https://arxiv.org/abs/2101.12332) but in order for it to be secure from a game-theoretic PoV, we need to pre-sign a transaction spending from a Monero joint output.
 
 In a nutshell, if we want to provide a non-custodial trading solution where users can buy AND sell XMR for BTC, we need transaction pre-signing.
 
 ## It doesn't work on present day Monero
 
-Unfortunately, it is not possible to efficiently implement pre-signing of transactions in present day Monero. 
+Unfortunately, it is not possible to efficiently implement pre-signing of transactions in present day Monero.
 The reason for that is very technical and we believe it can be fixed but likely requires a hard-fork.
 
 Lucas recently [made an effort](/blog/2021/05/19/monero-transaction) in documenting the transaction structure and signature algorithms of Monero.
@@ -121,7 +121,7 @@ We cannot just remove the key-offsets from the transaction.
 It is important that the signature *commits*[^2] to the ring members that were used to create it.
 At the moment though, we are *over-committing*.
 
-Instead of hashing the list of key-offsets, we can just hash the actual ring members (i.e. the public keys). 
+Instead of hashing the list of key-offsets, we can just hash the actual ring members (i.e. the public keys).
 Those remain unchanged, regardless of which outputs are already included in the blockchain.
 The key-offsets would still remain part of the transaction to retain the space-efficient look-up algorithm of the ring members.
 
@@ -130,9 +130,9 @@ Changing how the signature hash is computed will make transactions from new clie
 
 ## What does this mean for applications on top?
 
-It is our assumption that anything that relies on joint-outputs and pre-signing spending transactions doesn't actually work on present day Monero. 
+It is our assumption that anything that relies on joint-outputs and pre-signing spending transactions doesn't actually work on present day Monero.
 We haven't done an extensive analysis on what this affects but our guess is that this applies to at least anything Layer2 but likely also to other blockchain protocols developed for Monero.
-Most "interesting" blockchain protocols today work on the basis of a joint-owned output with spending transactions which leak secrets when broadcast. 
+Most "interesting" blockchain protocols today work on the basis of a joint-owned output with spending transactions which leak secrets when broadcast.
 As long as we want to remain trustless, we have to create valid spending transactions before the actual output gets mined, otherwise we are dependent on cooperating with the other party to unlock our funds.
 
 ## What is next
