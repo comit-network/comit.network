@@ -21,7 +21,7 @@ Once a transaction is signed, anyone - not just the original owner - can broadca
 Usually, signing and broadcasting is done by the same person.
 
 When we talk about *pre-signing* a transaction, we deliberately separate these two steps.
-Most importantly, when *pre-signing* a transction, the output we are spending is usually not yet included in the blockchain.
+Most importantly, when *pre-signing* a transaction, the output we are spending is usually not yet included in the blockchain.
 We call it pre-signing because we create and therefore authorise the transfer of funds prior to them even existing.
 In some situations, a *pre-signed* transaction might actually never get used and only exists as a backup / fallback option.
 
@@ -35,7 +35,7 @@ To spend the coins locked in such an output, both parties need to collaborate to
 The purpose of such a joint-output is manifold and depends on the protocol that is being implemented.
 For example, joint-outputs are at the core of technologies like the Lightning Network on Bitcoin.
 
-We can achieve trustless protocols like the Lightni network if we don't depend on the other party's willingness to cooperate.
+We can achieve trustless protocols like the Lightning network if we don't depend on the other party's willingness to cooperate.
 
 The solution is simple.
 Both parties sign transactions that spend from a joint-output **prior** to signing the transaction that creates the joint-output.
