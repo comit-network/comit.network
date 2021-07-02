@@ -26,10 +26,9 @@ Once a transaction is signed, anyone - not just the original owner - can broadca
 Usually, signing and broadcasting is done by the same person.
 
 When we talk about *pre-signing* a transaction, we deliberately separate these two steps.
-We call it pre-signing because we create and therefore authorise the transfer of funds significantly earlier to broadcasting it.
-In some situations, a pre-signed transaction might never be broadcasted but just acts as a fallback.
-
-In summary, *pre-signing* as transaction can be thought of as "signing a transaction for later use".
+Most importantly, when *pre-signing* a transction, the output we are spending is usually not yet included in the blockchain.
+We call it pre-signing because we create and therefore authorise the transfer of funds prior to them even existing.
+In some situations, a *pre-signed* transaction might actually never get used and only exists as a backup / fallback option.
 
 ## Why do you want transaction pre-signing?
 
