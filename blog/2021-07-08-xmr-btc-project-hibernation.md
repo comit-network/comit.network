@@ -17,13 +17,12 @@ Where we started and what the latest release has to offer!
 ## A little bit of history
 
 In June 2020 we set out to bring atomic swaps to Monero.
-The basis for this was h4sh3d's protocol, initially described here (TODO LINK).
+The basis for this was h4sh3d's protocol, initially presented at [36C3](https://www.youtube.com/watch?v=G-v6hDnzpds&ab_channel=MoneroCommunityWorkgroup).
 
-Pretty much a year has passed since then and looking back now, I have to say it has been a great success!
+Pretty much a year has passed since then and looking back now, we have to say it has been a great success!
 
 On October 6th 2020, after the successful finalisation of the XMR-BTC swap PoC Lucas published our first [blogpost](https://comit.network/blog/2020/10/06/monero-bitcoin) explaining XMR-BTC swaps.
 At it's core the protocol described in the initial blogpost is still the same.
-It is a slightly adopted version of [h4sh3d's swap protocol]()
 
 Our vision was to offer a somewhat usable tool that allows people to trade the XMR/BTC pair.
 Whilst that sounds simple initially, we set ourselves some challenges:
@@ -32,11 +31,9 @@ Whilst that sounds simple initially, we set ourselves some challenges:
 2. Trading involves buying AND selling.
 3. Trading involves matching up a taker with a maker.
 
-We have come a long way...
-
 ## Where are we now
 
-With the latest release (0.8.0) (TODO LINK TO RELEASE), our tool is now feature complete!
+With the latest release [(0.8.0)](https://github.com/comit-network/xmr-btc-swap/releases/tag/0.8.0), our tool is now feature complete!
 The release adds the long awaited functionality of automated maker discovery.
 
 Running the simple command of:
@@ -51,7 +48,13 @@ Here is what this looks like in action:
 
 <!-- TODO Embed asciinema here. -->
 
-Did we say feature-complete?
+The way this works under the hood is that the CLI connects to a rendezvous-point, configurable via `--rendezvous-point`.
+The protocol in use here is the [libp2p rendezvous protocol](https://github.com/libp2p/specs/tree/master/rendezvous).
+While still in its infancy, it is serving us well to deliver a working version of maker discovery.
+Once connected to the rendezvous point, the CLI requests a list of _registrations_ for a predetermined namespace.
+An ASB provider can [configure](https://github.com/comit-network/xmr-btc-swap/tree/master/docs/asb#asb-discovery) their instance to automatically publish such a registration on startup.
+
+But wait, did we say the tool is feature-complete?
 Not quite unfortunately.
 
 We would really like to offer buying AND selling for the user but this is blocked by transaction chaining / pre-signing landing in Monero.
