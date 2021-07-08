@@ -39,7 +39,7 @@ The release adds the long awaited functionality of automated maker discovery.
 Running the simple command of:
 
 ```
-swap list-sellers
+swap --testnet list-sellers
 
 ```
 
