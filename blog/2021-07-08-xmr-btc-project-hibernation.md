@@ -10,19 +10,20 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <img alt="Hibernation" src={useBaseUrl('blog/assets/images/2021-07/hibernate_bear_tx_chaining_dream.png')} />
 
-Some more bla
+Where we started and what the latest release has to offer!
 
 <!--truncate-->
 
 ## A little bit of history
 
-Last year in (June?) we set out to bring atomic swaps to Monero.
+In June 2020 we set out to bring atomic swaps to Monero.
 The basis for this was h4sh3d's protocol, initially described here (TODO LINK).
 
 Pretty much a year has passed since then and looking back now, I have to say it has been a great success!
 
-On October 6th 2020, after the successful finalization of the XMR-BTC swap PoC Lucas published our first [blogpost](https://comit.network/blog/2020/10/06/monero-bitcoin) explaining XMR-BTC swaps.
-At it's core the protocol described in the initial blogpost is still the same. It is a slightly adopted version or [h4sh3d's swap protocol]()
+On October 6th 2020, after the successful finalisation of the XMR-BTC swap PoC Lucas published our first [blogpost](https://comit.network/blog/2020/10/06/monero-bitcoin) explaining XMR-BTC swaps.
+At it's core the protocol described in the initial blogpost is still the same.
+It is a slightly adopted version of [h4sh3d's swap protocol]()
 
 Our vision was to offer a somewhat usable tool that allows people to trade the XMR/BTC pair.
 Whilst that sounds simple initially, we set ourselves some challenges:
@@ -35,36 +36,55 @@ We have come a long way...
 
 ## Where are we now
 
-Apart from selling XMR our tool is now feature-complete. With the last release we have added automated maker discovery.
+With the latest release (0.8.0) (TODO LINK TO RELEASE), our tool is now feature complete!
+The release adds the long awaited functionality of automated maker discovery.
 
+Running the simple command of:
 
+```
+swap list-sellers
 
-Now we have:
+```
 
-ASB that...
+Will get you a list of sellers (market makers) that are willing to sell XMR for BTC.
+Here is what this looks like in action:
 
-CLI that ...
+<!-- TODO Embed asciinema here. -->
 
-Auto discovery
+Did we say feature-complete?
+Not quite unfortunately.
 
-And we wanted to have: XMR moves first, but -> Thomas blogpost
+We would really like to offer buying AND selling for the user but this is blocked by transaction chaining / pre-signing landing in Monero.
+You can learn more on that topic in [this](/blog/2021/07/02/transaction-presigning) blogpost.
+
+In summary, we have pretty much delivered exactly what we wanted:
+
+A somewhat usable tool that allows users to trustlessly trade the XMR/BTC pair.
 
 ## What's next
 
-We achieved what we wanted, and will stop here until we can go on with `XMR moves first`.
+We are still very keen on offering the missing feature of selling XMR for BTC.
+Outside of that, we also had some ideas on what _could_ be built on top of or with our tool:
 
-If anybody wants to take this further we are happy to assist.
-We are happy to steer the project with design decisions. 
+- Swaps completely in the browser:
+  Rust is a great language for targeting WASM.
+  Compiling everything to WASM would enable swaps completely within the browser, no download necessary.
+  The major obstacle here is our dependency on `monero-wallet-rpc` which we currently start transparently in the background.
+  This will either need to be replaced by something like [monero-javascript](https://github.com/monero-ecosystem/monero-javascript) or a pure Rust implementation of a Monero wallet.
+  Both approaches are not exactly a weekend project but well within reach for anyone that knows their way around Rust.
+- A GUI for the swap CLI:
+  At the moment, all that is offered to the user is a CLI.
+  Whilst sufficient for expert users and to showcase that it works, a proper GUI would be a lot more user-friendly.
+  Fortunately, the CLI is completely non-interactive.
+  If anyone wants to build a GUI, the recommended way would be to start the CLI for the user in the background and process the logs delivered on stderr.
+  An adventurous developer could also try to build a GUI directly in Rust and integrate on a library level.
+- A mobile app.
+  We have very little experience in our team when it comes to writing mobile apps which is why we didn't focus on this at all.
+  For all we know, Rust can target Android as well as iOS which means there should be a way of getting this onto mobile!
 
+This list is by no means exhaustive and we would love for others to jump onto some of these ideas.
+Whilst we will not be pushing any of those forward ourselves, we are more than happy to assist by participating and steering [discussions](https://github.com/comit-network/xmr-btc-swap/discussions) and reviewing pull requests.
 
+As always, jump into our channels if you want to get in touch: [#comit-monero:matrix.org](https://matrix.to/#/#comit-monero:matrix.org).
 
-We found it very interesting to look into the possibilities designing products for XMR-BTC swaps, but at the end of the day we are a research lab and don't focus on building end-user products.
-
-The next big feature we see going into the codebase is `XMR moves first`.
-Until this becomes possible we are not planning to invest an awful lot of time into maintenance. 
-
-We are planning to keep an eye on the repository and will give critical bugs attention, but we will not include new features for the time being.
-
-When it comes to minor feature requests there is only one thing to say:
-Contribute! We would love to see more contributions to the codebase and will keep maintaining it.
-We are happy to assist with helping to design new features - open an [issue]() or start a [discussion]().
+Happy swapping!
