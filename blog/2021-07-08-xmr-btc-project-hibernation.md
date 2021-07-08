@@ -8,7 +8,7 @@ tags: [monero,bitcoin,atomic,swap]
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-<img alt="Waves" src={useBaseUrl('blog/assets/images/2021-03/hiring.png')} />
+<img alt="Hibernation" src={useBaseUrl('blog/assets/images/2021-07/hibernate_bear_tx_chaining_dream.png')} />
 
 Some more bla
 
