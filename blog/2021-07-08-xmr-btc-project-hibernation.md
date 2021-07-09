@@ -39,8 +39,7 @@ The release adds the long awaited functionality of automated maker discovery.
 Running the simple command of:
 
 ```
-swap --testnet list-sellers
-
+swap --testnet list-sellers --rendezvous-point /dnsaddr/rendezvous.coblox.tech/p2p/12D3KooWQUt9DkNZxEn2R5ymJzWj15MpG6mTW84kyd8vDaRZi46o
 ```
 
 Will get you a list of sellers (market makers) that are willing to sell XMR for BTC.
