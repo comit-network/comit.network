@@ -10,7 +10,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <img alt="Hibernation" src={useBaseUrl('blog/assets/images/2021-07/hibernate_bear_tx_chaining_dream.png')} />
 
-Where we started and what the latest release has to offer!
+Bringing XMR-BTC swaps to the community is one of the most rewarding projects we have been working on.
+In this blogpost we summarize where we started, what the latest release has to offer and what is planned for the future!
 
 <!--truncate-->
 
