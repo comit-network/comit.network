@@ -105,7 +105,7 @@ Whilst we will not be pushing any of those forward ourselves, we are more than h
 
 Thanks to the community for the contributions so far:
 
-- Documentation ([#609](https://github.com/comit-network/xmr-btc-swap/pull/606), [#614](https://github.com/comit-network/xmr-btc-swap/pull/614), [#533](https://github.com/comit-network/xmr-btc-swap/pull/533))
+- Documentation ([#609](https://github.com/comit-network/xmr-btc-swap/pull/609), [#614](https://github.com/comit-network/xmr-btc-swap/pull/614), [#533](https://github.com/comit-network/xmr-btc-swap/pull/533))
 - CLI QR code for Bitcoin deposit [#547](https://github.com/comit-network/xmr-btc-swap/pull/547)
 - Configurable rate websocket for the ASB [#585](https://github.com/comit-network/xmr-btc-swap/pull/585)
 
