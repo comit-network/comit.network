@@ -53,6 +53,19 @@ While still in its infancy, it is serving us well to deliver a working version o
 Once connected to the rendezvous point, the CLI requests a list of _registrations_ for a predetermined namespace.
 An ASB provider can [configure](https://github.com/comit-network/xmr-btc-swap/tree/master/docs/asb#asb-discovery) their instance to automatically publish such a registration on startup.
 
+We've created a simple daemon that can act as a rendezvous point: https://github.com/comit-network/rendezvous-server.
+In the example above, the tool is connecting to an instance of this daemon that we are hosting for our own testing purposes.
+People are welcome to test their own setup against this rendezvous point.
+
+Hosting a rendezvous point is dead easy!
+
+1. Download the [latest release](https://github.com/comit-network/rendezvous-server/releases/latest).
+2. Run as per [usage instructions](https://github.com/comit-network/rendezvous-server/#usage)
+3. Make sure your port is forwarded if you are behind NAT.
+4. Done!
+
+Other people can now use your rendezvous point to register their ASB instance and CLI users will be able to discover them!
+
 But wait, did we say the tool is feature-complete?
 Not quite unfortunately.
 
