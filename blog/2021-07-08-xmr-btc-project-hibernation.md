@@ -21,7 +21,7 @@ The basis for this was h4sh3d's protocol, initially presented at [36C3](https://
 
 Pretty much a year has passed since then and looking back now, we have to say it has been a great success!
 
-On October 6th 2020, after the successful finalisation of the XMR-BTC swap PoC Lucas published our first [blogpost](https://comit.network/blog/2020/10/06/monero-bitcoin) explaining XMR-BTC swaps.
+On October 6th 2020, after the successful finalisation of the XMR-BTC swap PoC Lucas published our first [blogpost](2020-10-06-monero-bitcoin.md) explaining XMR-BTC swaps.
 At it's core the protocol described in the initial blogpost is still the same.
 
 Our vision was to offer a somewhat usable tool that allows people to trade the XMR/BTC pair.
@@ -58,7 +58,7 @@ But wait, did we say the tool is feature-complete?
 Not quite unfortunately.
 
 We would really like to offer buying AND selling for the user but this is blocked by transaction chaining / pre-signing landing in Monero.
-You can learn more on that topic in [this](/blog/2021/07/02/transaction-presigning) blogpost.
+You can learn more on that topic in [this](2021-07-02-transaction-presigning.md) blogpost.
 
 In summary, we have pretty much delivered exactly what we wanted:
 
