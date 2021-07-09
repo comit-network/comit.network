@@ -25,7 +25,7 @@ Pretty much a year has passed since then and looking back now, we have to say it
 On October 6th 2020, after the successful finalisation of the XMR-BTC swap PoC Lucas published our first [blogpost](2020-10-06-monero-bitcoin.md) explaining XMR-BTC swaps.
 At it's core the protocol described in the initial blogpost is still the same.
 
-Our vision was to offer a somewhat usable tool that allows people to trade the XMR/BTC pair.
+Our vision was to offer a usable tool that allows people to trade the XMR/BTC pair.
 Whilst that sounds simple initially, we set ourselves some challenges:
 
 1. The trading needs to be trustless, hence the need for an atomic-swap protocol.
@@ -75,7 +75,7 @@ You can learn more on that topic in [this](2021-07-02-transaction-presigning.md)
 
 In summary, we have pretty much delivered exactly what we wanted:
 
-A somewhat usable tool that allows users to trustlessly trade the XMR/BTC pair.
+A usable tool that allows users to trustlessly trade the XMR/BTC pair.
 
 ## What's next
 
