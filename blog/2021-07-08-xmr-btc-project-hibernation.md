@@ -45,7 +45,7 @@ swap --testnet list-sellers --rendezvous-point /dnsaddr/rendezvous.coblox.tech/p
 Will get you a list of sellers (market makers) that are willing to sell XMR for BTC.
 Here is what this looks like in action:
 
-<!-- TODO Embed asciinema here. -->
+[![asciicast](https://asciinema.org/a/KQZmzBqehqcnjKRJSOyT9mqaz.svg)](https://asciinema.org/a/KQZmzBqehqcnjKRJSOyT9mqaz)
 
 The way this works under the hood is that the CLI connects to a rendezvous-point, configurable via `--rendezvous-point`.
 The protocol in use here is the [libp2p rendezvous protocol](https://github.com/libp2p/specs/tree/master/rendezvous).
