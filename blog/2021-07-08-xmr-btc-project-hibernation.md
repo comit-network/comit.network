@@ -89,6 +89,12 @@ Additionally, we also had some ideas on what _could_ be built on top of or with 
 This list is by no means exhaustive, and we would love for others to jump onto some of these ideas.
 Whilst we will not be pushing any of those forward ourselves, we are more than happy to assist by participating and steering [discussions](https://github.com/comit-network/xmr-btc-swap/discussions) and reviewing pull requests.
 
+Thanks to the community for the contributions so far:
+
+- Documentation ([#609](https://github.com/comit-network/xmr-btc-swap/pull/606), [#614](https://github.com/comit-network/xmr-btc-swap/pull/614), [#533](https://github.com/comit-network/xmr-btc-swap/pull/533))
+- CLI QR code for Bitcoin deposit [#547](https://github.com/comit-network/xmr-btc-swap/pull/547)
+- Configurable rate websocket for the ASB [#585](https://github.com/comit-network/xmr-btc-swap/pull/585)
+
 As always, jump into our channels if you want to get in touch: [#comit-monero:matrix.org](https://matrix.to/#/#comit-monero:matrix.org).
 
 Happy swapping!
