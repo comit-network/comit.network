@@ -42,7 +42,7 @@ Running the simple command of:
 swap --testnet list-sellers --rendezvous-point /dnsaddr/rendezvous.coblox.tech/p2p/12D3KooWQUt9DkNZxEn2R5ymJzWj15MpG6mTW84kyd8vDaRZi46o
 ```
 
-Will get you a list of sellers (market makers) that are willing to sell XMR for BTC.
+will get you a list of sellers (market makers) that are willing to sell XMR for BTC.
 Here is what this looks like in action:
 
 [![asciicast](https://asciinema.org/a/KQZmzBqehqcnjKRJSOyT9mqaz.svg)](https://asciinema.org/a/KQZmzBqehqcnjKRJSOyT9mqaz)
@@ -65,8 +65,10 @@ A somewhat usable tool that allows users to trustlessly trade the XMR/BTC pair.
 
 ## What's next
 
-We are still very keen on offering the missing feature of selling XMR for BTC.
-Outside of that, we also had some ideas on what _could_ be built on top of or with our tool:
+We are still very keen on offering the missing feature of selling XMR for BTC. 
+We are hoping to pick that feature up once transaction chaining becomes possible on Monero. 
+
+Additionally, we also had some ideas on what _could_ be built on top of or with our tool:
 
 - Swaps completely in the browser:
   Rust is a great language for targeting WASM.
@@ -84,7 +86,7 @@ Outside of that, we also had some ideas on what _could_ be built on top of or wi
   We have very little experience in our team when it comes to writing mobile apps which is why we didn't focus on this at all.
   For all we know, Rust can target Android as well as iOS which means there should be a way of getting this onto mobile!
 
-This list is by no means exhaustive and we would love for others to jump onto some of these ideas.
+This list is by no means exhaustive, and we would love for others to jump onto some of these ideas.
 Whilst we will not be pushing any of those forward ourselves, we are more than happy to assist by participating and steering [discussions](https://github.com/comit-network/xmr-btc-swap/discussions) and reviewing pull requests.
 
 As always, jump into our channels if you want to get in touch: [#comit-monero:matrix.org](https://matrix.to/#/#comit-monero:matrix.org).
