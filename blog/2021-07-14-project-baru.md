@@ -28,7 +28,7 @@ In the Bitcoin world, many consider Bitcoin to be the original DeFi.
 Arguably though, taking long positions is only one form of investment.
 In the traditional finance world, people take short positions, sell options, bet on prices using futures or utilise CFDs (contracts for difference) to benefit from price movements without ever holding the actual asset.
 
-Bitcoin means many things [0] to many different people.
+Bitcoin means [many things](https://medium.com/@nic__carter/visions-of-bitcoin-4b7b7cbcd24c) to many different people.
 If we think about it as a financial asset, it makes sense to build these financial products on top of it.
 
 Of course, while doing so, we don't want to compromise Bitcoin's core values: decentralised, censorship-resistant and permission-less.
@@ -36,12 +36,12 @@ Of course, while doing so, we don't want to compromise Bitcoin's core values: de
 ## DeFi on Bitcoin
 
 Bitcoin is constantly evolving.
-As you would expect from a system that governs billions of dollars [1], it moves at a fairly slow rate.
+As you would expect from a system that governs [billions of dollars](https://coinmarketcap.com/), it moves at a fairly slow rate.
 Unfortunately, this means that we don't have the tools (yet) to build complex contracts on Bitcoin.
 In particular, encoding covenance - a core building block for tradable contracts - is not possible.
 
 Fortunately though, Liquid offers tools to build this.
-We already utilised this to build trustless loans [2].
+We already utilised this to build [trustless loans](2021-03-31-borrowing-without-a-middleman.md).
 
 ## Project Baru
 
@@ -49,6 +49,4 @@ Project Baru is our effort to continue DeFi on the Liquid platform.
 Our goal is to build all sorts of trustless financial products, including options, futures and potentially even CFDs.
 People will be able to take out loans, buy a future's contract and sell it to someone else, all without having to entrust their funds with a custodian.
 
-[0]: https://medium.com/@nic__carter/visions-of-bitcoin-4b7b7cbcd24c
-[1]: https://coinmarketcap.com/
-[2]: 2021-03-31-borrowing-without-a-middleman.md
+In case you are curious about the name: Baru is the name of a [native Australian crocodile species](https://australian.museum/learn/australia-over-time/extinct-animals/baru-darrowi/) that would hunt in fresh water pools (Liquid anyone?) by lurking underneath the water surface, waiting for prey.
