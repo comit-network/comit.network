@@ -38,7 +38,7 @@ Of course, while doing so, we don't want to compromise Bitcoin's core values: de
 Bitcoin is constantly evolving.
 As you would expect from a system that governs [billions of dollars](https://coinmarketcap.com/), it moves at a fairly slow rate.
 Unfortunately, this means that we don't have the tools (yet) to build complex contracts on Bitcoin.
-In particular, encoding covenance - a core building block for tradable contracts - is not possible.
+In particular, encoding covenants - a core building block for tradable contracts - is not possible.
 
 Fortunately though, Liquid offers tools to build this.
 We already utilised this to build [trustless loans](2021-03-31-borrowing-without-a-middleman.md).
