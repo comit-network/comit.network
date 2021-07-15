@@ -48,5 +48,10 @@ We already utilised this to build [trustless loans](2021-03-31-borrowing-without
 Project Baru is our effort to continue DeFi on the Liquid platform.
 Our goal is to build all sorts of trustless financial products, including options, futures and potentially even CFDs.
 People will be able to take out loans, buy a future's contract and sell it to someone else, all without having to entrust their funds with a custodian.
+To begin with, we will focus on loans, in particular, collateralised dept positions (CDPs) and later move on to options and futures.
 
 In case you are curious about the name: Baru is the name of a [native Australian crocodile species](https://australian.museum/learn/australia-over-time/extinct-animals/baru-darrowi/) that would hunt in fresh water pools (Liquid anyone?) by lurking underneath the water surface, waiting for prey.
+
+## Get involved
+
+To stay on top of what is happening, join our [room(s)](https://matrix.to/#/#comit-liquid:matrix.org) on Matrix and checkout our repositories: [`waves`](https://github.com/comit-network/waves) and [`baru`](https://github.com/comit-network/baru-lib)!
