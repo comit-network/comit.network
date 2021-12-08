@@ -38,10 +38,14 @@ Proofing that a product is non-custodial and peer to peer is not super easy beca
 There is only one thing we can do: Make it verifyable.
 ItchySats code is open source, the code is available on [GitHub](github.com/itchysats/itchysats).
 The CFD protocol used by ItchySats is maintained by the COMIT team on [GitHub](https://github.com/comit-network/maia).
+
 Currently, opening and closing positions is on Layer-1, i.e. the Bitcoin blockchain.
 You can verify all transactions on chain.
 Essentially, that makes your complete history verifyable on the blockchain.
 We are working on protocols where you don't have to go on chain to close a position but keep your funds in a channel for future positions.
+
+Our current independent oracle is [Olivia](https://outcome.observer/h00.ooo/x/BitMEX/BXBT) an [open source oracle](https://github.com/LLFourn/olivia) run by Bitcoin community members.
+A multi-oracle setup for enhanced security is in the making.
 
 Building trust in software requires time.
 This blogpost is an introduction to the protocol and an outlook what is to come.
