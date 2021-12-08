@@ -10,6 +10,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## The Vision: Reach for the moon? We reach for the stars!
 
+<img alt="FlyMeToTheMoon" src={useBaseUrl('blog/assets/images/2021-12/FlyMeToTheMoon.png')} />
+
 We are building the first fully non-custodial, peer to peer Bitcoin DEX. - A "fully non-custodial, peer to peer Bitcoin DEX" - What does that mean?
 
 1. **Non-custodial**: No platform, no middle man - just you and your keys.
@@ -63,7 +65,7 @@ The mainnet beta allows you to:
 3. Positions are closed after 7 days unless closed by the taker earlier. (Perpetual positions are in the making.)
 
 What assets can you trade?
-Our mainnet beta allows you to open a CFD on the BTC/USD price
+Our mainnet beta allows you to open a CFD on the BTC/USD price.
 But, we are planning to enable you to trade pretty much anything that has a value against Bitcoin.
 
 Without much further ado, here is our roadmap:
@@ -87,7 +89,7 @@ Once we reach the moon milestone you can expect multiple makers (and potentially
 
 ### Reach for the stars
 
-In this stage we will focus on oracles: Partner with multiple oracle providers to make the solution more secure and scaleable.
+In this stage we will focus on oracles: Partner with multiple oracle providers to make the solution more secure and scalable.
 Additionally, more trading pairs are to be agreed upon with oracle providers.
 
 Once we reach the stars milestone you can expect an independent multi-oracle setup that allows trading multiple asset-pairs.
@@ -126,7 +128,7 @@ As a first step the maker needs to pick an oracle event, i.e. a point in time at
 The maker picks an oracle event in the future that will sign the price, e.g. the event that will sign the BTC/USD price in 24 hours.
 The oracle event defines when the CFD period ends.
 The maker then creates an offer.
-The offer includes the maker's price, minumum and maximum quantity, possible leverage and the oracle event to be used.
+The offer includes the maker's price, minimum and maximum quantity, possible leverage and the oracle event to be used.
 
 When a taker connects to a maker the taker will see the offers of the maker.
 The taker can then request to open a position with the maker, taking the offer.
